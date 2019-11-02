@@ -38,6 +38,7 @@ namespace FutbalnetApp.ViewModels
 
 			try
 			{
+				var test = await SportnetStore.GetActiveCompetitionsAsync(new Season { Id = "2019-2020" });
 				Items.Clear();
 				var items = await DataStore.GetItemsAsync(true);
 				foreach (var item in items)
