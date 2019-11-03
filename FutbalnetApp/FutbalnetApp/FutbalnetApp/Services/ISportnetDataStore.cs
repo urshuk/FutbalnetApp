@@ -16,7 +16,8 @@ namespace FutbalnetApp.Services
 		//COMPETITIONS
 		Task<Competition> GetCompetitionAsync(int id);
 		Task<IEnumerable<CompetitionPreview>> GetActiveCompetitionsAsync(Season season);
-		Task<IEnumerable<Competition>> GetPastCompetitionsAsync(int id);
+		Task<IEnumerable<CompetitionSeason>> GetPastCompetitionsAsync(int id);
+		Task<CompetitionRound> GetCompetitionRoundAsync(int competitionId, int partId, int roundId);
 		Task<CompetitionTable> GetCompetitionTableAsync(int id, int compPartId = 0);
 		Task<CompetitionStats> GetCompetitionStatsAsync(int id, int compPartId = 0);
 
@@ -24,19 +25,17 @@ namespace FutbalnetApp.Services
 		Task<IEnumerable<Season>> GetSeasonsAsync();
 		
 		//UNIONS
-		Task<IEnumerable<Union>> GetUnionsAsync();
+		Task<IEnumerable<UnionPreview>> GetUnionsAsync();
 		Task<Union> GetUnionAsync(int id);
 				
 		//PERSONS
 		Task<Person> GetPersonAsync(int id);
 		Task<Player> GetPlayerAsync(int id);
 		Task<Trainer> GetTrainerAsync(int id);
-		Task<PlayerStats> GetPlayerStatsSummaryAsync(int id);
-		Task<PlayerStats> GetPlayerStatsBySeasonAsync(int id, Season season);
-
+		Task<IEnumerable<Stat>> GetPlayerStatsSummaryAsync(int id);
+		Task<IEnumerable<Stat>> GetPlayerStatsBySeasonAsync(int id, Season season);
 
 		//MATCHES
-		Task<IEnumerable<Match>> GetMatchesByRoundAsync(int competitionId, int partId, int roundId);
 		Task<Match> GetMatchAsync(int id);
 
 		//MISC

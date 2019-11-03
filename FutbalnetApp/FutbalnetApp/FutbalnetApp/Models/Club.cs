@@ -1,19 +1,23 @@
-﻿using System;
+﻿using FutbalnetApp.Converters;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace FutbalnetApp.Models
 {
-	public class Club
+	[JsonConverter(typeof(JsonPathConverter))]
+	public class Club : ClubPreview
 	{
-		public int Id { get; set; }
-		public string Name { get; set; }
+		[JsonProperty("status")]
 		public string Status { get; set; }
-		public string LogoUrl { get; set; }
+		[JsonProperty("union.id")]
 		public int UnionId { get; set; }
+		[JsonProperty("stadium.id")]
 		public int StadiumId { get; set; }
-		public DateTime Founded { get; set; }
+		[JsonProperty("billing_info")]
 		public BillingInfo BillingInfo { get; set; }
+		[JsonProperty("contact")]
 		public Contact Contact { get; set; }
 	}
 }

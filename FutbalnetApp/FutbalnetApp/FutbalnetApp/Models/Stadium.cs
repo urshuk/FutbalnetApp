@@ -11,6 +11,6 @@ namespace FutbalnetApp.Models
 		public StadiumCapacity Capacity { get; set; }
 		public string Owner { get; set; }
 		public Address Address { get; set; }
-		public DateTime Founded { get; set; }
+		public DateTime? Founded { get; set; }
 	}
 }

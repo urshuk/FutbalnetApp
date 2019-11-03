@@ -7,15 +7,15 @@ using System.Text;
 namespace FutbalnetApp.Models
 {
 	[JsonConverter(typeof(JsonPathConverter))]
-	public class Union
+	public class UnionPreview
 	{
-		[JsonProperty("id")]
+		[JsonProperty("union.id")]
 		public int Id { get; set; }
-		[JsonProperty("name")]
+		[JsonProperty("union.name")]
 		public string Name { get; set; }
-		[JsonProperty("logo.urlpattern")]
+		[JsonProperty("union.logo.urlpattern")]
 		public string LogoUrl { get; set; }
-		[JsonProperty("logo.url")]
+		[JsonProperty("union.logo.url")]
 		public string LogoBase { get; set; }
 		public int LogoId
 		{
@@ -25,13 +25,11 @@ namespace FutbalnetApp.Models
 				return success ? result : -1;
 			}
 		}
-		[JsonProperty("full_name")]
+		[JsonProperty("union.full_name")]
 		public string FullName { get; set; }
-		[JsonProperty("parent")]
+		[JsonProperty("union.parent")]
 		public int ParentUnionId { get; set; }
-		[JsonProperty("billing_info")]
-		public BillingInfo BillingInfo { get; set; }
-		[JsonProperty("contact")]
-		public Contact Contact { get; set; }
+		[JsonProperty("subs")]
+		public IEnumerable<UnionPreview> SubUnions { get; set; }
 	}
 }

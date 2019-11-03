@@ -1,20 +1,25 @@
-﻿using System;
+﻿using FutbalnetApp.Converters;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace FutbalnetApp.Models
 {
+	[JsonConverter(typeof(JsonPathConverter))]
 	public class Player
 	{
+		[JsonProperty("profileId")]
 		public int Id { get; set; }
-		public int ActualClubId { get; set; }
-		public string ActualClubName { get; set; }
+		[JsonProperty("club_actual")]
+		public ClubPreview ActualClub { get; set; }
+		[JsonProperty("profileStatus.status")]
 		public string Status { get; set; }
+		[JsonProperty("profileStatus.regDate")]
 		public DateTime RegistrationDate { get; set; }
-		public int OriginClubId { get; set; }
-		public string OriginClubName { get; set; }
-		public string Type { get; set; }
-		public PlayerStats StatsSummary { get; set; }
-		public IEnumerable<PlayerStats> SeasonStats { get; set; }
+		[JsonProperty("person")]
+		public PersonPreview Person { get; set; }
+		[JsonProperty("club_origin")]
+		public ClubPreview OriginClub { get; set; }
 	}
 }

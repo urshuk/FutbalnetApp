@@ -7,9 +7,11 @@ using System.Text;
 namespace FutbalnetApp.Models
 {
 	[JsonConverter(typeof(JsonPathConverter))]
-	public class Competition : CompetitionPreview
+	public class Profile
 	{
-		[JsonProperty("parts")]
-		public IEnumerable<CompetitionPart> Parts { get; set; }
+		[JsonProperty("type")]
+		public string Type { get; set; }
+		[JsonProperty("profileId")]
+		public int Id { get; set; }
 	}
 }

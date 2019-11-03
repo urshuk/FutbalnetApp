@@ -29,6 +29,10 @@ namespace FutbalnetApp.Converters
 
 				if (token != null && token.Type != JTokenType.Null)
 				{
+					if (jsonPath == "person_ids" && (token.First.Type == JTokenType.Null || token.Last.Type == JTokenType.Null))
+					{
+						break;
+					}
 					var jsonConverterAttr = prop.GetCustomAttributes(true).OfType<JsonConverterAttribute>().FirstOrDefault();
 					object value;
 					if (jsonConverterAttr == null)

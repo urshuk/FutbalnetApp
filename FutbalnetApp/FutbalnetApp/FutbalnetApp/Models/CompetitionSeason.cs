@@ -7,15 +7,16 @@ using System.Text;
 namespace FutbalnetApp.Models
 {
 	[JsonConverter(typeof(JsonPathConverter))]
-	public class Team : TeamPreview
+	public class CompetitionSeason
 	{
-		[JsonProperty("age")]
-		public string Age { get; set; }
-		[JsonProperty("sex")]
-		public string Sex { get; set; }
+		[JsonProperty("competition.id")]
+		public int Id { get; set; }
+		[JsonProperty("competition.name")]
+		public string Name { get; set; }
 		[JsonProperty("season")]
 		public Season Season { get; set; }
-		[JsonProperty("season.txtid")]
-		public string SeasonId { get; set; }
+
+		public override string ToString() => Name;
+
 	}
 }

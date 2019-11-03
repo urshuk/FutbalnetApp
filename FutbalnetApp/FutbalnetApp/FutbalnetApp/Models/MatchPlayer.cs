@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,6 +10,7 @@ namespace FutbalnetApp.Models
 		public PersonPreview Person { get; set; }
 		public string Post { get; set; }
 		public int Number { get; set; }
+		[JsonProperty("captain")]
 		public bool IsCaptain { get; set; }
 	}
 }

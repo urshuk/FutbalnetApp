@@ -7,7 +7,7 @@ using System.Text;
 namespace FutbalnetApp.Models
 {
 	[JsonConverter(typeof(JsonPathConverter))]
-	public class Union
+	public class ClubPreview
 	{
 		[JsonProperty("id")]
 		public int Id { get; set; }
@@ -25,13 +25,7 @@ namespace FutbalnetApp.Models
 				return success ? result : -1;
 			}
 		}
-		[JsonProperty("full_name")]
-		public string FullName { get; set; }
-		[JsonProperty("parent")]
-		public int ParentUnionId { get; set; }
-		[JsonProperty("billing_info")]
-		public BillingInfo BillingInfo { get; set; }
-		[JsonProperty("contact")]
-		public Contact Contact { get; set; }
+
+		public override string ToString() => Name;
 	}
 }

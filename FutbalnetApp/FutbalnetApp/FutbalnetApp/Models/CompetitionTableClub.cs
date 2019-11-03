@@ -1,13 +1,21 @@
-﻿namespace FutbalnetApp.Models
+﻿using FutbalnetApp.Converters;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+
+namespace FutbalnetApp.Models
 {
+	[JsonConverter(typeof(JsonPathConverter))]
 	public class CompetitionTableClub
 	{
-		public int ClubId { get; set; }
+		[JsonProperty("club")]
+		public ClubPreview Club { get; set; }
+		[JsonProperty("team.id")]
 		public int TeamId { get; set; }
+		[JsonProperty("order")]
 		public int Order { get; set; }
-		public string Name { get; set; }
-		public string LogoUrl { get; set; }
-		public bool Resignation { get; set; }
-		public CompetitionTableStats Stats { get; set; }
+		[JsonProperty("resignation")]
+		public bool IsResignated { get; set; }
+		[JsonProperty("stats")]
+		public IEnumerable<Stat> Stats { get; set; }
 	}
 }
