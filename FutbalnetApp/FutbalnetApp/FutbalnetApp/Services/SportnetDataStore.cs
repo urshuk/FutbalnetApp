@@ -204,6 +204,16 @@ namespace FutbalnetApp.Services
 
 			return null;
 		}
+		public async Task<IEnumerable<Transfer>> GetPlayerTransfersAsync(int id)
+		{
+			if (id > 0 && IsConnected)
+			{
+				var json = await client.GetStringAsync($"players/{id}/movements/");
+				return await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Transfer>>(json));
+			}
+
+			return null;
+		}
 		public async Task<Trainer> GetTrainerAsync(int id)
 		{
 			if (id > 0 && IsConnected)

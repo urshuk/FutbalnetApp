@@ -17,5 +17,7 @@ namespace FutbalnetApp.Models
 		public bool IsResignated { get; set; }
 		[JsonProperty("stats")]
 		public IEnumerable<Stat> Stats { get; set; }
+
+		public override string ToString() => Club.Name;
 	}
 }

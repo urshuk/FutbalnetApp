@@ -33,6 +33,7 @@ namespace FutbalnetApp.Services
 		Task<Player> GetPlayerAsync(int id);
 		Task<Trainer> GetTrainerAsync(int id);
 		Task<IEnumerable<Stat>> GetPlayerStatsSummaryAsync(int id);
+		Task<IEnumerable<Transfer>> GetPlayerTransfersAsync(int id);
 		Task<IEnumerable<Stat>> GetPlayerStatsBySeasonAsync(int id, Season season);
 
 		//MATCHES

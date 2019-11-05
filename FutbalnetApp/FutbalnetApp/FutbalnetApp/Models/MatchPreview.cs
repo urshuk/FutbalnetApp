@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FutbalnetApp.Models
@@ -21,5 +22,7 @@ namespace FutbalnetApp.Models
 		public DateTime Datetime { get; set; }
 		[JsonProperty("match_status")]
 		public string Status { get; set; }
+
+		public override string ToString() => $"{Teams.First().Name} : {Teams.Last().Name}";
 	}
 }
