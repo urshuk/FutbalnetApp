@@ -22,6 +22,13 @@ namespace FutbalnetApp.ViewModels
 			set { SetProperty(ref isBusy, value); }
 		}
 
+		bool isLoaded = false;
+		public bool IsLoaded
+		{
+			get { return isLoaded; }
+			set { SetProperty(ref isLoaded, value); }
+		}
+
 		string title = string.Empty;
 		public string Title
 		{

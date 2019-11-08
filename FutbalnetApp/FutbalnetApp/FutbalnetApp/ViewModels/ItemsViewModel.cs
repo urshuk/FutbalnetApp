@@ -41,7 +41,7 @@ namespace FutbalnetApp.ViewModels
 				//var test = await SportnetStore.GetActiveCompetitionsAsync(new Season { Id = "2019-2020" });
 				//var test = await SportnetStore.GetClubAsync(1413);
 				//var test = await SportnetStore.GetClubTeamsAsync(1872);
-				//var test = await SportnetStore.GetCompetitionAsync(1872);
+				//var test = await SportnetStore.GetCompetitionAsync(2984);
 				//var test = await SportnetStore.GetCompetitionStatsAsync(2984);
 				//var test = await SportnetStore.GetCompetitionTableAsync(2984);
 				//var test = await SportnetStore.GetMatchAsync(444151);

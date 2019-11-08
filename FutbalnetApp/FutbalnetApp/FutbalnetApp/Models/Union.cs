@@ -33,5 +33,7 @@ namespace FutbalnetApp.Models
 		public BillingInfo BillingInfo { get; set; }
 		[JsonProperty("contact")]
 		public Contact Contact { get; set; }
+
+		public override string ToString() => FullName;
 	}
 }

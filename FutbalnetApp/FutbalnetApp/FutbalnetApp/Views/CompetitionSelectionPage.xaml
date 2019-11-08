@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
+             mc:Ignorable="d"
+             Title="FutbalVille"
+             x:Class="FutbalnetApp.Views.CompetitionSelectionPage">
+    <ContentPage.Content>
+        <StackLayout Padding="25,10,25,0" Spacing="0" BackgroundColor="{StaticResource BackgroundColor}">
+            <tabs:TabHostView x:Name="Competitions"
+                              VerticalOptions="Start"
+                              MinimumHeightRequest="33"
+                              HeightRequest="33"
+                              SelectedIndex="{Binding Source={x:Reference CompetitionSwitcher}, Path=SelectedIndex, Mode=TwoWay}">
+                <tabs:TabHostView.Tabs>
+                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Súťaže"/>
+                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Podzväzy"/>
+                </tabs:TabHostView.Tabs>
+            </tabs:TabHostView>
+            <tabs:ViewSwitcher x:Name="CompetitionSwitcher"
+                               Animate="True"
+                               VerticalOptions="FillAndExpand"
+                               SelectedIndex="{Binding SelectedCompetitionIndex, Mode=TwoWay}">
+                <StackLayout Spacing="0">
+                    <tabs:TabHostView x:Name="CategoryTabs"                       
+                                      VerticalOptions="Start"
+                                      MinimumHeightRequest="33"
+                                      HeightRequest="33"
+                                      SelectedIndex="{Binding Source={x:Reference CategorySwitcher}, Path=SelectedIndex, Mode=TwoWay}">
+                        <tabs:TabHostView.Tabs>
+                            <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Muži"/>
+                            <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Ženy"/>
+                            <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Mládež"/>
+                        </tabs:TabHostView.Tabs>
+                    </tabs:TabHostView>
+                    <tabs:ViewSwitcher x:Name="CategorySwitcher"
+                                       Animate="True"
+                                       SelectedIndex="{Binding SelectedCategoryIndex, Mode=TwoWay}">
+                        <CollectionView x:Name="MCompsList"
+                                        Style="{StaticResource SecondaryList}"
+                                        ItemsSource="{Binding MenCompetitions}"
+                                        SelectionChanged="OnCompetitionSelected"/>
+                        <CollectionView x:Name="WCompsList"
+                                        ItemsSource="{Binding WomenCompetitions}"
+                                        SelectionChanged="OnCompetitionSelected"
+                                        Style="{StaticResource SecondaryList}"/>
+                        <CollectionView x:Name="YCompsList"                         
+                                        Style="{StaticResource SecondaryList}"
+                                        ItemsSource="{Binding YoungCompetitions}"
+                                        SelectionChanged="OnCompetitionSelected"/>
+                    </tabs:ViewSwitcher>
+                </StackLayout>
+                <CollectionView x:Name="UnionList"
+                                ItemsSource="{Binding SubUnions}"
+                                Style="{StaticResource SecondaryList}"
+                                SelectionChanged="UnionList_SelectionChanged"/> 
+            </tabs:ViewSwitcher>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

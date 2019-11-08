@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Sharpnado.Presentation.Forms.iOS;
 using UIKit;
 
 namespace FutbalnetApp.iOS
@@ -24,8 +25,9 @@ namespace FutbalnetApp.iOS
         {
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
-
+			SharpnadoInitializer.Initialize();
+			LoadApplication(new App());
+			app.StatusBarStyle = UIStatusBarStyle.DarkContent;
             return base.FinishedLaunching(app, options);
         }
     }

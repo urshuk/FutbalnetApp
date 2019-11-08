@@ -5,7 +5,7 @@
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        mc:Ignorable="d"
        xmlns:local="clr-namespace:FutbalnetApp.Views"
-       Title="FutbalnetApp"
+       Title="FutbalVille"
        x:Class="FutbalnetApp.AppShell">
 
     <!-- 
@@ -13,17 +13,16 @@
     -->
     <Shell.Resources>
         <ResourceDictionary>
-            <Color x:Key="NavigationPrimary">#2196F3</Color>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
-                <Setter Property="Shell.TitleColor" Value="White" />
-                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
-                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource AlternativeColor}" />
+                <Setter Property="Shell.ForegroundColor" Value="{StaticResource TextColor}" />
+                <Setter Property="Shell.TitleColor" Value="{StaticResource TextColor}" />
+                <Setter Property="Shell.DisabledColor" Value="Blue" />
+                <Setter Property="Shell.UnselectedColor" Value="Red" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource AlternativeColor}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource TextColor}"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource DarkAlternativeColor}"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource TextColor}"/>
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
@@ -31,11 +30,20 @@
 
     <!-- Your Pages -->
     <TabBar>
-        <Tab Title="Browse" Icon="tab_feed.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}" />
-        </Tab>
-        <Tab Title="About" Icon="tab_about.png">
+        <Tab Title="About" Icon="CompetitionIcon.pdf">
             <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
+        </Tab>
+        <Tab Title="Súťaže" Icon="FavouriteIcon.pdf">
+            <ShellContent ContentTemplate="{DataTemplate local:CompetitionSelectionPage}" />
+        </Tab>
+        <Tab Title="Comp" Icon="TimelineIcon.pdf">
+            <ShellContent ContentTemplate="{DataTemplate local:CompetitionDetailPage}" />
+        </Tab>
+        <Tab Title="Match" Icon="SearchIcon.pdf">
+            <ShellContent ContentTemplate="{DataTemplate local:MatchDetailPage}" />
+        </Tab>
+        <Tab Title="Person" Icon="SettingsIcon.pdf">
+            <ShellContent ContentTemplate="{DataTemplate local:PersonDetailPage}" />
         </Tab>
     </TabBar>
 

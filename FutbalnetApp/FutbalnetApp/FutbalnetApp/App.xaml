@@ -3,9 +3,77 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
+             xmlns:controls="clr-namespace:FutbalnetApp.Controls"
              mc:Ignorable="d"
              x:Class="FutbalnetApp.App">
     <Application.Resources>
-        
+        <Color x:Key="HighlightColor">#65B17F</Color>
+        <Color x:Key="BackgroundColor">#FFFFFF</Color>
+        <Color x:Key="AlternativeColor">#F8F8F8</Color>
+        <Color x:Key="DarkAlternativeColor">#888888</Color>
+        <Color x:Key="TextColor">#000000</Color>
+
+        <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
+            <On Platform="Android" Value="Montserrat-Medium.ttf#Montserrat" />
+            <On Platform="UWP" Value="/Assets/Montserrat-Medium.ttf#Montserrat" />
+            <On Platform="iOS" Value="Montserrat-Medium" />
+        </OnPlatform>
+        <OnPlatform x:TypeArguments="x:String" x:Key="NormalFont">
+            <On Platform="Android" Value="Montserrat-Regular.ttf#Montserrat" />
+            <On Platform="UWP" Value="/Assets/Montserrat-Regular.ttf#Montserrat" />
+            <On Platform="iOS" Value="Montserrat-Regular" />
+        </OnPlatform>
+        <OnPlatform x:TypeArguments="x:String" x:Key="SpecialFont">
+            <On Platform="Android" Value="BluelineParadise.ttf#Open Sans" />
+            <On Platform="UWP" Value="/Assets/Blueline Paradise.ttf#Open Sans" />
+            <On Platform="iOS" Value="Blueline Paradise" />
+        </OnPlatform>
+
+        <DataTemplate x:Key="ListItem">
+            <StackLayout>
+                <Label HeightRequest="33" Text="{Binding Name}"/>
+            </StackLayout>
+        </DataTemplate>
+        <DataTemplate x:Key="ListItemAlternative">
+            <StackLayout BackgroundColor="{StaticResource AlternativeColor}">
+                <Label HeightRequest="33" Text="{Binding Name}"/>
+            </StackLayout>
+        </DataTemplate>
+        <DataTemplate x:Key="ListItemSecondary">
+            <Grid Padding="10" HeightRequest="40" BackgroundColor="{StaticResource AlternativeColor}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <Label FontFamily="{StaticResource NormalFont}" Grid.Column="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}"/>
+                <Label Grid.Column="1" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
+            </Grid>
+        </DataTemplate>
+
+        <controls:ListDataTemplateSelector x:Key="ListTemplateSelector" First="{StaticResource ListItem}" Alternative="{StaticResource ListItemAlternative}"/>
+
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="Red"/>
+            <Setter Property="BarTextColor" Value="Orange"/>
+        </Style>
+        <Style x:Key="TabStyle" TargetType="tabs:UnderlinedTabItem">
+            <Setter Property="SelectedTabColor" Value="{StaticResource HighlightColor}" />
+            <Setter Property="LabelSize" Value="17" />
+            <Setter Property="BackgroundColor" Value="{StaticResource AlternativeColor}" />
+            <Setter Property="UnselectedLabelColor" Value="{StaticResource TextColor}" />
+            <Setter Property="HeightRequest" Value="33" />
+        </Style>
+        <Style x:Key="SecondaryList" TargetType="CollectionView">
+            <Setter Property="ItemTemplate" Value="{StaticResource ListItemSecondary}"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="Margin" Value="0,25,0,0"/>
+            <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+            <Setter Property="ItemsLayout">
+                <Setter.Value>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

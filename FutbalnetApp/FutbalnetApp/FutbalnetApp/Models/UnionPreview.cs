@@ -31,5 +31,7 @@ namespace FutbalnetApp.Models
 		public int ParentUnionId { get; set; }
 		[JsonProperty("subs")]
 		public IEnumerable<UnionPreview> SubUnions { get; set; }
+
+		public override string ToString() => FullName;
 	}
 }
