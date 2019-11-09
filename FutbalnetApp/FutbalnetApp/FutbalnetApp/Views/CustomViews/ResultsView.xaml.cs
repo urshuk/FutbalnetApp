@@ -1,5 +1,4 @@
-﻿using FutbalnetApp.ViewModels;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +11,14 @@ using Xamarin.Forms.Xaml;
 namespace FutbalnetApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CompetitionTableView : ContentView
+	public partial class ResultsView : ContentView
 	{
-		public CompetitionTableView()
+		public ResultsView()
 		{
 			InitializeComponent();
 		}
 
-		public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create("ItemsSource", typeof(IEnumerable), typeof(CompetitionTableView));
+		public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create("ItemsSource", typeof(IEnumerable), typeof(ResultsView));
 		public IEnumerable ItemsSource
 		{
 			get { return (IEnumerable)GetValue(ItemsSourceProperty); }
@@ -27,6 +26,11 @@ namespace FutbalnetApp.Views
 			{
 				SetValue(ItemsSourceProperty, value);
 			}
+		}
+
+		private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
 		}
 	}
 }

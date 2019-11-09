@@ -30,19 +30,19 @@
 
     <!-- Your Pages -->
     <TabBar>
-        <Tab Title="About" Icon="CompetitionIcon.pdf">
-            <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
-        </Tab>
-        <Tab Title="Súťaže" Icon="FavouriteIcon.pdf">
+        <Tab Title="Súťaže" Icon="CompetitionIcon.pdf">
             <ShellContent ContentTemplate="{DataTemplate local:CompetitionSelectionPage}" />
         </Tab>
-        <Tab Title="Comp" Icon="TimelineIcon.pdf">
+        <Tab Title="Obľúbené" Icon="FavouriteIcon.pdf">
+            <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
+        </Tab>
+        <Tab Title="Časová os" Icon="TimelineIcon.pdf">
             <ShellContent ContentTemplate="{DataTemplate local:CompetitionDetailPage}" />
         </Tab>
-        <Tab Title="Match" Icon="SearchIcon.pdf">
+        <Tab Title="Hľadať" Icon="SearchIcon.pdf">
             <ShellContent ContentTemplate="{DataTemplate local:MatchDetailPage}" />
         </Tab>
-        <Tab Title="Person" Icon="SettingsIcon.pdf">
+        <Tab Title="Nastavenia" Icon="SettingsIcon.pdf">
             <ShellContent ContentTemplate="{DataTemplate local:PersonDetailPage}" />
         </Tab>
     </TabBar>

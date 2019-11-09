@@ -20,6 +20,7 @@ namespace FutbalnetApp.ViewModels
 		public ObservableCollection<CompetitionTableClub> TableClubs { get; set; }
 		public ObservableCollection<CompetitionStatsPlayer> StatsPlayers { get; set; }
 		public Command LoadCompetitionCommand { get; set; }
+		public int SelectedTabIndex { get; set; }
 
 		public CompetitionDetailViewModel(int id)
 		{

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:FutbalnetApp.Controls"
+             mc:Ignorable="d"
+             x:Name="CompetitionStats"
+             x:Class="FutbalnetApp.Views.CompetitionStatsView">
+    <ContentView.Resources>
+        <Style x:Key="DefaultLabel" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource NormalFont}"/>
+            <Setter Property="VerticalTextAlignment" Value="Start"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="0,5"/>
+        </Style>
+        <DataTemplate x:Key="TableHeader">
+            <Grid BackgroundColor="{StaticResource BackgroundColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="Meno" HorizontalTextAlignment="Start"/>
+                <Label Grid.Column="1" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="G" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="2" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="Min" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="3" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="ŽK" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="4" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="ČK" HorizontalTextAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="TableItem">
+            <Grid BackgroundColor="{StaticResource BackgroundColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Style="{StaticResource DefaultLabel}" VerticalOptions="StartAndExpand" HorizontalTextAlignment="Start" Text="{Binding Player.Fullname}"/>
+                <Label Grid.Column="1" Style="{StaticResource DefaultLabel}" Text="{Binding G}"/>
+                <Label Grid.Column="2" Style="{StaticResource DefaultLabel}" Text="{Binding Min}"/>
+                <Label Grid.Column="3" Style="{StaticResource DefaultLabel}" Text="{Binding YC}"/>
+                <Label Grid.Column="4" Style="{StaticResource DefaultLabel}" Text="{Binding RC}"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="TableItemAlternative">
+            <Grid BackgroundColor="{StaticResource AlternativeColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Style="{StaticResource DefaultLabel}" VerticalOptions="StartAndExpand" HorizontalTextAlignment="Start" Text="{Binding Player.Fullname}"/>
+                <Label Grid.Column="1" Style="{StaticResource DefaultLabel}" Text="{Binding G}"/>
+                <Label Grid.Column="2" Style="{StaticResource DefaultLabel}" Text="{Binding Min}"/>
+                <Label Grid.Column="3" Style="{StaticResource DefaultLabel}" Text="{Binding YC}"/>
+                <Label Grid.Column="4" Style="{StaticResource DefaultLabel}" Text="{Binding RC}"/>
+            </Grid>
+        </DataTemplate>
+        <controls:ListDataTemplateSelector x:Key="TemplateSelector" First="{StaticResource TableItem}" Alternative="{StaticResource TableItemAlternative}"/>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <CollectionView ItemsSource="{Binding ItemsSource, Source={Reference CompetitionStats}}"
+                        HeaderTemplate="{StaticResource TableHeader}"
+                        Header="true"
+                        ItemTemplate="{StaticResource TemplateSelector}"
+                        SelectionMode="Single"
+                        Margin="0,25,0,0"
+                        VerticalScrollBarVisibility="Never"
+                        SelectionChanged="OnSelectionChanged"/>
+    </ContentView.Content>
+</ContentView>

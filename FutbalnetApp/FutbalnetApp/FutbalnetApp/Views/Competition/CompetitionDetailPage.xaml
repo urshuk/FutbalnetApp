@@ -8,13 +8,26 @@
              xmlns:views="clr-namespace:FutbalnetApp.Views"
              x:Class="FutbalnetApp.Views.CompetitionDetailPage">
     <ContentPage.Content>
-        <StackLayout>
-            <views:CompetitionTableView ItemsSource="{Binding TableClubs}"/>
-            <views:CompetitionStatsView ItemsSource="{Binding StatsPlayers}"/>
-            <CollectionView ItemsSource="{Binding Matches}" BackgroundColor="Red"></CollectionView>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="25,10,25,0" Spacing="0" BackgroundColor="{StaticResource BackgroundColor}">
+            <tabs:TabHostView x:Name="Tabs"
+                              VerticalOptions="Start"
+                              MinimumHeightRequest="33"
+                              HeightRequest="33"
+                              SelectedIndex="{Binding Source={x:Reference TabSwitcher}, Path=SelectedIndex, Mode=TwoWay}">
+                <tabs:TabHostView.Tabs>
+                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Výsledky"/>
+                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Tabuľka"/>
+                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Štatistiky"/>
+                </tabs:TabHostView.Tabs>
+            </tabs:TabHostView>
+            <tabs:ViewSwitcher x:Name="TabSwitcher"
+                               Animate="True"
+                               VerticalOptions="FillAndExpand"
+                               SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+                <views:ResultsView ItemsSource="{Binding Matches}"/>
+                <views:CompetitionTableView ItemsSource="{Binding TableClubs}"/>
+                <views:CompetitionStatsView ItemsSource="{Binding StatsPlayers}"/>
+            </tabs:ViewSwitcher>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

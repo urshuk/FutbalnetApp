@@ -17,14 +17,8 @@ namespace FutbalnetApp.Models
 		public string LogoUrl { get; set; }
 		[JsonProperty("logo.url")]
 		public string LogoBase { get; set; }
-		public int LogoId
-		{
-			get
-			{
-				bool success = int.TryParse(LogoBase.Substring(LogoBase.LastIndexOf("/") + 1), out int result);
-				return success ? result : -1;
-			}
-		}
+		public int LogoId => int.TryParse(LogoBase.Substring(LogoBase.LastIndexOf("/") + 1), out int result) ? result : -1;
+		public string Logo => LogoUrl.Replace("__base__", "club-logo");
 
 		public override string ToString() => Name;
 	}

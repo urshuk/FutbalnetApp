@@ -27,5 +27,10 @@ namespace FutbalnetApp.Views
 				SetValue(ItemsSourceProperty, value);
 			}
 		}
+
+		private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
+		}
 	}
 }

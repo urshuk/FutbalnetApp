@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls ="clr-namespace:FutbalnetApp.Controls"
+             x:Name="CompetitionTable"
+             x:Class="FutbalnetApp.Views.CompetitionTableView">
+    <ContentView.Resources>
+        <Style x:Key="DefaultLabel" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource NormalFont}"/>
+            <Setter Property="VerticalTextAlignment" Value="Start"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="0,5"/>
+        </Style>
+        <DataTemplate x:Key="TableHeader">
+            <Grid BackgroundColor="{StaticResource BackgroundColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="18"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="Klub" HorizontalTextAlignment="Start"/>
+                <Label Grid.Column="1" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="Z" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="2" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="V" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="3" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="R" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="4" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="P" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="5" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="Skóre" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="6" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="B" HorizontalTextAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="TableItem">
+            <Grid BackgroundColor="{StaticResource BackgroundColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="18"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Style="{StaticResource DefaultLabel}" Text="{Binding Order}"/>
+                <Image Grid.Column="1" Aspect="AspectFit" HeightRequest="20" Margin="0,5" VerticalOptions="Start" Source="{Binding Club.Logo}"/>
+                <Label Grid.Column="2" Style="{StaticResource DefaultLabel}" VerticalOptions="StartAndExpand" HorizontalTextAlignment="Start" Text="{Binding Club.Name}"/>
+                <Label Grid.Column="3" Style="{StaticResource DefaultLabel}" Text="{Binding MP}"/>
+                <Label Grid.Column="4" Style="{StaticResource DefaultLabel}" Text="{Binding W}"/>
+                <Label Grid.Column="5" Style="{StaticResource DefaultLabel}" Text="{Binding D}"/>
+                <Label Grid.Column="6" Style="{StaticResource DefaultLabel}" Text="{Binding L}"/>
+                <Label Grid.Column="7" Style="{StaticResource DefaultLabel}" Text="{Binding Score}"/>
+                <Label Grid.Column="8" Style="{StaticResource DefaultLabel}" Text="{Binding P}"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="TableItemAlternative">
+            <Grid BackgroundColor="{StaticResource AlternativeColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="18"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Style="{StaticResource DefaultLabel}" Text="{Binding Order}"/>
+                <Image Grid.Column="1" Aspect="AspectFit" HeightRequest="20" Margin="0,5" VerticalOptions="Start" Source="{Binding Club.Logo}"/>
+                <Label Grid.Column="2" Style="{StaticResource DefaultLabel}" VerticalOptions="StartAndExpand" HorizontalTextAlignment="Start" Text="{Binding Club.Name}"/>
+                <Label Grid.Column="3" Style="{StaticResource DefaultLabel}" Text="{Binding MP}"/>
+                <Label Grid.Column="4" Style="{StaticResource DefaultLabel}" Text="{Binding W}"/>
+                <Label Grid.Column="5" Style="{StaticResource DefaultLabel}" Text="{Binding D}"/>
+                <Label Grid.Column="6" Style="{StaticResource DefaultLabel}" Text="{Binding L}"/>
+                <Label Grid.Column="7" Style="{StaticResource DefaultLabel}" Text="{Binding Score}"/>
+                <Label Grid.Column="8" Style="{StaticResource DefaultLabel}" Text="{Binding P}"/>
+            </Grid>
+        </DataTemplate>
+        <controls:ListDataTemplateSelector x:Key="TemplateSelector" First="{StaticResource TableItem}" Alternative="{StaticResource TableItemAlternative}"/>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <CollectionView ItemsSource="{Binding ItemsSource, Source={Reference CompetitionTable}}"
+                        HeaderTemplate="{StaticResource TableHeader}"
+                        Header="true"
+                        ItemTemplate="{StaticResource TemplateSelector}"
+                        SelectionMode="Single"
+                        Margin="0,25,0,0"
+                        VerticalScrollBarVisibility="Never"
+                        SelectionChanged="OnSelectionChanged"/>
+    </ContentView.Content>
+</ContentView>

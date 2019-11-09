@@ -23,6 +23,8 @@ namespace FutbalnetApp.Models
 		[JsonProperty("match_status")]
 		public string Status { get; set; }
 
+		public string ScoreString => (Score != null) ? $"{Score[0]} : {Score[1]}" : null;
+
 		public override string ToString() => $"{Teams.First().Name} : {Teams.Last().Name}";
 	}
 }

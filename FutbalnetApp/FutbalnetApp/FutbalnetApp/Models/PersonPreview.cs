@@ -28,6 +28,8 @@ namespace FutbalnetApp.Models
 			}
 		}
 
-		public override string ToString() => $"{Name} {LastName}";
+		public string Fullname => $"{Name} {LastName}";
+
+		public override string ToString() => Fullname;
 	}
 }
