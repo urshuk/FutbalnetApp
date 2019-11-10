@@ -24,7 +24,7 @@
                                Animate="True"
                                VerticalOptions="FillAndExpand"
                                SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
-                <views:ResultsView ItemsSource="{Binding Matches}"/>
+                <views:ResultsView ItemsSource="{Binding Matches}" Round="{Binding Round, Mode=TwoWay}" Command="{Binding LoadRoundCommand}" Part="{Binding Part}"/>
                 <views:CompetitionTableView ItemsSource="{Binding OrderedTableClubs}" OrderIndex="{Binding TableOrderIndex}" Command="{Binding OrderTableCommand}"/>
                 <views:CompetitionStatsView ItemsSource="{Binding OrderedStatsPlayers}" OrderIndex="{Binding StatsOrderIndex}" Command="{Binding OrderStatsCommand}"/>
             </tabs:ViewSwitcher>

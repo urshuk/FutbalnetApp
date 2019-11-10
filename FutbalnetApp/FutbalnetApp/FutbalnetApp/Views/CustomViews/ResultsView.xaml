@@ -7,6 +7,12 @@
              x:Name="Results"
              x:Class="FutbalnetApp.Views.ResultsView">
     <ContentView.Resources>
+        <DataTemplate x:Key="ResultsHeader">
+            <StackLayout Orientation="Horizontal">
+                <Picker ItemsSource="{Binding Part.Rounds, Source={Reference Results}}" SelectedItem="{Binding Round, Source={Reference Results}, Mode=TwoWay}" Unfocused="OnRoundChanged" HorizontalOptions="StartAndExpand"/>
+                <Label Text="{Binding Round.Datetime, Source={Reference Results}, StringFormat='{0:dd.MM.yyyy}'}" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+        </DataTemplate>
         <DataTemplate x:Key="ResultItem">
             <Grid HeightRequest="100" BackgroundColor="{StaticResource AlternativeColor}">
                 <Grid.ColumnDefinitions>
@@ -31,6 +37,8 @@
             <Setter Property="SelectionMode" Value="Single"/>
             <Setter Property="Margin" Value="0,25,0,0"/>
             <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+            <Setter Property="Header" Value="True"/>
+            <Setter Property="HeaderTemplate" Value="{StaticResource ResultsHeader}"/>
             <Setter Property="ItemsLayout">
                 <Setter.Value>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>

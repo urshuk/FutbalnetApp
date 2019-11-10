@@ -14,8 +14,18 @@ namespace FutbalnetApp.ViewModels
 	{
 		public int CompetitionId { get; set; }
 		public Competition Competition { get; set; }
-		public CompetitionPart Part { get; set; }
-		public CompetitionRound Round { get; set; }
+		public CompetitionPart part;
+		public CompetitionPart Part
+		{
+			get => part;
+			set => SetProperty(ref part, value);
+		}
+		public CompetitionRound round;
+		public CompetitionRound Round
+		{
+			get => round;
+			set => SetProperty(ref round, value);
+		}
 		public ObservableCollection<MatchPreview> Matches { get; set; }
 		public IEnumerable<CompetitionTableClub> TableClubs { get; set; }
 		public ObservableCollection<CompetitionTableClub> OrderedTableClubs { get; set; }
@@ -24,6 +34,7 @@ namespace FutbalnetApp.ViewModels
 		public Command LoadCompetitionCommand { get; set; }
 		public Command OrderStatsCommand { get; set; }
 		public Command OrderTableCommand { get; set; }
+		public Command LoadRoundCommand { get; set; }
 		public int SelectedTabIndex { get; set; }
 		int statsOrderIndex = 0;
 		public int StatsOrderIndex
@@ -47,7 +58,13 @@ namespace FutbalnetApp.ViewModels
 			OrderedStatsPlayers = new ObservableCollection<CompetitionStatsPlayer>();
 			OrderStatsCommand = new Command<string>((pareameter) => ExecuteOrderStatsCommand(pareameter));
 			OrderTableCommand = new Command<string>((pareameter) => ExecuteOrderTableCommand(pareameter));
+			LoadRoundCommand = new Command(async () => await ExecuteLoadRoundCommand());
 			LoadCompetitionCommand = new Command(async () => await ExecuteLoadCompetitionCommand());
+		}
+
+		async Task ExecuteLoadRoundCommand()
+		{
+			await LoadRoundAsync();
 		}
 		private void ExecuteOrderTableCommand(string by)
 		{
@@ -207,10 +224,10 @@ namespace FutbalnetApp.ViewModels
 		private void SetClosestRound()
 		{
 			//get the match no more than 3 days from today
-			Round = Part.Rounds.First(x => Math.Abs((x.DateTime - DateTime.Now).Days) < 4);
+			Round = Part.Rounds.First(x => Math.Abs((x.Datetime - DateTime.Now).Days) < 4);
 			//if not found (break), get the upcoming match
 			if (Round == null)
-				Round = Part.Rounds.First(x => x.DateTime > DateTime.Now);
+				Round = Part.Rounds.First(x => x.Datetime > DateTime.Now);
 		}
 	}
 }
