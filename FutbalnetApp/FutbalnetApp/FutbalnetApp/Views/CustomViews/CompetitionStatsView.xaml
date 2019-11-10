@@ -28,10 +28,46 @@
                     <ColumnDefinition Width="25"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="Meno" HorizontalTextAlignment="Start"/>
-                <Label Grid.Column="1" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="G" HorizontalTextAlignment="Center"/>
-                <Label Grid.Column="2" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="Min" HorizontalTextAlignment="Center"/>
-                <Label Grid.Column="3" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="ŽK" HorizontalTextAlignment="Center"/>
-                <Label Grid.Column="4" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="ČK" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="1" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="G" HorizontalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Command, Source={Reference CompetitionStats}}" CommandParameter="Goals"/>
+                    </Label.GestureRecognizers>
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding OrderIndex,Source={Reference CompetitionStats}}" Value="0">
+                            <Setter Property="TextColor" Value="{StaticResource HighlightColor}"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Label Grid.Column="2" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="Min" HorizontalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Command, Source={Reference CompetitionStats}}" CommandParameter="Mins"/>
+                    </Label.GestureRecognizers>
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding OrderIndex,Source={Reference CompetitionStats}}" Value="1">
+                            <Setter Property="TextColor" Value="{StaticResource HighlightColor}"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Label Grid.Column="3" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="ŽK" HorizontalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Command, Source={Reference CompetitionStats}}" CommandParameter="Yellows"/>
+                    </Label.GestureRecognizers>
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding OrderIndex,Source={Reference CompetitionStats}}" Value="2">
+                            <Setter Property="TextColor" Value="{StaticResource HighlightColor}"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Label Grid.Column="4" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="ČK" HorizontalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Command, Source={Reference CompetitionStats}}" CommandParameter="Reds"/>
+                    </Label.GestureRecognizers>
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding OrderIndex,Source={Reference CompetitionStats}}" Value="3">
+                            <Setter Property="TextColor" Value="{StaticResource HighlightColor}"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="TableItem">

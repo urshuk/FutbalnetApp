@@ -25,6 +25,7 @@ namespace FutbalnetApp.Models
 		public int L => Stats.First(x => x.Id == "P").Value;
 		public string Score => $"{Stats.First(x => x.Id == "SG").Value}:{Stats.First(x=>x.Id == "IG").Value}";
 		public int P => Stats.First(x => x.Id == "B").Value;
+		public int ScoreDifference => Stats.First(x => x.Id == "SG").Value - Stats.First(x => x.Id == "IG").Value;
 
 		public override string ToString() => Club.Name;
 	}

@@ -25,8 +25,8 @@
                                VerticalOptions="FillAndExpand"
                                SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
                 <views:ResultsView ItemsSource="{Binding Matches}"/>
-                <views:CompetitionTableView ItemsSource="{Binding TableClubs}"/>
-                <views:CompetitionStatsView ItemsSource="{Binding StatsPlayers}"/>
+                <views:CompetitionTableView ItemsSource="{Binding OrderedTableClubs}" OrderIndex="{Binding TableOrderIndex}" Command="{Binding OrderTableCommand}"/>
+                <views:CompetitionStatsView ItemsSource="{Binding OrderedStatsPlayers}" OrderIndex="{Binding StatsOrderIndex}" Command="{Binding OrderStatsCommand}"/>
             </tabs:ViewSwitcher>
         </StackLayout>
     </ContentPage.Content>

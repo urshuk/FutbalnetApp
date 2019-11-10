@@ -31,7 +31,7 @@ namespace FutbalnetApp.Views
 		{
 			base.OnAppearing();
 
-			if (viewModel.TableClubs.Count == 0)
+			if (!viewModel.IsLoaded)
 				viewModel.LoadCompetitionCommand.Execute(null);
 		}
 	}

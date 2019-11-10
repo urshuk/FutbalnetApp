@@ -15,7 +15,7 @@ namespace FutbalnetApp.Controls
 
 		protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
 		{
-			return ((IEnumerable<object>)((CollectionView)container).ItemsSource).ToList().IndexOf(item) % 2 == 0 ? First : Alternative;
+			return ((IEnumerable<object>)((CollectionView)container).ItemsSource).ToList().IndexOf(item) % 2 == 0 ? Alternative : First;
 		}
 	}
 }
