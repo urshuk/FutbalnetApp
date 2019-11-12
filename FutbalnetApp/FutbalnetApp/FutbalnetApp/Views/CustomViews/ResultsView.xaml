@@ -4,45 +4,86 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:controls="clr-namespace:FutbalnetApp.Controls"
              x:Name="Results"
              x:Class="FutbalnetApp.Views.ResultsView">
     <ContentView.Resources>
         <DataTemplate x:Key="ResultItem">
-            <Grid HeightRequest="100" BackgroundColor="{DynamicResource AlternativeColor}">
+            <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="12"/>
+                    <ColumnDefinition Width="55"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Column="0" Grid.Row="0" Aspect="AspectFit" Source="{Binding Teams[0].Club.Logo}"/>
-                <Label Grid.Column="0" Grid.Row="1" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Teams[0].Name}"/>
-                <Label Grid.Column="1" Grid.Row="0" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding ScoreString}" TextColor="{DynamicResource HighlightColor}"/>
-                <Label Grid.Column="1" Grid.Row="1" FontFamily="{StaticResource NormalFont}" FontSize="10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Datetime, StringFormat='{0:dd.MM.yyyy hh:mm}'}"/>
-                <Image Grid.Column="2" Grid.Row="0" Aspect="AspectFit" Source="{Binding Teams[1].Club.Logo}"/>
-                <Label Grid.Column="2" Grid.Row="1" Padding="0" LineBreakMode="WordWrap" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Teams[1].Name}"/>
+                <Image Grid.Column="0" Grid.Row="1" Aspect="AspectFit" Source="{Binding Teams[1].Club.Logo}"/>
+                <Label Grid.Column="1" Grid.Row="0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Teams[0].Name}"/>
+                <Label Grid.Column="1" Grid.Row="1" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Teams[1].Name}"/>
+                <Label Grid.Column="2" Grid.Row="0" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Score[0]}" TextColor="{DynamicResource HighlightColor}"/>
+                <Label Grid.Column="2" Grid.Row="1" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Score[1]}" TextColor="{DynamicResource HighlightColor}"/>
+                <Frame Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" HeightRequest="12" WidthRequest="12" Padding="0" HasShadow="False" IsVisible="False" VerticalOptions="Center" CornerRadius="6" BackgroundColor="Red">
+                    <Frame.Triggers>
+                        <DataTrigger TargetType="Frame" Binding="{Binding IsPlaying}" Value="True">
+                            <Setter Property="IsVisible" Value="True"/>
+                        </DataTrigger>
+                    </Frame.Triggers>
+                </Frame>
+                <Label Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Datetime, StringFormat='{0:dd.MMM hh:mm}'}"/>
             </Grid>
         </DataTemplate>
+        <DataTemplate x:Key="ResultItemAlternative">
+            <Grid BackgroundColor="{DynamicResource AlternativeColor}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="12"/>
+                    <ColumnDefinition Width="55"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Column="0" Grid.Row="0" Aspect="AspectFit" Source="{Binding Teams[0].Club.Logo}"/>
+                <Image Grid.Column="0" Grid.Row="1" Aspect="AspectFit" Source="{Binding Teams[1].Club.Logo}"/>
+                <Label Grid.Column="1" Grid.Row="0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Teams[0].Name}"/>
+                <Label Grid.Column="1" Grid.Row="1" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Teams[1].Name}"/>
+                <Label Grid.Column="2" Grid.Row="0" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Score[0]}" TextColor="{DynamicResource HighlightColor}"/>
+                <Label Grid.Column="2" Grid.Row="1" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Score[1]}" TextColor="{DynamicResource HighlightColor}"/>
+                <Frame Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" HeightRequest="12" WidthRequest="12" Padding="0" HasShadow="False" IsVisible="False" VerticalOptions="Center" CornerRadius="6" BackgroundColor="Red">
+                    <Frame.Triggers>
+                        <DataTrigger TargetType="Frame" Binding="{Binding IsPlaying}" Value="True">
+                            <Setter Property="IsVisible" Value="True"/>
+                        </DataTrigger>
+                    </Frame.Triggers>
+                </Frame>
+                <Label Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Datetime, StringFormat='{0:dd.MMM hh:mm}'}"/>
+            </Grid>
+        </DataTemplate>
+        <controls:ListDataTemplateSelector x:Key="TemplateSelector" First="{StaticResource ResultItem}" Alternative="{StaticResource ResultItemAlternative}"/>
         <Style x:Key="ResultsList" TargetType="CollectionView">
-            <Setter Property="ItemTemplate" Value="{StaticResource ResultItem}"/>
+            <Setter Property="ItemTemplate" Value="{StaticResource TemplateSelector}"/>
             <Setter Property="SelectionMode" Value="Single"/>
             <Setter Property="Margin" Value="0,0,0,0"/>
             <Setter Property="VerticalOptions" Value="FillAndExpand"/>
             <Setter Property="ItemsLayout">
                 <Setter.Value>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
                 </Setter.Value>
             </Setter>
         </Style>
     </ContentView.Resources>
-  <ContentView.Content>
+    <ContentView.Content>
         <StackLayout Margin="0,25,0,0" Spacing="10">
             <StackLayout Orientation="Horizontal">
                 <Label TextColor="{DynamicResource TextColor}" Text="Kolo" VerticalTextAlignment="Center" HorizontalOptions="Start"/>
-                <Picker BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" ItemsSource="{Binding Part.Rounds, Source={Reference Results}}" SelectedItem="{Binding Round, Source={Reference Results}, Mode=TwoWay}" Unfocused="OnRoundChanged"/>
+                <Picker BackgroundColor="{DynamicResource AlternativeColor}" HorizontalOptions="Center" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" ItemsSource="{Binding Part.Rounds, Source={Reference Results}}" SelectedItem="{Binding Round, Source={Reference Results}, Mode=TwoWay}" Unfocused="OnRoundChanged"/>
                 <Label TextColor="{DynamicResource TextColor}" Text="{Binding Round.Datetime, Source={Reference Results}, StringFormat='{0:dd.MM.yyyy}'}" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
             <CollectionView ItemsSource="{Binding ItemsSource, Source={Reference Results}}"

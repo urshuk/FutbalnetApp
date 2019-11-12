@@ -14,7 +14,12 @@ namespace FutbalnetApp.ViewModels
 	public class CompetitionDetailViewModel : BaseViewModel
 	{
 		public int CompetitionId { get; set; }
-		public Competition Competition { get; set; }
+		public Competition competition;
+		public Competition Competition
+		{
+			get => competition;
+			set => SetProperty(ref competition, value);
+		}
 		public CompetitionPart part;
 		public CompetitionPart Part
 		{
@@ -29,6 +34,18 @@ namespace FutbalnetApp.ViewModels
 		}
 		public ObservableCollection<MatchPreview> Matches { get; set; }
 		public IEnumerable<CompetitionTableClub> TableClubs { get; set; }
+		public IEnumerable<CompetitionSeason> pastSeasons;
+		public IEnumerable<CompetitionSeason> PastSeasons
+		{
+			get => pastSeasons;
+			set => SetProperty(ref pastSeasons, value);
+		}
+		public CompetitionSeason currentSeason;
+		public CompetitionSeason CurrentSeason
+		{
+			get => currentSeason;
+			set => SetProperty(ref currentSeason, value);
+		}
 		public ObservableCollection<CompetitionTableClub> OrderedTableClubs { get; set; }
 		public IEnumerable<CompetitionStatsPlayer> StatsPlayers { get; set; }
 		public ObservableCollection<CompetitionStatsPlayer> OrderedStatsPlayers { get; set; }
@@ -52,7 +69,6 @@ namespace FutbalnetApp.ViewModels
 
 		public CompetitionDetailViewModel(int id)
 		{
-			//Title = Competition?.Name;
 			CompetitionId = id;
 			Matches = new ObservableCollection<MatchPreview>();
 			OrderedTableClubs = new ObservableCollection<CompetitionTableClub>();
@@ -194,6 +210,11 @@ namespace FutbalnetApp.ViewModels
 			TableClubs = table.Clubs;
 			OrderTableCommand.Execute("Points");
 		}
+		async Task LoadPastSeasonsAsync()
+		{
+			var past = await SportnetStore.GetPastCompetitionsAsync(Competition.Id);
+			PastSeasons = past;
+		}
 		async Task ExecuteLoadCompetitionCommand()
 		{
 			if (IsBusy)
@@ -203,7 +224,6 @@ namespace FutbalnetApp.ViewModels
 
 			try
 			{
-				var test = await SportnetStore.GetPlayerTransfersAsync(1319465);
 				Competition = await SportnetStore.GetCompetitionAsync(CompetitionId);
 				Part = Competition.Parts.FirstOrDefault();
 				SetClosestRound();
@@ -211,6 +231,10 @@ namespace FutbalnetApp.ViewModels
 				await LoadRoundAsync();
 				await LoadStatsAsync();
 				await LoadTableAsync();
+				await LoadPastSeasonsAsync();
+
+				CurrentSeason = PastSeasons.FirstOrDefault(x => x.Id == CompetitionId);
+
 				IsLoaded = true;
 			}
 			catch (Exception ex)
@@ -225,10 +249,13 @@ namespace FutbalnetApp.ViewModels
 		private void SetClosestRound()
 		{
 			//get the match no more than 3 days from today
-			Round = Part.Rounds.First(x => Math.Abs((x.Datetime - DateTime.Now).Days) < 4);
+			Round = Part.Rounds.FirstOrDefault(x => Math.Abs((x.Datetime - DateTime.Now).Days) < 4);
 			//if not found (break), get the upcoming match
 			if (Round == null)
-				Round = Part.Rounds.First(x => x.Datetime > DateTime.Now);
+				Round = Part.Rounds.FirstOrDefault(x => x.Datetime > DateTime.Now);
+
+			if (round == null)
+				round = part.Rounds.LastOrDefault();
 		}
 	}
 }

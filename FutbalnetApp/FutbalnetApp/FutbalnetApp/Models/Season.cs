@@ -19,5 +19,7 @@ namespace FutbalnetApp.Models
 		public DateTime From { get; set; }
 		[JsonProperty("dates.to")]
 		public DateTime To { get; set; }
+
+		public override string ToString() => Name;
 	}
 }

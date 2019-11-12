@@ -16,7 +16,7 @@ namespace FutbalnetApp.Models
 		[JsonProperty("season")]
 		public Season Season { get; set; }
 
-		public override string ToString() => Name;
+		public override string ToString() => Season.Name;
 
 	}
 }
