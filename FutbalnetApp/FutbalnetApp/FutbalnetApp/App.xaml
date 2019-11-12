@@ -14,6 +14,18 @@
         <Color x:Key="DarkAlternativeColor">#888888</Color>
         <Color x:Key="TextColor">#000000</Color>
 
+        <Color x:Key="HighlightColorLight">#65B17F</Color>
+        <Color x:Key="BackgroundColorLight">#FFFFFF</Color>
+        <Color x:Key="AlternativeColorLight">#F8F8F8</Color>
+        <Color x:Key="DarkAlternativeColorLight">#888888</Color>
+        <Color x:Key="TextColorLight">#000000</Color>
+
+        <Color x:Key="HighlightColorDark">#65B17F</Color>
+        <Color x:Key="BackgroundColorDark">#2E2E2E</Color>
+        <Color x:Key="AlternativeColorDark">#4D4D4D</Color>
+        <Color x:Key="DarkAlternativeColorDark">#888888</Color>
+        <Color x:Key="TextColorDark">#F8F8F8</Color>
+
         <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
             <On Platform="Android" Value="Montserrat-Medium.ttf#Montserrat" />
             <On Platform="UWP" Value="/Assets/Montserrat-Medium.ttf#Montserrat" />
@@ -36,18 +48,18 @@
             </StackLayout>
         </DataTemplate>
         <DataTemplate x:Key="ListItemAlternative">
-            <StackLayout BackgroundColor="{StaticResource AlternativeColor}">
+            <StackLayout BackgroundColor="{DynamicResource AlternativeColor}">
                 <Label HeightRequest="33" Text="{Binding Name}"/>
             </StackLayout>
         </DataTemplate>
         <DataTemplate x:Key="ListItemSecondary">
-            <Grid Padding="10" HeightRequest="40" BackgroundColor="{StaticResource AlternativeColor}">
+            <Grid Padding="10" HeightRequest="40" BackgroundColor="{DynamicResource AlternativeColor}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
-                <Label FontFamily="{StaticResource NormalFont}" Grid.Column="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}"/>
-                <Label Grid.Column="1" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Grid.Column="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}"/>
+                <Label Grid.Column="1" TextColor="{DynamicResource TextColor}" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
             </Grid>
         </DataTemplate>
 
@@ -58,14 +70,14 @@
             <Setter Property="BarTextColor" Value="Orange"/>
         </Style>
         <Style x:Key="TabStyle" TargetType="tabs:UnderlinedTabItem">
-            <Setter Property="SelectedTabColor" Value="{StaticResource HighlightColor}" />
+            <Setter Property="SelectedTabColor" Value="{DynamicResource HighlightColor}" />
             <Setter Property="LabelSize" Value="17" />
-            <Setter Property="BackgroundColor" Value="{StaticResource AlternativeColor}" />
-            <Setter Property="UnselectedLabelColor" Value="{StaticResource TextColor}" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource AlternativeColor}" />
+            <Setter Property="UnselectedLabelColor" Value="{DynamicResource TextColor}" />
             <Setter Property="HeightRequest" Value="33" />
         </Style>
         <Style x:Key="SecondaryList" TargetType="CollectionView">
-            <Setter Property="ItemTemplate" Value="{StaticResource ListItemSecondary}"/>
+            <Setter Property="ItemTemplate" Value="{DynamicResource ListItemSecondary}"/>
             <Setter Property="SelectionMode" Value="Single"/>
             <Setter Property="Margin" Value="0,25,0,0"/>
             <Setter Property="VerticalOptions" Value="FillAndExpand"/>

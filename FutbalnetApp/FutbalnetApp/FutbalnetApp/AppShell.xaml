@@ -14,15 +14,15 @@
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource AlternativeColor}" />
-                <Setter Property="Shell.ForegroundColor" Value="{StaticResource TextColor}" />
-                <Setter Property="Shell.TitleColor" Value="{StaticResource TextColor}" />
+                <Setter Property="Shell.BackgroundColor" Value="{DynamicResource AlternativeColor}" />
+                <Setter Property="Shell.ForegroundColor" Value="{DynamicResource TextColor}" />
+                <Setter Property="Shell.TitleColor" Value="{DynamicResource TextColor}" />
                 <Setter Property="Shell.DisabledColor" Value="Blue" />
                 <Setter Property="Shell.UnselectedColor" Value="Red" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource AlternativeColor}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource TextColor}"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource DarkAlternativeColor}"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource TextColor}"/>
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource AlternativeColor}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="{DynamicResource TextColor}"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource DarkAlternativeColor}"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource TextColor}"/>
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
@@ -43,7 +43,7 @@
             <ShellContent ContentTemplate="{DataTemplate local:MatchDetailPage}" />
         </Tab>
         <Tab Title="Nastavenia" Icon="SettingsIcon.pdf">
-            <ShellContent ContentTemplate="{DataTemplate local:PersonDetailPage}" />
+            <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" />
         </Tab>
     </TabBar>
 

@@ -52,7 +52,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer: vitvasak@outlook.com (5P8KYHJ76M)</CodesignKey>
+    <CodesignKey>Apple Development: vitvasak@outlook.com (5P8KYHJ76M)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision>iOS Team Provisioning Profile: com.companyname.FutbalnetApp</CodesignProvision>

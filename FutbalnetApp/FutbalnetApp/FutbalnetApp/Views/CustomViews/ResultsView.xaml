@@ -7,14 +7,8 @@
              x:Name="Results"
              x:Class="FutbalnetApp.Views.ResultsView">
     <ContentView.Resources>
-        <DataTemplate x:Key="ResultsHeader">
-            <StackLayout Orientation="Horizontal">
-                <Picker ItemsSource="{Binding Part.Rounds, Source={Reference Results}}" SelectedItem="{Binding Round, Source={Reference Results}, Mode=TwoWay}" Unfocused="OnRoundChanged" HorizontalOptions="StartAndExpand"/>
-                <Label Text="{Binding Round.Datetime, Source={Reference Results}, StringFormat='{0:dd.MM.yyyy}'}" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand"/>
-            </StackLayout>
-        </DataTemplate>
         <DataTemplate x:Key="ResultItem">
-            <Grid HeightRequest="100" BackgroundColor="{StaticResource AlternativeColor}">
+            <Grid HeightRequest="100" BackgroundColor="{DynamicResource AlternativeColor}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="2*"/>
@@ -26,7 +20,7 @@
                 </Grid.RowDefinitions>
                 <Image Grid.Column="0" Grid.Row="0" Aspect="AspectFit" Source="{Binding Teams[0].Club.Logo}"/>
                 <Label Grid.Column="0" Grid.Row="1" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Teams[0].Name}"/>
-                <Label Grid.Column="1" Grid.Row="0" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding ScoreString}" TextColor="{StaticResource HighlightColor}"/>
+                <Label Grid.Column="1" Grid.Row="0" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding ScoreString}" TextColor="{DynamicResource HighlightColor}"/>
                 <Label Grid.Column="1" Grid.Row="1" FontFamily="{StaticResource NormalFont}" FontSize="10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Datetime, StringFormat='{0:dd.MM.yyyy hh:mm}'}"/>
                 <Image Grid.Column="2" Grid.Row="0" Aspect="AspectFit" Source="{Binding Teams[1].Club.Logo}"/>
                 <Label Grid.Column="2" Grid.Row="1" Padding="0" LineBreakMode="WordWrap" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Teams[1].Name}"/>
@@ -35,10 +29,8 @@
         <Style x:Key="ResultsList" TargetType="CollectionView">
             <Setter Property="ItemTemplate" Value="{StaticResource ResultItem}"/>
             <Setter Property="SelectionMode" Value="Single"/>
-            <Setter Property="Margin" Value="0,25,0,0"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
             <Setter Property="VerticalOptions" Value="FillAndExpand"/>
-            <Setter Property="Header" Value="True"/>
-            <Setter Property="HeaderTemplate" Value="{StaticResource ResultsHeader}"/>
             <Setter Property="ItemsLayout">
                 <Setter.Value>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
@@ -47,8 +39,15 @@
         </Style>
     </ContentView.Resources>
   <ContentView.Content>
-        <CollectionView ItemsSource="{Binding ItemsSource, Source={Reference Results}}"
+        <StackLayout Margin="0,25,0,0" Spacing="10">
+            <StackLayout Orientation="Horizontal">
+                <Label TextColor="{DynamicResource TextColor}" Text="Kolo" VerticalTextAlignment="Center" HorizontalOptions="Start"/>
+                <Picker BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" ItemsSource="{Binding Part.Rounds, Source={Reference Results}}" SelectedItem="{Binding Round, Source={Reference Results}, Mode=TwoWay}" Unfocused="OnRoundChanged"/>
+                <Label TextColor="{DynamicResource TextColor}" Text="{Binding Round.Datetime, Source={Reference Results}, StringFormat='{0:dd.MM.yyyy}'}" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+            <CollectionView ItemsSource="{Binding ItemsSource, Source={Reference Results}}"
                         Style="{StaticResource ResultsList}"
                         SelectionChanged="OnSelectionChanged"/>
+        </StackLayout>
     </ContentView.Content>
 </ContentView>

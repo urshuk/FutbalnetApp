@@ -8,7 +8,7 @@
              xmlns:views="clr-namespace:FutbalnetApp.Views"
              x:Class="FutbalnetApp.Views.CompetitionDetailPage">
     <ContentPage.Content>
-        <StackLayout Padding="25,10,25,0" Spacing="0" BackgroundColor="{StaticResource BackgroundColor}">
+        <StackLayout Padding="25,10,25,0" Spacing="0" BackgroundColor="{DynamicResource BackgroundColor}">
             <tabs:TabHostView x:Name="Tabs"
                               VerticalOptions="Start"
                               MinimumHeightRequest="33"

@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Class="FutbalnetApp.Views.CompetitionSelectionPage">
     <ContentPage.Content>
-        <StackLayout Padding="25,10,25,0" Spacing="0" BackgroundColor="{StaticResource BackgroundColor}">
+        <StackLayout Padding="25,10,25,0" Spacing="0" BackgroundColor="{DynamicResource BackgroundColor}">
             <tabs:TabHostView x:Name="Competitions"
                               VerticalOptions="Start"
                               MinimumHeightRequest="33"
