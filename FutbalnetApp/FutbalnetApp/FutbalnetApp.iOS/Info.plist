@@ -20,12 +20,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-  <key>UIAppFonts</key>
-  <array>
-    <string>BluelineParadise.ttf</string>
-    <string>Montserrat-Medium.ttf</string>
-    <string>Montserrat-Regular.ttf</string>
-  </array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>BluelineParadise.ttf</string>
+		<string>Montserrat-Medium.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+	</array>
 	<key>MinimumOSVersion</key>
 	<string>12.0</string>
 	<key>CFBundleDisplayName</key>
@@ -40,8 +40,6 @@
 	<string>FutbalnetApp</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-	<key>UIMainStoryboardFile</key>
-	<string>LaunchScreen</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>

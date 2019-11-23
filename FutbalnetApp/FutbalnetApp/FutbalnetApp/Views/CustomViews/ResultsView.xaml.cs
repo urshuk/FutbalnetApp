@@ -44,9 +44,17 @@ namespace FutbalnetApp.Views
 			set => SetValue(CommandProperty, value);
 		}
 
-		private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+		async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
+			var match = e.CurrentSelection.FirstOrDefault() as MatchPreview;
 
+			if (match == null)
+				return;
+
+			await Navigation.PushAsync(new MatchDetailPage(match.Id));
+
+			// Manually deselect item.
+			MatchList.SelectedItem = null;
 		}
 
 		private void OnRoundChanged(object sender, EventArgs e)

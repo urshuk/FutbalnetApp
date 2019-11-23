@@ -8,32 +8,41 @@
              xmlns:views="clr-namespace:FutbalnetApp.Views"
              x:Class="FutbalnetApp.Views.CompetitionDetailPage">
     <ContentPage.Content>
-        <StackLayout Padding="25,10,25,0" Spacing="0" BackgroundColor="{DynamicResource BackgroundColor}">
-            <Label Margin="0,0,0,15" Text="{Binding Competition.Name}" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="20" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-            <Label Margin="0,0,0,15" Text="{Binding Competition.Category}" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="15" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-            <StackLayout Margin="0,0,0,15" Spacing="0" Orientation="Horizontal">
-                <Label Text="Sezóna" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="20" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
-                <Picker x:Name="SeasonPicker" BackgroundColor="{DynamicResource AlternativeColor}" ItemsSource="{Binding PastSeasons}" SelectedItem="{Binding CurrentSeason, Mode=TwoWay}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Unfocused="OnSeasonChanged"/>
-            </StackLayout>
-            <tabs:TabHostView x:Name="Tabs"
+        <AbsoluteLayout>
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="25,10,25,0" Spacing="0" BackgroundColor="{DynamicResource BackgroundColor}">
+                <Label Margin="0,0,0,5" Text="{Binding Competition.Name}" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="20" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Margin="0,0,0,5" Text="{Binding Competition.Category}" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="15" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <StackLayout Margin="0,0,0,5" Spacing="0" Orientation="Horizontal">
+                    <Label Text="Sezóna" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="20" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
+                    <Picker x:Name="SeasonPicker" BackgroundColor="{DynamicResource AlternativeColor}" ItemsSource="{Binding PastSeasons}" SelectedItem="{Binding CurrentSeason, Mode=TwoWay}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Unfocused="OnSeasonChanged"/>
+                </StackLayout>
+                <tabs:TabHostView x:Name="Tabs"
                               VerticalOptions="Start"
                               MinimumHeightRequest="33"
                               HeightRequest="33"
                               SelectedIndex="{Binding Source={x:Reference TabSwitcher}, Path=SelectedIndex, Mode=TwoWay}">
-                <tabs:TabHostView.Tabs>
-                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Výsledky"/>
-                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Tabuľka"/>
-                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Štatistiky"/>
-                </tabs:TabHostView.Tabs>
-            </tabs:TabHostView>
-            <tabs:ViewSwitcher x:Name="TabSwitcher"
+                    <tabs:TabHostView.Tabs>
+                        <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Výsledky"/>
+                        <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Tabuľka"/>
+                        <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Štatistiky"/>
+                    </tabs:TabHostView.Tabs>
+                </tabs:TabHostView>
+                <tabs:ViewSwitcher x:Name="TabSwitcher"
                                Animate="True"
                                VerticalOptions="FillAndExpand"
                                SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
-                <views:ResultsView ItemsSource="{Binding Matches}" Round="{Binding Round, Mode=TwoWay}" Command="{Binding LoadRoundCommand}" Part="{Binding Part}"/>
-                <views:CompetitionTableView ItemsSource="{Binding OrderedTableClubs}" OrderIndex="{Binding TableOrderIndex}" Command="{Binding OrderTableCommand}"/>
-                <views:CompetitionStatsView ItemsSource="{Binding OrderedStatsPlayers}" OrderIndex="{Binding StatsOrderIndex}" Command="{Binding OrderStatsCommand}"/>
-            </tabs:ViewSwitcher>
-        </StackLayout>
+                    <views:ResultsView ItemsSource="{Binding Matches}" Round="{Binding Round, Mode=TwoWay}" Command="{Binding LoadRoundCommand}" Part="{Binding Part}"/>
+                    <views:CompetitionTableView ItemsSource="{Binding OrderedTableClubs}" OrderIndex="{Binding TableOrderIndex}" Command="{Binding OrderTableCommand}"/>
+                    <views:CompetitionStatsView ItemsSource="{Binding OrderedStatsPlayers}" OrderIndex="{Binding StatsOrderIndex}" Command="{Binding OrderStatsCommand}"/>
+                </tabs:ViewSwitcher>
+            </StackLayout>
+            <ActivityIndicator AbsoluteLayout.LayoutBounds="0,0,1,1"
+                               AbsoluteLayout.LayoutFlags="All"
+                               Color="White"
+                               BackgroundColor="Black"
+                               Opacity="0.5"
+                               IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"/>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

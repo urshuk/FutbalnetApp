@@ -17,8 +17,8 @@
                 <Setter Property="Shell.BackgroundColor" Value="{DynamicResource AlternativeColor}" />
                 <Setter Property="Shell.ForegroundColor" Value="{DynamicResource TextColor}" />
                 <Setter Property="Shell.TitleColor" Value="{DynamicResource TextColor}" />
-                <Setter Property="Shell.DisabledColor" Value="Blue" />
-                <Setter Property="Shell.UnselectedColor" Value="Red" />
+                <Setter Property="Shell.DisabledColor" Value="White" />
+                <Setter Property="Shell.UnselectedColor" Value="White" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource AlternativeColor}" />
                 <Setter Property="Shell.TabBarForegroundColor" Value="{DynamicResource TextColor}"/>
                 <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource DarkAlternativeColor}"/>

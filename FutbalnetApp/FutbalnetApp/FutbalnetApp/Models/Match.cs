@@ -41,5 +41,7 @@ namespace FutbalnetApp.Models
 		public IEnumerable<MatchPlayers> Players { get; set; }
 		[JsonProperty("events")]
 		public IEnumerable<MatchEvent> Events { get; set; }
+
+		public string PartialScoreString => (PartialScore != null) ? $"({PartialScore[0][0]} : {PartialScore[0][1]})" : null;
 	}
 }

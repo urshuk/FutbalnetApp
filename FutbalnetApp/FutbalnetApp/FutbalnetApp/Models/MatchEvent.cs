@@ -20,8 +20,8 @@ namespace FutbalnetApp.Models
 		[JsonProperty("card_reason")]
 		public string CardReason { get; set; }
 		[JsonProperty("subst_index")]
-		public int SubIndex { get; set; }
+		public int? SubIndex { get; set; }
 		[JsonProperty("subst_player_number")]
-		public int SubPlayerNumber { get; set; }
+		public int? SubPlayerNumber { get; set; }
 	}
 }
