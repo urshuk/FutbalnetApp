@@ -109,6 +109,9 @@
                 </Label>
                 <Label Grid.Row="1" Grid.Column="2" Padding="0" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
                     <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding GoalType}" Value="{Null}">
+                            <Setter Property="Text" Value=""/>
+                        </DataTrigger>
                         <DataTrigger TargetType="Label" Binding="{Binding GoalType}" Value="GAME">
                             <Setter Property="Text" Value="Gól z hry"/>
                         </DataTrigger>
