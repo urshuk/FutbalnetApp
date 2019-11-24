@@ -27,14 +27,105 @@ namespace FutbalnetApp.ViewModels
 			get => events;
 			set => SetProperty(ref events, value);
 		}
+		public List<LineupGroup> lineups;
+		public List<LineupGroup> Lineups
+		{
+			get => lineups;
+			set => SetProperty(ref lineups, value);
+		}
+		public ObservableCollection<MatchCoachingStaff> CoachingStaff { get; set; }
+		public int lineupsHeight;
+		public int LineupsHeight
+		{
+			get => lineupsHeight;
+			set => SetProperty(ref lineupsHeight, value);
+		}
 
 		public MatchDetailViewModel(int id)
 		{
 			MatchId = id;
-			Events = new List<EventGroup>();
+			CoachingStaff = new ObservableCollection<MatchCoachingStaff>();
 			LoadMatchCommand = new Command(async () => await ExecuteLoadMatchCommand());
 		}
 
+		private void SetLineups()
+		{
+			var starters = new List<LineupViewModel>();
+			var subs = new List<LineupViewModel>();
+
+			if (Match.Players.FirstOrDefault().Starters.Count() > 0)
+			{
+				for (int i = 0; i < 11; i++)
+				{
+					var starter = new LineupViewModel
+					{
+						HomePlayer = Match.Players.FirstOrDefault().Starters.ElementAtOrDefault(i),
+						AwayPlayer = Match.Players.LastOrDefault().Starters.ElementAtOrDefault(i),
+					};
+					starters.Add(starter);
+				}
+
+				int homeSubsCount = Match.Players.FirstOrDefault().Substitutes.Count();
+				int awaySubsCount = Match.Players.LastOrDefault().Substitutes.Count();
+				int subsCount = homeSubsCount >= awaySubsCount ? homeSubsCount : awaySubsCount;
+
+				for (int i = 0; i < subsCount; i++)
+				{
+					var sub = new LineupViewModel
+					{
+						HomePlayer = Match.Players.FirstOrDefault().Substitutes.ElementAtOrDefault(i),
+						AwayPlayer = Match.Players.LastOrDefault().Substitutes.ElementAtOrDefault(i),
+					};
+					subs.Add(sub);
+				}
+			}
+
+			Lineups = new List<LineupGroup>
+			{
+				new LineupGroup("BugFix", new List<LineupViewModel>()),
+				new LineupGroup("Základná zostava", starters),
+				new LineupGroup("Náhradníci", subs),
+			};
+
+			LineupsHeight = ((Lineups.ElementAt(1).Count + Lineups.Last().Count) * 25) + 67;
+
+			foreach (var item in Match.CoachingStaff)
+			{
+				if (item.Persons != null && (item.Persons.FirstOrDefault().Id != 0 || item.Persons.LastOrDefault().Id != 0))
+				{
+					switch (item.Function)
+					{
+						case "TRENER":
+							item.Function = "Tréner";
+							break;
+						case "VEDUCI":
+							item.Function = "Vedúci mužstva";
+							break;
+						case "MASER":
+							item.Function = "Masér";
+							break;
+						case "LEKAR":
+							item.Function = "Lekár";
+							break;
+						case "ASISTENT_TR1":
+							item.Function = "1. asistent trénera";
+							break;
+						case "ASISTENT_TR2":
+							item.Function = "2. asistent trénera";
+							break;
+						case "TRENER_BRANKAROV":
+							item.Function = "Tréner brankárov";
+							break;
+						case "ZASTUPCA_KLUBU":
+							item.Function = "Zástupca klubu";
+							break;
+						default:
+							break;
+					}
+					CoachingStaff.Add(item);
+				}
+			}
+		}
 		private List<MatchEventViewModel> ExtendEvents(List<MatchEvent> events)
 		{
 			var matchEvents = new List<MatchEventViewModel>();
@@ -53,24 +144,21 @@ namespace FutbalnetApp.ViewModels
 					SubIndex = item.SubIndex,
 					SubPlayerNumber = item.SubPlayerNumber,
 				};
-				foreach (var players in Match.Players)
+				foreach (var starter in Match.Players.ElementAt(item.ClubIndex).Starters)
 				{
-					foreach (var starter in players.Starters)
-					{
-						if (starter.Number == item.PlayerNumber)
-							matchEvent.Player = starter.Person;
+					if (starter.Number == item.PlayerNumber)
+						matchEvent.Player = starter.Person;
 
-						if (starter.Number == item.SubPlayerNumber)
-							matchEvent.SubPlayer = starter.Person;
-					}
-					foreach (var sub in players.Substitutes)
-					{
-						if (sub.Number == item.PlayerNumber)
-							matchEvent.Player = sub.Person;
+					if (starter.Number == item.SubPlayerNumber)
+						matchEvent.SubPlayer = starter.Person;
+				}
+				foreach (var sub in Match.Players.ElementAt(item.ClubIndex).Substitutes)
+				{
+					if (sub.Number == item.PlayerNumber)
+						matchEvent.Player = sub.Person;
 
-						if (sub.Number == item.SubPlayerNumber)
-							matchEvent.SubPlayer = sub.Person;
-					}
+					if (sub.Number == item.SubPlayerNumber)
+						matchEvent.SubPlayer = sub.Person;
 				}
 				matchEvents.Add(matchEvent);
 			}
@@ -81,8 +169,8 @@ namespace FutbalnetApp.ViewModels
 		{
 			var first = Match.Events.Where(x => x.Minute < 46).ToList();
 			var second = Match.Events.Where(x => x.Minute > 45).ToList();
-			
-			Events = new List<EventGroup>()
+
+			Events = new List<EventGroup>
 			{
 				new EventGroup("1. Polčas", ExtendEvents(first)),
 				new EventGroup("2. Polčas", ExtendEvents(second))
@@ -99,6 +187,7 @@ namespace FutbalnetApp.ViewModels
 			{
 				Match = await SportnetStore.GetMatchAsync(MatchId);
 				SortEvents();
+				SetLineups();
 
 				IsLoaded = true;
 			}

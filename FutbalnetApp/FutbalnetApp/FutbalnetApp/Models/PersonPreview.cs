@@ -15,6 +15,8 @@ namespace FutbalnetApp.Models
 		public string Name { get; set; }
 		[JsonProperty("surname")]
 		public string LastName { get; set; }
+		[JsonProperty("fullname")]
+		public string FullnameOriginal { get; set; }
 		[JsonProperty("photo.urlpattern")]
 		public string PhotoUrl { get; set; }
 		[JsonProperty("photo.url")]
@@ -28,7 +30,7 @@ namespace FutbalnetApp.Models
 			}
 		}
 
-		public string Fullname => $"{Name} {LastName}";
+		public string Fullname => FullnameOriginal ?? $"{Name} {LastName}";
 
 		public override string ToString() => Fullname;
 	}
