@@ -3,13 +3,203 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
+             xmlns:controls="clr-namespace:FutbalnetApp.Controls"
              mc:Ignorable="d"
              x:Class="FutbalnetApp.Views.PersonDetailPage">
+    <ContentPage.Resources>
+        <Style x:Key="InfoLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource TextColor}"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="{StaticResource NormalFont}"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+        </Style>
+        <Style x:Key="DefaultLabel" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource NormalFont}"/>
+            <Setter Property="TextColor" Value="{DynamicResource TextColor}"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="0,5"/>
+        </Style>
+        <DataTemplate x:Key="StatsHeader">
+            <Grid BackgroundColor="{DynamicResource BackgroundColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" Padding="5" FontSize="15" Text="Sezóna" HorizontalTextAlignment="Start">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OrderStatsCommand}" CommandParameter="Seasons"/>
+                    </Label.GestureRecognizers>
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding StatsOrderIndex}" Value="4">
+                            <Setter Property="TextColor" Value="{DynamicResource HighlightColor}"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Label Grid.Column="1" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="G" HorizontalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OrderStatsCommand}" CommandParameter="Goals"/>
+                    </Label.GestureRecognizers>
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding StatsOrderIndex}" Value="0">
+                            <Setter Property="TextColor" Value="{DynamicResource HighlightColor}"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Label Grid.Column="2" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="Min" HorizontalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OrderStatsCommand}" CommandParameter="Mins"/>
+                    </Label.GestureRecognizers>
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding StatsOrderIndex}" Value="1">
+                            <Setter Property="TextColor" Value="{DynamicResource HighlightColor}"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Label Grid.Column="3" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="ŽK" HorizontalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OrderStatsCommand}" CommandParameter="Yellows"/>
+                    </Label.GestureRecognizers>
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding StatsOrderIndex}" Value="2">
+                            <Setter Property="TextColor" Value="{DynamicResource HighlightColor}"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Label Grid.Column="4" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="ČK" HorizontalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OrderStatsCommand}" CommandParameter="Reds"/>
+                    </Label.GestureRecognizers>
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding StatsOrderIndex}" Value="3">
+                            <Setter Property="TextColor" Value="{DynamicResource HighlightColor}"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="StatItem">
+            <Grid BackgroundColor="{DynamicResource BackgroundColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Style="{StaticResource DefaultLabel}" Padding="5" HorizontalTextAlignment="Start" Text="{Binding Season, TargetNullValue='Spolu'}"/>
+                <Label Grid.Column="1" Style="{StaticResource DefaultLabel}" Text="{Binding G}"/>
+                <Label Grid.Column="2" Style="{StaticResource DefaultLabel}" Text="{Binding Min}"/>
+                <Label Grid.Column="3" Style="{StaticResource DefaultLabel}" Text="{Binding YC}"/>
+                <Label Grid.Column="4" Style="{StaticResource DefaultLabel}" Text="{Binding RC}"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="StatItemAlternative">
+            <Grid BackgroundColor="{DynamicResource AlternativeColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Style="{StaticResource DefaultLabel}" Padding="5" HorizontalTextAlignment="Start" Text="{Binding Season, TargetNullValue='Spolu'}"/>
+                <Label Grid.Column="1" Style="{StaticResource DefaultLabel}" Text="{Binding G}"/>
+                <Label Grid.Column="2" Style="{StaticResource DefaultLabel}" Text="{Binding Min}"/>
+                <Label Grid.Column="3" Style="{StaticResource DefaultLabel}" Text="{Binding YC}"/>
+                <Label Grid.Column="4" Style="{StaticResource DefaultLabel}" Text="{Binding RC}"/>
+            </Grid>
+        </DataTemplate>
+        <controls:ListDataTemplateSelector x:Key="TemplateSelector" First="{StaticResource StatItem}" Alternative="{StaticResource StatItemAlternative}"/>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout  Padding="25,10,25,0" Spacing="0" BackgroundColor="{DynamicResource BackgroundColor}">
+            <Grid RowSpacing="0" Margin="0,0,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Row="0" Grid.Column="0" HasShadow="False" Grid.RowSpan="2" HorizontalOptions="Center" Padding="0" HeightRequest="80" WidthRequest="80" CornerRadius="40" IsClippedToBounds="True">
+                    <Image HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="80" WidthRequest="80" Source="{Binding Person.PhotoUrl}"/>
+                </Frame>
+                <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="5,0,0,0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="17" VerticalTextAlignment="End" HorizontalTextAlignment="Start" Text="{Binding Person.Fullname}"/>
+                <Label Grid.Column="1" Grid.Row="1" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="15" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" Text=""/>
+            </Grid>
+            <tabs:TabHostView x:Name="Tabs"
+                              VerticalOptions="Start"
+                              MinimumHeightRequest="33"
+                              HeightRequest="33"
+                              SelectedIndex="{Binding Source={x:Reference TabSwitcher}, Path=SelectedIndex, Mode=TwoWay}">
+                <tabs:TabHostView.Tabs>
+                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Info"/>
+                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Štatistiky"/>
+                </tabs:TabHostView.Tabs>
+            </tabs:TabHostView>
+            <tabs:ViewSwitcher x:Name="TabSwitcher"
+                               Animate="True"
+                               Margin="0,10,0,0"
+                               VerticalOptions="FillAndExpand"
+                               SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+                <Grid ColumnSpacing="0" RowSpacing="0" Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Vek" FontFamily="{StaticResource BoldFont}" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                    <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.Age}" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Dátum narodenia" FontFamily="{StaticResource BoldFont}"/>
+                    <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.Birthdate, StringFormat='{0:dd.MM.yyyy}'}"/>
+                    <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Pohlavie" FontFamily="{StaticResource BoldFont}" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                    <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.Sex}" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                    <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Národnosť" FontFamily="{StaticResource BoldFont}"/>
+                    <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.Country}"/>
+                    <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Registračné číslo" FontFamily="{StaticResource BoldFont}" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                    <Label Grid.Row="4" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.Id}" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                    <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Číslo preukazu" FontFamily="{StaticResource BoldFont}"/>
+                    <Label Grid.Row="5" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.CardNumber}"/>
+                    <Label Grid.Row="6" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Platonsť preukazu do" FontFamily="{StaticResource BoldFont}" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                    <Label Grid.Row="6" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.CardValidTo, StringFormat='{0:dd.MM.yyyy}'}" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                    <Label Grid.Row="7" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Členské poplatky do" FontFamily="{StaticResource BoldFont}"/>
+                    <Label Grid.Row="7" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.MembershipFeeTo, StringFormat='{0:dd.MM.yyyy}'}"/>
+                </Grid>
+                <CollectionView ItemsSource="{Binding OrderedStats}"
+                        HeaderTemplate="{StaticResource StatsHeader}"
+                        Header="true"
+                        ItemTemplate="{StaticResource TemplateSelector}"
+                        SelectionMode="Single"
+                        Margin="0,25,0,0"
+                        VerticalScrollBarVisibility="Never"/>
+            </tabs:ViewSwitcher>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -73,8 +73,8 @@ namespace FutbalnetApp.ViewModels
 			Matches = new ObservableCollection<MatchPreview>();
 			OrderedTableClubs = new ObservableCollection<CompetitionTableClub>();
 			OrderedStatsPlayers = new ObservableCollection<CompetitionStatsPlayer>();
-			OrderStatsCommand = new Command<string>((pareameter) => ExecuteOrderStatsCommand(pareameter));
-			OrderTableCommand = new Command<string>((pareameter) => ExecuteOrderTableCommand(pareameter));
+			OrderStatsCommand = new Command<string>((parameter) => ExecuteOrderStatsCommand(parameter));
+			OrderTableCommand = new Command<string>((parameter) => ExecuteOrderTableCommand(parameter));
 			LoadRoundCommand = new Command(async () => await ExecuteLoadRoundCommand());
 			LoadCompetitionCommand = new Command(async () => await ExecuteLoadCompetitionCommand());
 		}

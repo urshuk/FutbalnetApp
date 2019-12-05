@@ -14,7 +14,7 @@ namespace FutbalnetApp.Models
 		public IEnumerable<Stat> Stats { get; set; }
 
 		public int G => Stats.First(x => x.Id == "G").Value;
-		public int Min => Stats.First(x => x.Id == "MIN").Value;
+		public int Min => Stats.First(x => x.Id == "MIN" || x.Id == "MINS").Value;
 		public int YC => Stats.First(x => x.Id == "ZK").Value;
 		public int RC => Stats.First(x => x.Id == "CK").Value;
 

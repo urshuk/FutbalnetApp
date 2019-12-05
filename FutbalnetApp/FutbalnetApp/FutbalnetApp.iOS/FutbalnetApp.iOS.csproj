@@ -59,6 +59,10 @@
     <CodesignProvision>iOS Team Provisioning Profile: com.companyname.FutbalnetApp</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
+    <MtouchLink>None</MtouchLink>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchInterpreter>
+    </MtouchInterpreter>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -225,7 +229,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991210-pre2" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991220-pre3" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
   </ItemGroup>

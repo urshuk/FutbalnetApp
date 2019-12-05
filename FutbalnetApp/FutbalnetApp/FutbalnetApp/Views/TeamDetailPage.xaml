@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
+             mc:Ignorable="d"
+             x:Class="FutbalnetApp.Views.TeamDetailPage">
+    <ContentPage.Content>
+        <StackLayout  Padding="25,10,25,0" Spacing="0" BackgroundColor="{DynamicResource BackgroundColor}">
+            <Grid RowSpacing="0" Margin="0,0,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="80" WidthRequest="80" Source="{Binding Club.Logo}"/>
+                <Label Grid.Column="1" Margin="5,0,0,0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="17" VerticalTextAlignment="End" HorizontalTextAlignment="Start" Text="{Binding Club.Name}"/>
+            </Grid>
+            <tabs:TabHostView x:Name="Tabs"
+                              VerticalOptions="Start"
+                              MinimumHeightRequest="33"
+                              HeightRequest="33"
+                              SelectedIndex="{Binding Source={x:Reference TabSwitcher}, Path=SelectedIndex, Mode=TwoWay}">
+                <tabs:TabHostView.Tabs>
+                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Zápasy"/>
+                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Tabuľka"/>
+                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Hráči"/>
+                </tabs:TabHostView.Tabs>
+            </tabs:TabHostView>
+            <tabs:ViewSwitcher x:Name="TabSwitcher"
+                               Animate="True"
+                               Margin="0,10,0,0"
+                               VerticalOptions="FillAndExpand"
+                               SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+                <Grid ColumnSpacing="0" RowSpacing="0" Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Vek" FontFamily="{StaticResource BoldFont}" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                    <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.Age}" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Dátum narodenia" FontFamily="{StaticResource BoldFont}"/>
+                    <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.Birthdate, StringFormat='{0:dd.MM.yyyy}'}"/>
+                    <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Pohlavie" FontFamily="{StaticResource BoldFont}" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                    <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.Sex}" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                    <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Národnosť" FontFamily="{StaticResource BoldFont}"/>
+                    <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.Country}"/>
+                    <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Registračné číslo" FontFamily="{StaticResource BoldFont}" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                    <Label Grid.Row="4" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.Id}" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                    <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Číslo preukazu" FontFamily="{StaticResource BoldFont}"/>
+                    <Label Grid.Row="5" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.CardNumber}"/>
+                    <Label Grid.Row="6" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Platonsť preukazu do" FontFamily="{StaticResource BoldFont}" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                    <Label Grid.Row="6" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.CardValidTo, StringFormat='{0:dd.MM.yyyy}'}" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                    <Label Grid.Row="7" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Členské poplatky do" FontFamily="{StaticResource BoldFont}"/>
+                    <Label Grid.Row="7" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.MembershipFeeTo, StringFormat='{0:dd.MM.yyyy}'}"/>
+                </Grid>
+                <CollectionView ItemsSource="{Binding OrderedStats}"
+                        HeaderTemplate="{StaticResource StatsHeader}"
+                        Header="true"
+                        ItemTemplate="{StaticResource TemplateSelector}"
+                        SelectionMode="Single"
+                        Margin="0,25,0,0"
+                        VerticalScrollBarVisibility="Never"/>
+            </tabs:ViewSwitcher>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

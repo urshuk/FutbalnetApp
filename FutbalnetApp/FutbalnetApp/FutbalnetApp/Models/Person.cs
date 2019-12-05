@@ -27,5 +27,7 @@ namespace FutbalnetApp.Models
 		public string CardNumber { get; set; }
 		[JsonProperty("profiles")]
 		public IEnumerable<Profile> Profiles { get; set; }
+
+		public int Age => DateTime.Today.DayOfYear < Birthdate.DayOfYear ? DateTime.Today.Year - Birthdate.Year - 1 : DateTime.Today.Year - Birthdate.Year;
 	}
 }

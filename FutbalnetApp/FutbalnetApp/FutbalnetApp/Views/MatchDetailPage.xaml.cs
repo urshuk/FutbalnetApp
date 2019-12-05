@@ -1,4 +1,5 @@
-﻿using FutbalnetApp.ViewModels;
+﻿using FutbalnetApp.Models;
+using FutbalnetApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,19 @@ namespace FutbalnetApp.Views
 
 			if (!viewModel.IsLoaded)
 				viewModel.LoadMatchCommand.Execute(null);
+		}
+
+		private async void OnPlayerSelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			var eventItem = e.CurrentSelection.FirstOrDefault() as MatchEventViewModel;
+
+			if (eventItem == null)
+				return;
+
+			await Navigation.PushAsync(new PersonDetailPage(eventItem.Player.Id));
+
+			// Manually deselect item.
+			EventList.SelectedItem = null;
 		}
 	}
 }
