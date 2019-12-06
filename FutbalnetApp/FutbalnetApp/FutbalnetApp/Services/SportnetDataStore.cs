@@ -74,6 +74,16 @@ namespace FutbalnetApp.Services
 
 			return null;
 		}
+		public async Task<IEnumerable<Team>> GetCompetitionTeamsAsync(int id)
+		{
+			if (id > 0 && IsConnected)
+			{
+				var json = await client.GetStringAsync($"competitions/{id}/teams");
+				return await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Team>>(json));
+			}
+
+			return null;
+		}
 		public async Task<CompetitionStats> GetCompetitionStatsAsync(int id, int compPartId = 0)
 		{
 			if (id > 0 && IsConnected)

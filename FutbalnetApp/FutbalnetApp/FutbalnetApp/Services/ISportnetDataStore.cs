@@ -15,6 +15,7 @@ namespace FutbalnetApp.Services
 
 		//COMPETITIONS
 		Task<Competition> GetCompetitionAsync(int id);
+		Task<IEnumerable<Team>> GetCompetitionTeamsAsync(int id);
 		Task<IEnumerable<CompetitionPreview>> GetActiveCompetitionsAsync(Season season);
 		Task<IEnumerable<CompetitionSeason>> GetPastCompetitionsAsync(int id);
 		Task<CompetitionRound> GetCompetitionRoundAsync(int competitionId, int partId, int roundId);

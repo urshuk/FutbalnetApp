@@ -58,7 +58,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
-                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Grid.Column="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}"/>
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Grid.Column="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding}"/>
                 <Label Grid.Column="1" TextColor="{DynamicResource TextColor}" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
             </Grid>
         </DataTemplate>
@@ -80,6 +80,7 @@
             <Setter Property="ItemTemplate" Value="{DynamicResource ListItemSecondary}"/>
             <Setter Property="SelectionMode" Value="Single"/>
             <Setter Property="Margin" Value="0,25,0,0"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Never"/>
             <Setter Property="VerticalOptions" Value="FillAndExpand"/>
             <Setter Property="ItemsLayout">
                 <Setter.Value>

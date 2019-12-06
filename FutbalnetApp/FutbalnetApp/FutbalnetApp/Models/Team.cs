@@ -17,5 +17,9 @@ namespace FutbalnetApp.Models
 		public Season Season { get; set; }
 		[JsonProperty("season.txtid")]
 		public string SeasonId { get; set; }
+
+		public string Fullname => $"{Name} ({Age})";
+
+		public override string ToString() => Fullname;
 	}
 }

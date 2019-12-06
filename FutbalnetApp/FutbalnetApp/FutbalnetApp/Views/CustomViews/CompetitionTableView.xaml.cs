@@ -1,4 +1,5 @@
-﻿using FutbalnetApp.ViewModels;
+﻿using FutbalnetApp.Models;
+using FutbalnetApp.ViewModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -38,8 +39,16 @@ namespace FutbalnetApp.Views
 			set => SetValue(OrderIndexProperty, value);
 		}
 
-		private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+		private async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
+			var club = e.CurrentSelection.FirstOrDefault() as CompetitionTableClub;
+
+			if (club == null)
+				return;
+
+			await Navigation.PushAsync(new ClubDetailPage(club.Club.Id	));
+
+			tableCollection.SelectedItem = null;
 		}
 	}
 }
