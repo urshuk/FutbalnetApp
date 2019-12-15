@@ -20,6 +20,11 @@ namespace FutbalnetApp.Views
 			InitializeComponent();
 			BindingContext = viewModel = new TeamDetailViewModel(id, club);
 		}
+		public TeamDetailPage(Team team)
+		{
+			InitializeComponent();
+			BindingContext = viewModel = new TeamDetailViewModel(team);
+		}
 		public TeamDetailPage()
 		{
 			int id = 1319465;
@@ -36,6 +41,11 @@ namespace FutbalnetApp.Views
 		}
 
 		private void MatchList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
+		}
+
+		private void Competition_Tapped(object sender, EventArgs e)
 		{
 
 		}

@@ -23,13 +23,12 @@ namespace FutbalnetApp.Converters
 				{
 					throw new JsonReaderException($"{nameof(JsonPropertyAttribute)} is mandatory when using {nameof(JsonPathConverter)}");
 				}
-
 				var jsonPath = jsonPropertyAttr.PropertyName;
 				var token = jObject.SelectToken(jsonPath);
 
 				if (token != null && token.Type != JTokenType.Null)
 				{
-					if (jsonPath == "person_ids" && (token.First.Type == JTokenType.Null || token.Last.Type == JTokenType.Null))
+					if ((jsonPath == "person_ids" || jsonPath == "teams") && (token.First.Type == JTokenType.Null || token.Last.Type == JTokenType.Null))
 					{
 						break;
 					}

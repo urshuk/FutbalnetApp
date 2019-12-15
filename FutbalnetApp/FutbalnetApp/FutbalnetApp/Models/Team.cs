@@ -19,6 +19,7 @@ namespace FutbalnetApp.Models
 		public string SeasonId { get; set; }
 
 		public string Fullname => $"{Name} ({Age})";
+		public string Logo => Club.Logo;
 
 		public override string ToString() => Fullname;
 	}

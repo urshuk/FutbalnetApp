@@ -13,5 +13,6 @@ namespace FutbalnetApp.Models
 		public string Name { get; set; }
 		public IEnumerable<CompetitionRound> Rounds { get; set; }
 
+		public override string ToString() => Name;
 	}
 }

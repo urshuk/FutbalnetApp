@@ -26,6 +26,6 @@ namespace FutbalnetApp.Models
 		public string ScoreString => (Score != null) ? $"{Score[0]} : {Score[1]}" : null;
 		public bool IsPlaying => (Status == "VYGENEROVANY" && Score != null) ? true : false;
 
-		public override string ToString() => $"{Teams.First().Name} : {Teams.Last().Name}";
+		public override string ToString() => $"{Teams.FirstOrDefault()?.Name} : {Teams.LastOrDefault()?.Name}";
 	}
 }

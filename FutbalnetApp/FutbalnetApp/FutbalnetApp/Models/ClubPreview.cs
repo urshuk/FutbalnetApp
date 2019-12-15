@@ -18,7 +18,7 @@ namespace FutbalnetApp.Models
 		[JsonProperty("logo.url")]
 		public string LogoBase { get; set; }
 		public int LogoId => int.TryParse(LogoBase.Substring(LogoBase.LastIndexOf("/") + 1), out int result) ? result : -1;
-		public string Logo => LogoUrl.Replace("__base__", "club-logo");
+		public string Logo => LogoUrl != null ? LogoUrl.Replace("__base__", "club-logo") : "SettingsIcon.pdf";
 
 		public override string ToString() => Name;
 	}

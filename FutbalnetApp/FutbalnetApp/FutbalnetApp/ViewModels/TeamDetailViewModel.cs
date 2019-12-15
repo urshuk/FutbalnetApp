@@ -14,7 +14,13 @@ namespace FutbalnetApp.ViewModels
 	{
 		public int TeamId { get; set; }
 		public Club Club { get; set; }
-		public Competition Competition { get; set; }
+		public Competition competition;
+		public Competition Competition
+		{
+			get => competition;
+			set => SetProperty(ref competition, value);
+		}
+		public CompetitionPart Part { get; set; }
 		public Team team;
 		public Team Team
 		{
@@ -24,6 +30,20 @@ namespace FutbalnetApp.ViewModels
 		public int SelectedTabIndex { get; set; }
 		public ObservableCollection<MatchPreview> Matches { get; set; }
 		public Command LoadTeamCommand { get; set; }
+		public TableViewModel table;
+		public TableViewModel Table
+		{
+			get => table;
+			set => SetProperty(ref table, value);
+		}
+		public Command ToggleFavouriteCommand { get; set; }
+		public bool isFavourite;
+		public bool IsFavourite
+		{
+			get => isFavourite;
+			set => SetProperty(ref isFavourite, value);
+		}
+
 
 		public TeamDetailViewModel(int id, Club club)
 		{
@@ -31,6 +51,30 @@ namespace FutbalnetApp.ViewModels
 			Club = club;
 			Matches = new ObservableCollection<MatchPreview>();
 			LoadTeamCommand = new Command(async () => await ExecuteLoadTeamCommand());
+			ToggleFavouriteCommand = new Command(() => ExecuteToggleFavouriteCommand());
+			IsFavourite = LocalDataStore.TeamExists(TeamId);
+		}
+		public TeamDetailViewModel(Team team)
+		{
+			TeamId = team.Id;
+			Matches = new ObservableCollection<MatchPreview>();
+			LoadTeamCommand = new Command(async () => await ExecuteLoadTeamCommand());
+			ToggleFavouriteCommand = new Command(() => ExecuteToggleFavouriteCommand());
+			IsFavourite = LocalDataStore.TeamExists(TeamId);
+		}
+
+		void ExecuteToggleFavouriteCommand()
+		{
+			if (IsFavourite)
+			{
+				LocalDataStore.DeleteTeam(TeamId);
+				IsFavourite = false;
+			}
+			else
+			{
+				LocalDataStore.SaveTeam(Team);
+				IsFavourite = true;
+			}
 		}
 
 		async Task ExecuteLoadTeamCommand()
@@ -42,15 +86,23 @@ namespace FutbalnetApp.ViewModels
 
 			try
 			{
-				Team = await SportnetStore.GetTeamAsync(TeamId);
+				if (Team == null)
+					Team = await SportnetStore.GetTeamAsync(TeamId);
+
+				if (Club == null)
+					Club = await SportnetStore.GetClubAsync(Team.Club.Id);
 
 				var comps = await SportnetStore.GetActiveCompetitionsAsync(Team.Season);
 				comps = comps.Where(x => x.UnionId == Club.UnionId);
 				Matches.Clear();
 				foreach (var comp in comps)
 				{
+					if (comp.Level > Competition?.Level)
+					{
+						break;
+					}
 					var teams = await SportnetStore.GetCompetitionTeamsAsync(comp.Id);
-					if (teams.FirstOrDefault(x=>x.Id == Team.Id) != null)
+					if (teams.FirstOrDefault(x => x.Id == Team.Id) != null)
 					{
 						Competition = await SportnetStore.GetCompetitionAsync(comp.Id);
 						foreach (var part in Competition.Parts)
@@ -60,11 +112,21 @@ namespace FutbalnetApp.ViewModels
 								var fullRound = await SportnetStore.GetCompetitionRoundAsync(Competition.Id, part.Id, round.Id);
 								var match = fullRound.Matches.FirstOrDefault(x => x.Teams.FirstOrDefault(y => y.Id == Team.Id) != null);
 								if (match != null)
+								{
 									Matches.Add(match);
+									Part = part;
+								}
+							}
+							if (Part != null)
+							{
+								var table = await SportnetStore.GetCompetitionTableAsync(Competition.Id, Part.Id);
+								Table = new TableViewModel(table.Clubs);
+								Table.OrderTableCommand.Execute("Points");
 							}
 						}
 					}
 				}
+
 				IsLoaded = true;
 			}
 			catch (Exception ex)

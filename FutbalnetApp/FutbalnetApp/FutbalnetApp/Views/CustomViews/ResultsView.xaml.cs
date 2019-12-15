@@ -57,9 +57,19 @@ namespace FutbalnetApp.Views
 			MatchList.SelectedItem = null;
 		}
 
+
+		private CompetitionRound currentRound;
 		private void OnRoundChanged(object sender, EventArgs e)
 		{
+			if (currentRound == RoundPicker.SelectedItem)
+				return;
+
 			Command.Execute(null);
+		}
+
+		private void RoundPicker_Focused(object sender, FocusEventArgs e)
+		{
+			currentRound = RoundPicker.SelectedItem as CompetitionRound;
 		}
 	}
 }

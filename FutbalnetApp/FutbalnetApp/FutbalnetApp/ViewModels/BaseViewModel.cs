@@ -14,6 +14,7 @@ namespace FutbalnetApp.ViewModels
 	{
 		public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 		public ISportnetDataStore SportnetStore => DependencyService.Get<ISportnetDataStore>();
+		public ILocalDataStore LocalDataStore => DependencyService.Get<ILocalDataStore>();
 
 		bool isBusy = false;
 		public bool IsBusy

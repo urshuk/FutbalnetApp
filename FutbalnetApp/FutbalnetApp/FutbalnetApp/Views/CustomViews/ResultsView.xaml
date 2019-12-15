@@ -71,6 +71,7 @@
             <Setter Property="ItemTemplate" Value="{StaticResource TemplateSelector}"/>
             <Setter Property="SelectionMode" Value="Single"/>
             <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Never"/>
             <Setter Property="VerticalOptions" Value="FillAndExpand"/>
             <Setter Property="ItemsLayout">
                 <Setter.Value>
@@ -83,7 +84,7 @@
         <StackLayout Margin="0,25,0,0" Spacing="10">
             <StackLayout Orientation="Horizontal">
                 <Label TextColor="{DynamicResource TextColor}" Text="Kolo" VerticalTextAlignment="Center" HorizontalOptions="Start"/>
-                <Picker BackgroundColor="{DynamicResource AlternativeColor}" HorizontalOptions="Center" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" ItemsSource="{Binding Part.Rounds, Source={Reference Results}}" SelectedItem="{Binding Round, Source={Reference Results}, Mode=TwoWay}" Unfocused="OnRoundChanged"/>
+                <Picker x:Name="RoundPicker" BackgroundColor="{DynamicResource AlternativeColor}" HorizontalOptions="Center" WidthRequest="30" HeightRequest="20" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" ItemsSource="{Binding Part.Rounds, Source={Reference Results}}" SelectedItem="{Binding Round, Source={Reference Results}, Mode=TwoWay}" Focused="RoundPicker_Focused" Unfocused="OnRoundChanged"/>
                 <Label TextColor="{DynamicResource TextColor}" Text="{Binding Round.Datetime, Source={Reference Results}, StringFormat='{0:dd.MM.yyyy}'}" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
             <CollectionView x:Name="MatchList"

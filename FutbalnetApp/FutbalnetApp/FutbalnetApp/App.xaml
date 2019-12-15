@@ -88,5 +88,18 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="FavouriteToggle" TargetType="ImageButton">
+            <Setter Property="Source" Value="FavouriteIcon.pdf" />
+            <Setter Property="HeightRequest" Value="30" />
+            <Setter Property="WidthRequest" Value="30" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="Command" Value="{Binding ToggleFavouriteCommand}" />
+            <Style.Triggers>
+                <DataTrigger TargetType="ImageButton" Binding="{Binding IsFavourite}" Value="True">
+                    <Setter Property="Source" Value="SearchIcon.pdf" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>

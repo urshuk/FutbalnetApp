@@ -36,6 +36,18 @@ namespace FutbalnetApp.Views
 			BindingContext = viewModel = new CompetitionDetailViewModel(season.Id);
 			viewModel.LoadCompetitionCommand.Execute(null);
 		}
+		private CompetitionPart currentPart;
+		private void OnPartChanged(object sender, EventArgs e)
+		{
+			if (!(PartPicker.SelectedItem is CompetitionPart part) || part == currentPart)
+				return;
+
+			viewModel.LoadCompetitionCommand.Execute(null);
+		}
+		private void PartPicker_Focused(object sender, FocusEventArgs e)
+		{
+			currentPart = PartPicker.SelectedItem as CompetitionPart;
+		}
 
 		protected override void OnAppearing()
 		{

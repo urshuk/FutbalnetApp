@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FutbalnetApp.Views.FavouritesPage">
+    <ContentPage.Resources>
+        <DataTemplate x:Key="FavouriteItem">
+            <Grid Padding="10" HeightRequest="40" BackgroundColor="{DynamicResource AlternativeColor}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding Logo}"/>
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Padding="0" Grid.Column="1" Grid.Row="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding Age, FallbackValue=none}" Value="none">
+                            <Setter Property="Grid.RowSpan" Value="3" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Padding="0" Grid.Column="1" Grid.Row="1" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Age}"/>
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Padding="0" Grid.Column="1" Grid.Row="2" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Sex}">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding Age, FallbackValue=none}" Value="none">
+                            <Setter Property="IsVisible" Value="False" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Label Grid.Column="2" Grid.RowSpan="3" TextColor="{DynamicResource TextColor}" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="GroupHeader">
+            <StackLayout HeightRequest="43" Spacing="0">
+                <Label Text="{Binding Name}" 
+                       Margin="0,10,0,0"
+                       FontSize="15"
+                       HeightRequest="27"
+                       HorizontalTextAlignment="Center"
+                       Padding="0"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="StartAndExpand"
+                       FontFamily="{StaticResource BoldFont}"
+                       TextColor="{DynamicResource TextColor}"
+                       VerticalTextAlignment="Center"/>
+                <BoxView Margin="0,0,0,4" BackgroundColor="{DynamicResource HighlightColor}" HeightRequest="2" VerticalOptions="Start" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+        </DataTemplate>
+        <DataTemplate x:Key="GroupFooter">
+            <Label/>
+        </DataTemplate>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Padding="25,0" Spacing="0" BackgroundColor="{DynamicResource BackgroundColor}">
+            <CollectionView x:Name="FavouritesList"
+                                IsGrouped="True"
+                                VerticalScrollBarVisibility="Never"
+                                ItemTemplate="{StaticResource FavouriteItem}"
+                                GroupFooterTemplate="{StaticResource GroupFooter}"
+                                GroupHeaderTemplate="{StaticResource GroupHeader}"
+                                SelectionMode="Single"
+                            VerticalOptions="FillAndExpand"
+                                SelectionChanged="FavouritesList_SelectionChanged"
+                                ItemsSource="{Binding Favourites}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

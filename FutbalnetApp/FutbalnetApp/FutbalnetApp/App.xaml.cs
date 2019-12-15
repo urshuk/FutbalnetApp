@@ -28,13 +28,17 @@ namespace FutbalnetApp
 				DependencyService.Register<MockDataStore>();
 			else
 				DependencyService.Register<SportnetDataStore>();
-				DependencyService.Register<AzureDataStore>();
+			DependencyService.Register<LocalDataStore>();
 			MainPage = new AppShell();
 		}
 
 		protected override void OnStart()
 		{
-			// Handle when your app starts
+			base.OnStart();
+
+			Theme theme = DependencyService.Get<IEnvironment>().GetOperatingSystemTheme();
+
+			SetTheme(theme);
 		}
 
 		protected override void OnSleep()
@@ -44,7 +48,29 @@ namespace FutbalnetApp
 
 		protected override void OnResume()
 		{
-			// Handle when your app resumes
+			base.OnResume();
+
+			Theme theme = DependencyService.Get<IEnvironment>().GetOperatingSystemTheme();
+
+			SetTheme(theme);
+		}
+
+		void SetTheme(Theme theme)
+		{
+			if (theme == Theme.Dark)
+			{
+				Application.Current.Resources["BackgroundColor"] = Application.Current.Resources["BackgroundColorDark"];
+				Application.Current.Resources["AlternativeColor"] = Application.Current.Resources["AlternativeColorDark"];
+				//Application.Current.Resources["DarkAlternativeColor"] = Application.Current.Resources["DarkAlternativeColorDark"];
+				Application.Current.Resources["TextColor"] = Application.Current.Resources["TextColorDark"];
+			}
+			else
+			{
+				Application.Current.Resources["BackgroundColor"] = Application.Current.Resources["BackgroundColorLight"];
+				Application.Current.Resources["AlternativeColor"] = Application.Current.Resources["AlternativeColorLight"];
+				//Application.Current.Resources["DarkAlternativeColor"] = Application.Current.Resources["DarkAlternativeColorLight"];
+				Application.Current.Resources["TextColor"] = Application.Current.Resources["TextColorLight"];
+			}
 		}
 	}
 }

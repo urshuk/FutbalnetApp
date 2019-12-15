@@ -33,7 +33,6 @@ namespace FutbalnetApp.ViewModels
 			set => SetProperty(ref round, value);
 		}
 		public ObservableCollection<MatchPreview> Matches { get; set; }
-		public IEnumerable<CompetitionTableClub> TableClubs { get; set; }
 		public IEnumerable<CompetitionSeason> pastSeasons;
 		public IEnumerable<CompetitionSeason> PastSeasons
 		{
@@ -46,12 +45,10 @@ namespace FutbalnetApp.ViewModels
 			get => currentSeason;
 			set => SetProperty(ref currentSeason, value);
 		}
-		public ObservableCollection<CompetitionTableClub> OrderedTableClubs { get; set; }
 		public IEnumerable<CompetitionStatsPlayer> StatsPlayers { get; set; }
 		public ObservableCollection<CompetitionStatsPlayer> OrderedStatsPlayers { get; set; }
 		public Command LoadCompetitionCommand { get; set; }
 		public Command OrderStatsCommand { get; set; }
-		public Command OrderTableCommand { get; set; }
 		public Command LoadRoundCommand { get; set; }
 		public int SelectedTabIndex { get; set; }
 		int statsOrderIndex = 0;
@@ -60,91 +57,50 @@ namespace FutbalnetApp.ViewModels
 			get => statsOrderIndex;
 			set => SetProperty(ref statsOrderIndex, value);
 		}
-		int tableOrderIndex = 0;
-		public int TableOrderIndex
+		public TableViewModel table;
+		public TableViewModel Table
 		{
-			get => tableOrderIndex;
-			set => SetProperty(ref tableOrderIndex, value);
+			get => table;
+			set => SetProperty(ref table, value);
+		}
+		public Command ToggleFavouriteCommand { get; set; }
+		public bool isFavourite;
+		public bool IsFavourite
+		{
+			get => isFavourite;
+			set => SetProperty(ref isFavourite, value);
 		}
 
 		public CompetitionDetailViewModel(int id)
 		{
 			CompetitionId = id;
 			Matches = new ObservableCollection<MatchPreview>();
-			OrderedTableClubs = new ObservableCollection<CompetitionTableClub>();
 			OrderedStatsPlayers = new ObservableCollection<CompetitionStatsPlayer>();
 			OrderStatsCommand = new Command<string>((parameter) => ExecuteOrderStatsCommand(parameter));
-			OrderTableCommand = new Command<string>((parameter) => ExecuteOrderTableCommand(parameter));
 			LoadRoundCommand = new Command(async () => await ExecuteLoadRoundCommand());
 			LoadCompetitionCommand = new Command(async () => await ExecuteLoadCompetitionCommand());
+			ToggleFavouriteCommand = new Command(() => ExecuteToggleFavouriteCommand());
+			IsFavourite = LocalDataStore.CompetitionExists(CompetitionId);
 		}
 
+		void ExecuteToggleFavouriteCommand()
+		{
+			if (IsFavourite)
+			{
+				LocalDataStore.DeleteCompetition(CompetitionId);
+				IsFavourite = false;
+			}
+			else
+			{
+				LocalDataStore.SaveCompetition(Competition);
+				IsFavourite = true;
+			}
+		}
 		async Task ExecuteLoadRoundCommand()
 		{
 			await LoadRoundAsync();
 		}
-		private void ExecuteOrderTableCommand(string by)
-		{
-			switch (by)
-			{
-				case "Matches":
-					var matches = TableClubs.OrderByDescending(x => x.MP);
-					OrderedTableClubs.Clear();
-					foreach (var item in matches)
-					{
-						OrderedTableClubs.Add(item);
-					};
-					TableOrderIndex = 0;
-					break;
-				case "Wins":
-					var wins = TableClubs.OrderByDescending(x => x.W);
-					OrderedTableClubs.Clear();
-					foreach (var item in wins)
-					{
-						OrderedTableClubs.Add(item);
-					};
-					TableOrderIndex = 1;
-					break;
-				case "Draws":
-					var draws = TableClubs.OrderByDescending(x => x.D);
-					OrderedTableClubs.Clear();
-					foreach (var item in draws)
-					{
-						OrderedTableClubs.Add(item);
-					};
-					TableOrderIndex = 2;
-					break;
-				case "Losses":
-					var losses = TableClubs.OrderByDescending(x => x.L);
-					OrderedTableClubs.Clear();
-					foreach (var item in losses)
-					{
-						OrderedTableClubs.Add(item);
-					};
-					TableOrderIndex = 3;
-					break;
-				case "Score":
-					var score = TableClubs.OrderByDescending(x => x.ScoreDifference);
-					OrderedTableClubs.Clear();
-					foreach (var item in score)
-					{
-						OrderedTableClubs.Add(item);
-					};
-					TableOrderIndex = 4;
-					break;
-				case "Points":
-					var points = TableClubs.OrderBy(x => x.Order);
-					OrderedTableClubs.Clear();
-					foreach (var item in points)
-					{
-						OrderedTableClubs.Add(item);
-					};
-					TableOrderIndex = 5;
-					break;
-				default:
-					break;
-			}
-		}
+		
 		private void ExecuteOrderStatsCommand(string by)
 		{
 			switch (by)
@@ -195,7 +151,10 @@ namespace FutbalnetApp.ViewModels
 			var round = await SportnetStore.GetCompetitionRoundAsync(Competition.Id, Part.Id, Round.Id);
 			foreach (var match in round.Matches)
 			{
-				Matches.Add(match);
+				if (match.Teams != null)
+				{
+					Matches.Add(match);
+				}
 			}
 		}
 		async Task LoadStatsAsync()
@@ -207,8 +166,8 @@ namespace FutbalnetApp.ViewModels
 		async Task LoadTableAsync()
 		{
 			var table = await SportnetStore.GetCompetitionTableAsync(Competition.Id, Part.Id);
-			TableClubs = table.Clubs;
-			OrderTableCommand.Execute("Points");
+			Table = new TableViewModel(table.Clubs);
+			Table.OrderTableCommand.Execute("Points");
 		}
 		async Task LoadPastSeasonsAsync()
 		{
@@ -224,8 +183,12 @@ namespace FutbalnetApp.ViewModels
 
 			try
 			{
-				Competition = await SportnetStore.GetCompetitionAsync(CompetitionId);
-				Part = Competition.Parts.FirstOrDefault();
+				if (Competition == null)
+					Competition = await SportnetStore.GetCompetitionAsync(CompetitionId);
+
+				if (Part == null)
+					Part = Competition.Parts.FirstOrDefault();
+
 				SetClosestRound();
 
 				await LoadRoundAsync();
@@ -254,8 +217,8 @@ namespace FutbalnetApp.ViewModels
 			if (Round == null)
 				Round = Part.Rounds.FirstOrDefault(x => x.Datetime > DateTime.Now);
 
-			if (round == null)
-				round = part.Rounds.LastOrDefault();
+			if (Round == null)
+				Round = part.Rounds.LastOrDefault();
 		}
 	}
 }

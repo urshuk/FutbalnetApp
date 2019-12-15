@@ -19,15 +19,37 @@ namespace FutbalnetApp.ViewModels
 			set => SetProperty(ref club, value);
 		}
 		public Command LoadClubCommand { get; set; }
+		public Command ToggleFavouriteCommand { get; set; }
 		public ObservableCollection<Team> Teams { get; set; }
+		public bool isFavourite;
+		public bool IsFavourite
+		{
+			get => isFavourite;
+			set => SetProperty(ref isFavourite, value);
+		}
 
 		public ClubDetailViewModel(int id)
 		{
 			ClubId = id;
 			Teams = new ObservableCollection<Team>();
 			LoadClubCommand = new Command(async () => await ExecuteLoadClubCommand());
+			ToggleFavouriteCommand = new Command(() => ExecuteToggleFavouriteCommand());
+			IsFavourite = LocalDataStore.ClubExists(ClubId);
 		}
 
+		void ExecuteToggleFavouriteCommand()
+		{
+			if (IsFavourite)
+			{
+				LocalDataStore.DeleteClub(ClubId);
+				IsFavourite = false;
+			}
+			else
+			{
+				LocalDataStore.SaveClub(Club);
+				IsFavourite = true;
+			}
+		}
 		async Task ExecuteLoadClubCommand()
 		{
 			if (IsBusy)
