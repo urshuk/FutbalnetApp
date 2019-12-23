@@ -94,7 +94,7 @@ namespace FutbalnetApp.ViewModels
 
 			try
 			{
-				AllCompetitions = await SportnetStore.GetActiveCompetitionsAsync(new Season { Id = "2019-2020" });
+				AllCompetitions = await SportnetStore.GetActiveCompetitionsAsync(App.Seasons.First(x => x.IsActual));
 				AllUnions = await SportnetStore.GetUnionsAsync();
 				Union = AllUnions.FirstOrDefault();
 				ReloadLists();

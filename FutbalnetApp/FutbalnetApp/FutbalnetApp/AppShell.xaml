@@ -37,7 +37,7 @@
             <ShellContent ContentTemplate="{DataTemplate local:FavouritesPage}" />
         </Tab>
         <Tab Title="Časová os" Icon="TimelineIcon.pdf">
-            <ShellContent ContentTemplate="{DataTemplate local:CompetitionDetailPage}" />
+            <ShellContent ContentTemplate="{DataTemplate local:TimelinePage}" />
         </Tab>
         <Tab Title="Hľadať" Icon="SearchIcon.pdf">
             <ShellContent ContentTemplate="{DataTemplate local:MatchDetailPage}" />

@@ -12,6 +12,7 @@ namespace FutbalnetApp.Services
 		Task<Club> GetClubAsync(int id);
 		Task<Team> GetTeamAsync(int id);
 		Task<IEnumerable<Team>> GetClubTeamsAsync(int clubId);
+		Task<IEnumerable<CompetitionPreview>> GetClubCompetitionsAsync(int clubId, Season season);
 
 		//COMPETITIONS
 		Task<Competition> GetCompetitionAsync(int id);
@@ -23,6 +24,7 @@ namespace FutbalnetApp.Services
 		Task<CompetitionStats> GetCompetitionStatsAsync(int id, int compPartId = 0);
 
 		//SEASON
+		IEnumerable<Season> GetSeasons();
 		Task<IEnumerable<Season>> GetSeasonsAsync();
 		
 		//UNIONS

@@ -12,9 +12,6 @@ namespace FutbalnetApp.ViewModels
 	public class FavouritesViewModel : BaseViewModel
 	{
 		public Command LoadFavouritesCommand { get; set; }
-		public IEnumerable<Club> Clubs { get; set; }
-		public IEnumerable<Team> Teams { get; set; }
-		public IEnumerable<Competition> Competitions { get; set; }
 		public List<GenericGroup> favourites;
 		public List<GenericGroup> Favourites
 		{
@@ -25,7 +22,6 @@ namespace FutbalnetApp.ViewModels
 		public FavouritesViewModel()
 		{
 			LoadFavouritesCommand = new Command(() => ExecuteLoadFavouritesCommand());
-			Clubs = new ObservableCollection<Club>();
 		}
 
 		void ExecuteLoadFavouritesCommand()

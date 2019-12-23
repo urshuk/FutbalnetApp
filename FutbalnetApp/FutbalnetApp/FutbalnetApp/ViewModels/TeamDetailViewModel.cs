@@ -77,6 +77,41 @@ namespace FutbalnetApp.ViewModels
 			}
 		}
 
+		async Task LoadTeamMatchesAsync()
+		{
+			var comps = await SportnetStore.GetClubCompetitionsAsync(Club.Id, Team.Season);
+			comps = comps.OrderBy(x => x.Level);
+			Matches.Clear();
+			foreach (var comp in comps)
+			{
+				var teams = await SportnetStore.GetCompetitionTeamsAsync(comp.Id);
+				if (teams.FirstOrDefault(x => x.Id == Team.Id) != null)
+				{
+					Competition = await SportnetStore.GetCompetitionAsync(comp.Id);
+					foreach (var part in Competition.Parts)
+					{
+						foreach (var round in part.Rounds)
+						{
+							var fullRound = await SportnetStore.GetCompetitionRoundAsync(Competition.Id, part.Id, round.Id);
+							var match = fullRound.Matches.FirstOrDefault(x => x.Teams.FirstOrDefault(y => y.Id == Team.Id) != null);
+							if (match != null)
+							{
+								Matches.Add(match);
+								Part = part;
+							}
+						}
+						if (Part != null)
+						{
+							var table = await SportnetStore.GetCompetitionTableAsync(Competition.Id, Part.Id);
+							Table = new TableViewModel(table.Clubs);
+							Table.OrderTableCommand.Execute("Points");
+						}
+					}
+					break;
+				}
+			}
+		}
+
 		async Task ExecuteLoadTeamCommand()
 		{
 			if (IsBusy)
@@ -92,40 +127,7 @@ namespace FutbalnetApp.ViewModels
 				if (Club == null)
 					Club = await SportnetStore.GetClubAsync(Team.Club.Id);
 
-				var comps = await SportnetStore.GetActiveCompetitionsAsync(Team.Season);
-				comps = comps.Where(x => x.UnionId == Club.UnionId);
-				Matches.Clear();
-				foreach (var comp in comps)
-				{
-					if (comp.Level > Competition?.Level)
-					{
-						break;
-					}
-					var teams = await SportnetStore.GetCompetitionTeamsAsync(comp.Id);
-					if (teams.FirstOrDefault(x => x.Id == Team.Id) != null)
-					{
-						Competition = await SportnetStore.GetCompetitionAsync(comp.Id);
-						foreach (var part in Competition.Parts)
-						{
-							foreach (var round in part.Rounds)
-							{
-								var fullRound = await SportnetStore.GetCompetitionRoundAsync(Competition.Id, part.Id, round.Id);
-								var match = fullRound.Matches.FirstOrDefault(x => x.Teams.FirstOrDefault(y => y.Id == Team.Id) != null);
-								if (match != null)
-								{
-									Matches.Add(match);
-									Part = part;
-								}
-							}
-							if (Part != null)
-							{
-								var table = await SportnetStore.GetCompetitionTableAsync(Competition.Id, Part.Id);
-								Table = new TableViewModel(table.Clubs);
-								Table.OrderTableCommand.Execute("Points");
-							}
-						}
-					}
-				}
+				await LoadTeamMatchesAsync();
 
 				IsLoaded = true;
 			}

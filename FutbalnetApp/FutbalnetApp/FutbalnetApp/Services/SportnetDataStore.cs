@@ -42,6 +42,16 @@ namespace FutbalnetApp.Services
 
 			return null;
 		}
+		public async Task<IEnumerable<CompetitionPreview>> GetClubCompetitionsAsync(int clubId, Season season)
+		{
+			if (clubId > 0 && IsConnected)
+			{
+				var json = await client.GetStringAsync($"clubs/{clubId}/season/{season.Id}/competitions");
+				return await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<CompetitionPreview>>(json));
+			}
+
+			return null;
+		}
 		public async Task<Team> GetTeamAsync(int id)
 		{
 			if (id > 0 && IsConnected)
@@ -140,6 +150,16 @@ namespace FutbalnetApp.Services
 		}
 
 		//SEASON
+		public IEnumerable<Season> GetSeasons()
+		{
+			if (IsConnected)
+			{
+				var json = client.GetStringAsync($"season").Result;
+				return JsonConvert.DeserializeObject<IEnumerable<Season>>(json);
+			}
+
+			return null;
+		}
 		public async Task<IEnumerable<Season>> GetSeasonsAsync()
 		{
 			if (IsConnected)
@@ -246,7 +266,7 @@ namespace FutbalnetApp.Services
 
 			return null;
 		}
-		
+
 		//MISC
 		public async Task<IEnumerable<SearchResult>> GetSearchResults(string term)
 		{
@@ -268,6 +288,5 @@ namespace FutbalnetApp.Services
 
 			return null;
 		}
-
 	}
 }
