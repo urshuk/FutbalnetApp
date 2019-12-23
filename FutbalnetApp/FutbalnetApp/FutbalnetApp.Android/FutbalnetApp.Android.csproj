@@ -102,7 +102,7 @@
     <AndroidResource Include="Resources\drawable\tab_feed.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\Downloads\Sharpnado.Presentation.Forms-master\Sharpnado.Presentation.Forms.Droid\Sharpnado.Presentation.Forms.Droid.csproj">
+    <ProjectReference Include="..\..\Sharpnado\Sharpnado.Presentation.Forms.Droid\Sharpnado.Presentation.Forms.Droid.csproj">
       <Project>{5c880a51-9e8a-42a9-9fa5-10bc7d3e9ffc}</Project>
       <Name>Sharpnado.Presentation.Forms.Droid</Name>
     </ProjectReference>

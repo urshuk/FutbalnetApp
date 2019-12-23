@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\Downloads\Sharpnado.Presentation.Forms-master\Sharpnado.Presentation.Forms\Sharpnado.Presentation.Forms.csproj" />
+    <ProjectReference Include="..\..\Sharpnado\Sharpnado.Presentation.Forms\Sharpnado.Presentation.Forms.csproj" />
   </ItemGroup>
 
   <ItemGroup>
