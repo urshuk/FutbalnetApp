@@ -19,10 +19,10 @@
     <EmbeddedResource Update="Views\ClubDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Competition\CompetitionSelectionPage.xaml">
+    <EmbeddedResource Update="Views\CompetitionSelectionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Competition\CompetitionDetailPage.xaml">
+    <EmbeddedResource Update="Views\CompetitionDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CustomViews\CompetitionStatsView.xaml">

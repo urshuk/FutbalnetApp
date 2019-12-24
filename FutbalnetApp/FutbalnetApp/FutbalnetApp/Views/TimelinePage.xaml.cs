@@ -1,4 +1,5 @@
-﻿using FutbalnetApp.ViewModels;
+﻿using FutbalnetApp.Models;
+using FutbalnetApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,15 @@ namespace FutbalnetApp.Views
 			base.OnAppearing();
 
 			viewModel.LoadTimelineCommand.Execute(null);
+		}
+
+		private async void TimelineList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (!(e.CurrentSelection.FirstOrDefault() is MatchPreview item))
+				return;
+
+			await Navigation.PushAsync(new MatchDetailPage(item.Id));
+			TimelineList.SelectedItem = null;
 		}
 	}
 }

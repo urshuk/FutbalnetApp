@@ -75,7 +75,7 @@ namespace FutbalnetApp.ViewModels
 					matches.AddRange(await GetTeamMatchesAsync(team));
 				}
 
-				foreach (var club in clubs)
+				/*foreach (var club in clubs)
 				{
 					var clubTeams = await SportnetStore.GetClubTeamsAsync(club.Id);
 					var comps = await SportnetStore.GetClubCompetitionsAsync(club.Id, App.Seasons.First(x => x.IsActual));
@@ -84,16 +84,9 @@ namespace FutbalnetApp.ViewModels
 					{
 						matches.AddRange(await GetTeamMatchesAsync(team, comps));
 					}
-				}
+				}*/
 
 				MatchGroups = matches.GroupBy(x => x.Datetime.Date).ToList();
-
-				/*MatchGroups = new List<GenericGroup>
-				{
-					new GenericGroup("Kluby", clubs),
-					new GenericGroup("Tímy", teams),
-				};*/
-
 				IsLoaded = true;
 			}
 			catch (Exception ex)

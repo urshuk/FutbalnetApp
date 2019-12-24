@@ -42,21 +42,27 @@
                         <CollectionView x:Name="MCompsList"
                                         Style="{StaticResource SecondaryList}"
                                         ItemsSource="{Binding MenCompetitions}"
+                                        EmptyView="Žiadne súťaže v tejto kategórii"
+                                        EmptyViewTemplate="{StaticResource NoResultsTemplate}"
                                         SelectionChanged="OnCompetitionSelected"/>
                         <CollectionView x:Name="WCompsList"
                                         ItemsSource="{Binding WomenCompetitions}"
                                         SelectionChanged="OnCompetitionSelected"
+                                        EmptyView="Žiadne súťaže v tejto kategórii"
+                                        EmptyViewTemplate="{StaticResource NoResultsTemplate}"
                                         Style="{StaticResource SecondaryList}"/>
-                        <CollectionView x:Name="YCompsList"                         
+                        <CollectionView x:Name="YCompsList"
                                         Style="{StaticResource SecondaryList}"
                                         ItemsSource="{Binding YoungCompetitions}"
+                                        EmptyView="Žiadne súťaže v tejto kategórii"
+                                        EmptyViewTemplate="{StaticResource NoResultsTemplate}"
                                         SelectionChanged="OnCompetitionSelected"/>
                     </tabs:ViewSwitcher>
                 </StackLayout>
                 <CollectionView x:Name="UnionList"
                                 ItemsSource="{Binding SubUnions}"
                                 Style="{StaticResource SecondaryList}"
-                                SelectionChanged="UnionList_SelectionChanged"/> 
+                                SelectionChanged="UnionList_SelectionChanged"/>
             </tabs:ViewSwitcher>
         </StackLayout>
     </ContentPage.Content>

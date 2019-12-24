@@ -60,15 +60,17 @@
     <ContentPage.Content>
         <StackLayout Padding="25,0" Spacing="0" BackgroundColor="{DynamicResource BackgroundColor}">
             <CollectionView x:Name="FavouritesList"
-                                IsGrouped="True"
-                                VerticalScrollBarVisibility="Never"
-                                ItemTemplate="{StaticResource FavouriteItem}"
-                                GroupFooterTemplate="{StaticResource GroupFooter}"
-                                GroupHeaderTemplate="{StaticResource GroupHeader}"
-                                SelectionMode="Single"
+                            IsGrouped="True"
+                            VerticalScrollBarVisibility="Never"
+                            ItemTemplate="{StaticResource FavouriteItem}"
+                            GroupFooterTemplate="{StaticResource GroupFooter}"
+                            GroupHeaderTemplate="{StaticResource GroupHeader}"
+                            SelectionMode="Single"
+                            EmptyView="Pridaj si ligy, kluby a tímy do obľúbených a nestrať prehľad"
+                            EmptyViewTemplate="{StaticResource NoResultsTemplate}"
                             VerticalOptions="FillAndExpand"
-                                SelectionChanged="FavouritesList_SelectionChanged"
-                                ItemsSource="{Binding Favourites}">
+                            SelectionChanged="FavouritesList_SelectionChanged"
+                            ItemsSource="{Binding Favourites}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
                 </CollectionView.ItemsLayout>
