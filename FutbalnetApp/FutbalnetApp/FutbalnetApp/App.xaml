@@ -58,9 +58,12 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
-                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Grid.Column="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding}"/>
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Grid.Column="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}"/>
                 <Label Grid.Column="1" TextColor="{DynamicResource TextColor}" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
             </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="NoResultsTemplate">
+            <Label FontSize="15" FontFamily="{StaticResource NormalFont}" HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalTextAlignment="Center" Text="{Binding}"/>
         </DataTemplate>
 
         <controls:ListDataTemplateSelector x:Key="ListTemplateSelector" First="{StaticResource ListItem}" Alternative="{StaticResource ListItemAlternative}"/>

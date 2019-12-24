@@ -40,7 +40,7 @@
             <ShellContent ContentTemplate="{DataTemplate local:TimelinePage}" />
         </Tab>
         <Tab Title="Hľadať" Icon="SearchIcon.pdf">
-            <ShellContent ContentTemplate="{DataTemplate local:MatchDetailPage}" />
+            <ShellContent ContentTemplate="{DataTemplate local:SearchPage}" />
         </Tab>
         <Tab Title="Nastavenia" Icon="SettingsIcon.pdf">
             <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" />

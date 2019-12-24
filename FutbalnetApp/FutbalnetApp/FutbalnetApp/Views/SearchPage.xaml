@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
+             mc:Ignorable="d"
+             x:Class="FutbalnetApp.Views.SearchPage">
+    <ContentPage.Content>
+        <StackLayout Padding="25,10,25,0" Spacing="0" BackgroundColor="{DynamicResource BackgroundColor}">
+            <SearchBar x:Name="SearchBar" Keyboard="Plain" FontFamily="{StaticResource NormalFont}" TextChanged="SearchBar_TextChanged" CancelButtonColor="{DynamicResource TextColor}" Placeholder="Hľadajte ľudí, kluby, súťaže, zväzy" Text="{Binding SearchTerm, Mode=TwoWay}" BackgroundColor="{DynamicResource BackgroundColor}" TextColor="{DynamicResource TextColor}"/>
+
+            <tabs:TabHostView x:Name="Competitions"
+                              VerticalOptions="Start"
+                              MinimumHeightRequest="33"
+                              HeightRequest="33"
+                              SelectedIndex="{Binding Source={x:Reference ResultsSwitcher}, Path=SelectedIndex, Mode=TwoWay}">
+                <tabs:TabHostView.Tabs>
+                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Ľudia"/>
+                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Kluby"/>
+                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Súťaže"/>
+                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Zväzy"/>
+                </tabs:TabHostView.Tabs>
+            </tabs:TabHostView>
+            <tabs:ViewSwitcher x:Name="ResultsSwitcher"
+                               Animate="True"
+                               VerticalOptions="FillAndExpand"
+                               SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
+                <CollectionView x:Name="PersonsList"
+                                ItemsSource="{Binding Persons}"
+                                Style="{StaticResource SecondaryList}"
+                                EmptyView="Žiadne výsledky sa nenašli"
+                                EmptyViewTemplate="{StaticResource NoResultsTemplate}"
+                                SelectionChanged="PersonsList_SelectionChanged"/>
+                <CollectionView x:Name="ClubsList"
+                                ItemsSource="{Binding Clubs}"
+                                Style="{StaticResource SecondaryList}"
+                                EmptyView="Žiadne výsledky sa nenašli"
+                                EmptyViewTemplate="{StaticResource NoResultsTemplate}"
+                                SelectionChanged="ClubsList_SelectionChanged"/>
+                <CollectionView x:Name="CompetitionsList"
+                                ItemsSource="{Binding Competitions}"
+                                Style="{StaticResource SecondaryList}"
+                                EmptyView="Žiadne výsledky sa nenašli"
+                                EmptyViewTemplate="{StaticResource NoResultsTemplate}"
+                                SelectionChanged="CompetitionsList_SelectionChanged"/>
+                <CollectionView x:Name="UnionsList"
+                                ItemsSource="{Binding Unions}"
+                                Style="{StaticResource SecondaryList}"
+                                EmptyView="Žiadne výsledky sa nenašli"
+                                EmptyViewTemplate="{StaticResource NoResultsTemplate}"
+                                SelectionChanged="UnionsList_SelectionChanged"/>
+            </tabs:ViewSwitcher>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
