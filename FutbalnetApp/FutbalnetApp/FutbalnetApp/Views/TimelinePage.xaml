@@ -94,6 +94,8 @@
                             GroupFooterTemplate="{StaticResource GroupFooter}"
                             GroupHeaderTemplate="{StaticResource GroupHeader}"
                             SelectionMode="Single"
+                            EmptyView="Žiadne zápasy vašich obľúbených tímov najbližších 14 dní"
+                            EmptyViewTemplate="{StaticResource NoResultsTemplate}"
                             SelectionChanged="TimelineList_SelectionChanged"
                             VerticalOptions="FillAndExpand"
                             ItemsSource="{Binding MatchGroups}">

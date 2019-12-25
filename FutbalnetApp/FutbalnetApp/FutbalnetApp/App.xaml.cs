@@ -24,6 +24,7 @@ namespace FutbalnetApp
 		//club players
 		//timeline performance
 		//notifications
+		//loading
 
 		public App()
 		{
