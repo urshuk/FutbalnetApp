@@ -37,15 +37,15 @@
                     <ViewCell>
                         <StackLayout Padding="15,0">
                             <Label Text="Nahlás problém" Padding="0, 10" Style="{StaticResource BaseLabel}"/>
-                            <Editor Keyboard="Text" AutoSize="Disabled" HeightRequest="75" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Opíš čo najpodrobnejšie problém..."/>
-                            <Button Text="Odoslať" HorizontalOptions="Center" FontSize="15" TextColor="{DynamicResource HighlightColor}"/>
+                            <Editor x:Name="BugEditor" Keyboard="Text" AutoSize="Disabled" HeightRequest="75" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Opíš čo najpodrobnejšie problém..."/>
+                            <Button Text="Odoslať" HorizontalOptions="Center" Clicked="BugSendClicked" FontSize="15" TextColor="{DynamicResource HighlightColor}"/>
                         </StackLayout>
                     </ViewCell>
                     <ViewCell>
                         <StackLayout Padding="15,0">
                             <Label Text="Más nápad?" Padding="0, 10" Style="{StaticResource BaseLabel}"/>
-                            <Editor Keyboard="Text" AutoSize="Disabled" HeightRequest="75" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Daj nám vedieť čo by si zlepšil a ako..."/>
-                            <Button Text="Odoslať" HorizontalOptions="Center" FontSize="15" TextColor="{DynamicResource HighlightColor}"/>
+                            <Editor x:Name="FeedbackEditor" Keyboard="Text" AutoSize="Disabled" HeightRequest="75" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Daj nám vedieť čo by si zlepšil a ako..."/>
+                            <Button Text="Odoslať" HorizontalOptions="Center" Clicked="FeedbackSendClicked" FontSize="15" TextColor="{DynamicResource HighlightColor}"/>
                         </StackLayout>
                     </ViewCell>
                 </TableSection>
