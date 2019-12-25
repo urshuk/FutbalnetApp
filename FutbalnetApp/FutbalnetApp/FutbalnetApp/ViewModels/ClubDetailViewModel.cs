@@ -60,6 +60,7 @@ namespace FutbalnetApp.ViewModels
 			try
 			{
 				Club = await SportnetStore.GetClubAsync(ClubId);
+				Title = Club.Name;
 				var teams = await SportnetStore.GetClubTeamsAsync(ClubId);
 				Teams.Clear();
 				foreach (var item in teams)

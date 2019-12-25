@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
              mc:Ignorable="d"
+             Title="Hľadať"
              x:Class="FutbalnetApp.Views.SearchPage">
     <ContentPage.Content>
         <StackLayout Padding="25,10,25,0" Spacing="0" BackgroundColor="{DynamicResource BackgroundColor}">

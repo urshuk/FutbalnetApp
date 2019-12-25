@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
              xmlns:views="clr-namespace:FutbalnetApp.Views"
+             Title="Súťaž"
              x:Class="FutbalnetApp.Views.CompetitionDetailPage">
     <ContentPage.Content>
         <AbsoluteLayout>

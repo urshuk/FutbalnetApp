@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Title="Nastavenia"
              x:Class="FutbalnetApp.Views.SettingsPage">
     <ContentPage.Content>
         <StackLayout BackgroundColor="{DynamicResource BackgroundColor}">

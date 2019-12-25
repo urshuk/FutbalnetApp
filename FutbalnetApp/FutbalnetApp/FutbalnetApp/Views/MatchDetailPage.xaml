@@ -6,6 +6,7 @@
              xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
              x:Name="MatchPage"
              mc:Ignorable="d"
+             Title="Zápas"
              x:Class="FutbalnetApp.Views.MatchDetailPage">
     <ContentPage.Resources>
         <DataTemplate x:Key="EventItem">
@@ -225,20 +226,35 @@
                     <RowDefinition Height="15"/>
                     <RowDefinition Height="25"/>
                     <RowDefinition Height="15"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="35"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ImageButton Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Clicked="HomeTeamTapped" Aspect="AspectFit" Source="{Binding Match.Teams[0].Club.Logo}"/>
-                <ImageButton Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Clicked="AwayTeamTapped" Aspect="AspectFit" Source="{Binding Match.Teams[1].Club.Logo}"/>
-                <Label Grid.Column="1" Grid.Row="0" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.Audience, StringFormat='{0} divákov'}"/>
+                <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Aspect="AspectFit" Source="{Binding Match.Teams[0].Club.Logo}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="HomeTeamTapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Aspect="AspectFit" Source="{Binding Match.Teams[1].Club.Logo}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="AwayTeamTapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Grid.Column="1" Grid.Row="0" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.Audience, StringFormat='{0} divákov'}">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding Match.NotStartedYet}" Value="true">
+                            <Setter Property="IsVisible" Value="False" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
                 <Label Grid.Column="1" Grid.Row="1" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.ScoreString}"/>
-                <Label Grid.Column="1" Grid.Row="2" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.PartialScoreString}"/>
-                <Label Grid.Column="0" Grid.Row="3" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.Teams[0].Name}"/>
-                <Label Grid.Column="2" Grid.Row="3" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.Teams[1].Name}"/>
+                <Label Grid.Column="1" Grid.Row="2" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.PartialScoreString}"/>
+                <Label Grid.Column="1" Grid.Row="2" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" IsVisible="{Binding Match.NotStartedYet}" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.Datetime, StringFormat='{0:dd.MM. hh:mm}'}"/>
+                <Label Grid.Column="0" Grid.Row="3" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" VerticalOptions="StartAndExpand" FontSize="12" Padding="0,5,0,0" VerticalTextAlignment="Start" HorizontalTextAlignment="Center" Text="{Binding Match.Teams[0].Name}"/>
+                <Label Grid.Column="2" Grid.Row="3" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" VerticalOptions="StartAndExpand" FontSize="12" Padding="0,5,0,0" VerticalTextAlignment="Start" HorizontalTextAlignment="Center" Text="{Binding Match.Teams[1].Name}"/>
             </Grid>
             <tabs:TabHostView x:Name="Tabs"
                               VerticalOptions="Start"
@@ -321,7 +337,13 @@
                     <Label Grid.Row="6" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.HeadOrganizer.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}"/>
                     <Label Grid.Row="6" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="Hlavný usporiadateľ" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" TextColor="{DynamicResource TextColor}"/>
                 </Grid>
+                <tabs:ViewSwitcher.Triggers>
+                    <DataTrigger TargetType="tabs:ViewSwitcher" Binding="{Binding Match.NotStartedYet}" Value="true">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </tabs:ViewSwitcher.Triggers>
             </tabs:ViewSwitcher>
+            <Label FontSize="15" FontFamily="{StaticResource NormalFont}" Margin="0,20" IsVisible="{Binding Match.NotStartedYet}" HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalTextAlignment="Center" Text="Zápas ešte nezačal"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

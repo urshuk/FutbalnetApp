@@ -189,31 +189,61 @@
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\CompetitionIcon.imageset\competitions-icon.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\DefaultClubLogo.imageset\club-icon.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\DefaultClubLogo.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\DefaultPersonLogo.imageset\avatar-icon.pdf">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\DefaultPersonLogo.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\FavouriteIcon.imageset\favorites-icon.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\FavouriteNoFillIcon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\MainIcon.imageset\Contents.json">
+    <ImageAsset Include="Assets.xcassets\FavouriteNoFillIcon.imageset\favorite-nofill-icon.pdf">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\MainIcon.imageset\logo-app.pdf">
+    <ImageAsset Include="Assets.xcassets\GoalIcon.imageset\green-ball-icon.pdf">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\OwnGoalIcon.imageset\Layer_10 (2).pdf">
+    <ImageAsset Include="Assets.xcassets\OwnGoalIcon.imageset\red-ball-icon.pdf">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\PenaltyGoalIcon.imageset\Layer_10 (1).pdf">
+    <ImageAsset Include="Assets.xcassets\PenaltyGoalIcon.imageset\grey-ball-icon.pdf">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SecondYellowCardIcon.imageset\Layer_12 (2).pdf">
+    <ImageAsset Include="Assets.xcassets\PenaltyMissIcon.imageset\penalty-miss-icon.pdf">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SettingsIcon.imageset\settings-icon (1).pdf">
+    <ImageAsset Include="Assets.xcassets\RedCardIcon.imageset\red-card-icon.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SearchIcon.imageset\search-icon.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SecondYellowCardIcon.imageset\mixed-card-icon.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SettingsIcon.imageset\settings-icon1.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\StandardGoalIcon.imageset\black-ball-icon.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\StandardGoalIcon.imageset\black-ball-icon1.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\StandardGoalIcon.imageset\white-ball-icon.pdf">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\SubstitutionIcon.imageset\Contents.json">
@@ -234,15 +264,6 @@
     <ImageAsset Include="Assets.xcassets\PenaltyGoalIcon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\RedCardIcon.imageset\Layer_12.pdf">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\CompetitionIcon.imageset\surface1.pdf">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\FavouriteIcon.imageset\001-like.pdf">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\FavouriteIcon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -252,13 +273,13 @@
     <ImageAsset Include="Assets.xcassets\GoalIcon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\GoalIcon.imageset\Layer_10.pdf">
+    <ImageAsset Include="Assets.xcassets\SubstitutionIcon.imageset\substitution-icon.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\TimelineIcon.imageset\timeline-icon.pdf">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\YellowCardIcon.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SearchIcon.imageset\005-search.pdf">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\SettingsIcon.imageset\Contents.json">
@@ -267,16 +288,13 @@
     <ImageAsset Include="Assets.xcassets\SearchIcon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\TimelineIcon.imageset\004-timeline.pdf">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\TimelineIcon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\CompetitionIcon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\YellowCardIcon.imageset\mixed-card-icon.pdf">
+    <ImageAsset Include="Assets.xcassets\YellowCardIcon.imageset\yellow-card-icon.pdf">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>

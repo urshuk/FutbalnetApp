@@ -19,7 +19,6 @@ namespace FutbalnetApp
 		public static string AzureBackendUrl =
 			DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5000" : "http://localhost:5000";
 		public static string SportnetApiUrl = "https://futbalnet.sportnet.online/api";
-		public static bool UseMockDataStore = false;
 
 		//roadmap
 		//club players
@@ -30,10 +29,7 @@ namespace FutbalnetApp
 		{
 			InitializeComponent();
 
-			if (UseMockDataStore)
-				DependencyService.Register<MockDataStore>();
-			else
-				DependencyService.Register<SportnetDataStore>();
+			DependencyService.Register<SportnetDataStore>();
 			DependencyService.Register<LocalDataStore>();
 			MainPage = new AppShell();
 		}

@@ -16,19 +16,6 @@
       "idiom": "universal"
     },
     {
-      "appearances": [],
-      "idiom": "universal"
-    },
-    {
-      "appearances": [
-        {
-          "appearance": "luminosity",
-          "value": "dark"
-        }
-      ],
-      "idiom": "universal"
-    },
-    {
       "appearances": [
         {
           "appearance": "luminosity",
@@ -53,6 +40,61 @@
         {
           "appearance": "luminosity",
           "value": "dark"
+        }
+      ],
+      "scale": "3x",
+      "idiom": "universal"
+    },
+    {
+      "appearances": [],
+      "idiom": "universal",
+      "filename": "black-ball-icon.pdf"
+    },
+    {
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ],
+      "idiom": "universal",
+      "filename": "white-ball-icon.pdf"
+    },
+    {
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "light"
+        }
+      ],
+      "idiom": "universal",
+      "filename": "black-ball-icon1.pdf"
+    },
+    {
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "light"
+        }
+      ],
+      "scale": "1x",
+      "idiom": "universal"
+    },
+    {
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "light"
+        }
+      ],
+      "scale": "2x",
+      "idiom": "universal"
+    },
+    {
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "light"
         }
       ],
       "scale": "3x",

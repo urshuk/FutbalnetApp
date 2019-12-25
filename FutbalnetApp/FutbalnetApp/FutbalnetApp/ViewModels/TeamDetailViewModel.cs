@@ -57,6 +57,7 @@ namespace FutbalnetApp.ViewModels
 		public TeamDetailViewModel(Team team)
 		{
 			TeamId = team.Id;
+			Title = team.Name;
 			Matches = new ObservableCollection<MatchPreview>();
 			LoadTeamCommand = new Command(async () => await ExecuteLoadTeamCommand());
 			ToggleFavouriteCommand = new Command(() => ExecuteToggleFavouriteCommand());
@@ -126,6 +127,8 @@ namespace FutbalnetApp.ViewModels
 
 				if (Club == null)
 					Club = await SportnetStore.GetClubAsync(Team.Club.Id);
+
+				Title = Team.Name;
 
 				await LoadTeamMatchesAsync();
 

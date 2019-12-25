@@ -27,7 +27,6 @@ namespace FutbalnetApp.iOS
             global::Xamarin.Forms.Forms.Init();
 			SharpnadoInitializer.Initialize();
 			LoadApplication(new App());
-			app.StatusBarStyle = UIStatusBarStyle.DarkContent;
             return base.FinishedLaunching(app, options);
         }
     }

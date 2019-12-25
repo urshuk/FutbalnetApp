@@ -110,7 +110,7 @@ namespace FutbalnetApp.ViewModels
 			try
 			{
 				Person = await SportnetStore.GetPersonAsync(PersonId);
-
+				Title = Person.Fullname;
 				PlayerStatsSummary = new PlayerStatsSeason
 				{
 					Stats = await SportnetStore.GetPlayerStatsSummaryAsync(PersonId)

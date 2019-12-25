@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:FutbalnetApp.Controls"
              mc:Ignorable="d"
+             Title="Časová os"
              x:Class="FutbalnetApp.Views.TimelinePage">
     <ContentPage.Resources>
         <DataTemplate x:Key="ResultItem">

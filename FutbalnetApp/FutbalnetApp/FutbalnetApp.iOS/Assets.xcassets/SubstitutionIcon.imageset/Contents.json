@@ -14,6 +14,11 @@
       "appearances": [],
       "scale": "3x",
       "idiom": "universal"
+    },
+    {
+      "appearances": [],
+      "idiom": "universal",
+      "filename": "substitution-icon.pdf"
     }
   ],
   "properties": {},

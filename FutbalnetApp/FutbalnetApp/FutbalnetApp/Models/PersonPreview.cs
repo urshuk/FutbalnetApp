@@ -29,6 +29,7 @@ namespace FutbalnetApp.Models
 				return success ? result : -1;
 			}
 		}
+		public string Photo => PhotoUrl != null ? $"https://futbalnet.sportnet.online/api/images/{PhotoId}" : "DefaultPersonLogo.pdf";
 
 		public string Fullname => FullnameOriginal ?? $"{Name} {LastName}";
 

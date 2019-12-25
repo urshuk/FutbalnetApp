@@ -22,7 +22,6 @@ namespace FutbalnetApp.ViewModels
 		public TimelineViewModel()
 		{
 			LoadTimelineCommand = new Command(async () => await ExecuteLoadTimelineCommandAsync());
-
 		}
 
 		private async Task<IEnumerable<MatchPreview>> GetTeamMatchesAsync(Team team, IEnumerable<CompetitionPreview> comps = null)
@@ -40,7 +39,7 @@ namespace FutbalnetApp.ViewModels
 					var competition = await SportnetStore.GetCompetitionAsync(comp.Id);
 					foreach (var part in competition.Parts)
 					{
-						foreach (var round in part.Rounds.Where(x => (x.Datetime - DateTime.Today).Days < 80 && (x.Datetime.Date >= DateTime.Today)))
+						foreach (var round in part.Rounds.Where(x => (x.Datetime - DateTime.Today).Days < 15 && (x.Datetime.Date >= DateTime.Today)))
 						{
 							var fullRound = await SportnetStore.GetCompetitionRoundAsync(competition.Id, part.Id, round.Id);
 							var match = fullRound.Matches.FirstOrDefault(x => x.Teams != null && x.Teams.FirstOrDefault(y => y.Id == team.Id) != null); ;

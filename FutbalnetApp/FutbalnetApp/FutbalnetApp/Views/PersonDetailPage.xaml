@@ -6,6 +6,7 @@
              xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
              xmlns:controls="clr-namespace:FutbalnetApp.Controls"
              mc:Ignorable="d"
+             Title="{Binding Title}"
              x:Class="FutbalnetApp.Views.PersonDetailPage">
     <ContentPage.Resources>
         <Style x:Key="InfoLabel" TargetType="Label">
@@ -151,9 +152,7 @@
                     <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Frame Grid.Row="0" Grid.Column="0" HasShadow="False" Grid.RowSpan="2" HorizontalOptions="Center" Padding="0" HeightRequest="80" WidthRequest="80" CornerRadius="40" IsClippedToBounds="True">
-                    <Image HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="80" WidthRequest="80" Source="{Binding Person.PhotoUrl}"/>
-                </Frame>
+                <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="80" Aspect="AspectFit" Source="{Binding Person.Photo}"/>
                 <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="5,0,0,0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="17" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Person.Fullname}"/>
                 <Label Grid.Column="1" Grid.Row="1" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="15" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" Text=""/>
             </Grid>
