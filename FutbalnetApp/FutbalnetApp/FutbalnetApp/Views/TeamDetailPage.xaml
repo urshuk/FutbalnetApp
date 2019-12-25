@@ -104,7 +104,6 @@
                 <tabs:TabHostView.Tabs>
                     <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Zápasy"/>
                     <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Tabuľka"/>
-                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Hráči"/>
                 </tabs:TabHostView.Tabs>
             </tabs:TabHostView>
             <tabs:ViewSwitcher x:Name="TabSwitcher"
@@ -112,7 +111,7 @@
                                VerticalOptions="FillAndExpand"
                                SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
                 <StackLayout Spacing="0" Margin="0,5,0,0">
-                    <Label Text="{Binding Competition.Name}" VerticalTextAlignment="Center" Margin="0,0,0,5" HeightRequest="20" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15">
+                    <Label Text="{Binding Competition.Name}" VerticalTextAlignment="Center" Margin="0,15,0,10" HeightRequest="20" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Competition_Tapped"/>
                         </Label.GestureRecognizers>

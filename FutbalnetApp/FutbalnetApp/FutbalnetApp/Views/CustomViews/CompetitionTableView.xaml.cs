@@ -41,9 +41,7 @@ namespace FutbalnetApp.Views
 
 		private async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			var club = e.CurrentSelection.FirstOrDefault() as CompetitionTableClub;
-
-			if (club == null)
+			if (!(e.CurrentSelection.FirstOrDefault() is CompetitionTableClub club))
 				return;
 
 			await Navigation.PushAsync(new ClubDetailPage(club.Club.Id	));

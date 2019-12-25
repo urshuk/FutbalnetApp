@@ -40,14 +40,21 @@ namespace FutbalnetApp.Views
 				viewModel.LoadTeamCommand.Execute(null);
 		}
 
-		private void MatchList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private async void MatchList_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 
+			if (!(e.CurrentSelection.FirstOrDefault() is MatchPreview match))
+				return;
+
+			await Navigation.PushAsync(new MatchDetailPage(match.Id));
+
+			// Manually deselect item.
+			MatchList.SelectedItem = null;
 		}
 
-		private void Competition_Tapped(object sender, EventArgs e)
+		private async void Competition_Tapped(object sender, EventArgs e)
 		{
-
+			await Navigation.PushAsync(new CompetitionDetailPage(viewModel.Competition.Id));
 		}
 	}
 }

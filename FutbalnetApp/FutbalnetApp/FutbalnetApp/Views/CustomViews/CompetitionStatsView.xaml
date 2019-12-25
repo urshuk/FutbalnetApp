@@ -113,6 +113,7 @@
     </ContentView.Resources>
     <ContentView.Content>
         <CollectionView ItemsSource="{Binding ItemsSource, Source={Reference CompetitionStats}}"
+                        x:Name="StatsList"
                         HeaderTemplate="{StaticResource TableHeader}"
                         Header="true"
                         ItemTemplate="{StaticResource TemplateSelector}"

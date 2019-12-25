@@ -23,21 +23,18 @@ namespace FutbalnetApp.Views
 
 		private void UnionList_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			var union = e.CurrentSelection.FirstOrDefault() as UnionPreview;
-
-			if (union == null)
+			if (!(e.CurrentSelection.FirstOrDefault() is UnionPreview union))
 				return;
+
 			viewModel.Union = union;
 			viewModel.ReloadListsCommand.Execute(null);
 			//viewModel.ParentUnionId = union.Id;
 			UnionList.SelectedItem = null;
 		}
 
-		async void OnCompetitionSelected(object sender, SelectionChangedEventArgs args)
+		async void OnCompetitionSelected(object sender, SelectionChangedEventArgs e)
 		{
-			var comp = args.CurrentSelection.FirstOrDefault() as CompetitionPreview;
-
-			if (comp == null)
+			if (!(e.CurrentSelection.FirstOrDefault() is CompetitionPreview comp))
 				return;
 
 			await Navigation.PushAsync(new CompetitionDetailPage(comp.Id));

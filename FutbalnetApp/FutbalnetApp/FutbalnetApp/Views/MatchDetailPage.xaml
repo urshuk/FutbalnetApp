@@ -189,12 +189,16 @@
                 <StackLayout Grid.Column="0" Orientation="Horizontal">
                     <Label WidthRequest="20" Text="{Binding HomePlayer.Number}" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
                     <Label Text="{Binding HomePlayer.Person.Fullname}" LineBreakMode="NoWrap" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
-
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="LineupHomePlayerTapped"/>
+                    </StackLayout.GestureRecognizers>
                 </StackLayout>
                 <StackLayout Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
                     <Label WidthRequest="20" Text="{Binding AwayPlayer.Number}" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
                     <Label Text="{Binding AwayPlayer.Person.Fullname}" LineBreakMode="NoWrap" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
-
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="LineupAwayPlayerTapped"/>
+                    </StackLayout.GestureRecognizers>
                 </StackLayout>
             </Grid>
         </DataTemplate>
@@ -228,8 +232,8 @@
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Aspect="AspectFit" Source="{Binding Match.Teams[0].Club.Logo}"/>
-                <Image Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Aspect="AspectFit" Source="{Binding Match.Teams[1].Club.Logo}"/>
+                <ImageButton Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Clicked="HomeTeamTapped" Aspect="AspectFit" Source="{Binding Match.Teams[0].Club.Logo}"/>
+                <ImageButton Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Clicked="AwayTeamTapped" Aspect="AspectFit" Source="{Binding Match.Teams[1].Club.Logo}"/>
                 <Label Grid.Column="1" Grid.Row="0" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.Audience, StringFormat='{0} divákov'}"/>
                 <Label Grid.Column="1" Grid.Row="1" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.ScoreString}"/>
                 <Label Grid.Column="1" Grid.Row="2" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.PartialScoreString}"/>
@@ -270,6 +274,7 @@
                                         ItemTemplate="{StaticResource LineupItem}"
                                         GroupFooterTemplate="{StaticResource GroupFooter}"
                                         GroupHeaderTemplate="{StaticResource GroupHeader}"
+                                        SelectionMode="None"
                                         VerticalScrollBarVisibility="Never"
                                         ItemsSource="{Binding Lineups}"/>
                         <Label Text="Realizačný tím" 

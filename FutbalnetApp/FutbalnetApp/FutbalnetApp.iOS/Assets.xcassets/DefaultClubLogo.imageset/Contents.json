@@ -14,16 +14,9 @@
       "appearances": [],
       "scale": "3x",
       "idiom": "universal"
-    },
-    {
-      "appearances": [],
-      "idiom": "universal",
-      "filename": "surface1.pdf"
     }
   ],
-  "properties": {
-    "template-rendering-intent": "template"
-  },
+  "properties": {},
   "info": {
     "version": 1,
     "author": ""

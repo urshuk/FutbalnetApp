@@ -21,6 +21,11 @@ namespace FutbalnetApp
 		public static string SportnetApiUrl = "https://futbalnet.sportnet.online/api";
 		public static bool UseMockDataStore = false;
 
+		//roadmap
+		//club players
+		//timeline performance
+		//notifications
+
 		public App()
 		{
 			InitializeComponent();

@@ -100,7 +100,13 @@
                     <ColumnDefinition Width="30"/>
                     <ColumnDefinition Width="30"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Style="{StaticResource DefaultLabel}" Padding="5" HorizontalTextAlignment="Start" Text="{Binding Season, TargetNullValue='Spolu'}"/>
+                <Label Grid.Column="0" Style="{StaticResource DefaultLabel}" Padding="5" HorizontalTextAlignment="Start" Text="{Binding Season, TargetNullValue='Spolu'}">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding Season, TargetNullValue='Spolu'}" Value="Spolu">
+                            <Setter Property="FontFamily" Value="{StaticResource BoldFont}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
                 <Label Grid.Column="1" Style="{StaticResource DefaultLabel}" Text="{Binding G}"/>
                 <Label Grid.Column="2" Style="{StaticResource DefaultLabel}" Text="{Binding Min}"/>
                 <Label Grid.Column="3" Style="{StaticResource DefaultLabel}" Text="{Binding YC}"/>
@@ -119,7 +125,13 @@
                     <ColumnDefinition Width="30"/>
                     <ColumnDefinition Width="30"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Style="{StaticResource DefaultLabel}" Padding="5" HorizontalTextAlignment="Start" Text="{Binding Season, TargetNullValue='Spolu'}"/>
+                <Label Grid.Column="0" Style="{StaticResource DefaultLabel}" Padding="5" HorizontalTextAlignment="Start" Text="{Binding Season, TargetNullValue='Spolu'}">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding Season, TargetNullValue='Spolu'}" Value="Spolu">
+                            <Setter Property="FontFamily" Value="{StaticResource BoldFont}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
                 <Label Grid.Column="1" Style="{StaticResource DefaultLabel}" Text="{Binding G}"/>
                 <Label Grid.Column="2" Style="{StaticResource DefaultLabel}" Text="{Binding Min}"/>
                 <Label Grid.Column="3" Style="{StaticResource DefaultLabel}" Text="{Binding YC}"/>

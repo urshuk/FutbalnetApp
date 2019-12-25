@@ -37,15 +37,33 @@ namespace FutbalnetApp.Views
 
 		private async void OnPlayerSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			var eventItem = e.CurrentSelection.FirstOrDefault() as MatchEventViewModel;
-
-			if (eventItem == null)
+			if (!(e.CurrentSelection.FirstOrDefault() is MatchEventViewModel eventItem))
 				return;
 
 			await Navigation.PushAsync(new PersonDetailPage(eventItem.Player.Id));
 
 			// Manually deselect item.
 			EventList.SelectedItem = null;
+		}
+
+		private async void LineupHomePlayerTapped(object sender, EventArgs e)
+		{
+			var lineup = (sender as StackLayout).BindingContext as LineupViewModel;
+			await Navigation.PushAsync(new PersonDetailPage(lineup.HomePlayer.Person.Id));
+		}
+		private async void LineupAwayPlayerTapped(object sender, EventArgs e)
+		{
+			var lineup = (sender as StackLayout).BindingContext as LineupViewModel;
+			await Navigation.PushAsync(new PersonDetailPage(lineup.AwayPlayer.Person.Id));
+		}
+
+		private async void HomeTeamTapped(object sender, EventArgs e)
+		{
+			await Navigation.PushAsync(new ClubDetailPage(viewModel.Match.Teams.First().Club.Id));
+		}
+		private async void AwayTeamTapped(object sender, EventArgs e)
+		{
+			await Navigation.PushAsync(new ClubDetailPage(viewModel.Match.Teams.Last().Club.Id));
 		}
 	}
 }

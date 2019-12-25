@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FutbalnetApp.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,9 +38,14 @@ namespace FutbalnetApp.Views
 			set => SetValue(OrderIndexProperty, value);
 		}
 
-		private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+		private async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
+			if (!(e.CurrentSelection.FirstOrDefault() is CompetitionStatsPlayer player))
+				return;
 
+			await Navigation.PushAsync(new PersonDetailPage(player.Player.Id));
+
+			StatsList.SelectedItem = null;
 		}
 	}
 }

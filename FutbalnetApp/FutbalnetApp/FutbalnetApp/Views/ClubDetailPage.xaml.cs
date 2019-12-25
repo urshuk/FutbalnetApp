@@ -37,9 +37,7 @@ namespace FutbalnetApp.Views
 
 		private async void TeamsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			var team = e.CurrentSelection.FirstOrDefault() as Team;
-
-			if (team == null)
+			if (!(e.CurrentSelection.FirstOrDefault() is Team team))
 				return;
 
 			await Navigation.PushAsync(new TeamDetailPage(team.Id, viewModel.Club));

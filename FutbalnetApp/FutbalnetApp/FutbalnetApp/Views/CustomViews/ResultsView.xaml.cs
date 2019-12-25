@@ -46,9 +46,7 @@ namespace FutbalnetApp.Views
 
 		async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			var match = e.CurrentSelection.FirstOrDefault() as MatchPreview;
-
-			if (match == null)
+			if (!(e.CurrentSelection.FirstOrDefault() is MatchPreview match))
 				return;
 
 			await Navigation.PushAsync(new MatchDetailPage(match.Id));

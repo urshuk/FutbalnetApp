@@ -18,12 +18,10 @@
     {
       "appearances": [],
       "idiom": "universal",
-      "filename": "surface1.pdf"
+      "filename": "logo-app.pdf"
     }
   ],
-  "properties": {
-    "template-rendering-intent": "template"
-  },
+  "properties": {},
   "info": {
     "version": 1,
     "author": ""

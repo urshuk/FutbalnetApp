@@ -29,8 +29,7 @@ namespace FutbalnetApp.Views
 
 		private void OnSeasonChanged(object sender, EventArgs e)
 		{
-			var season = SeasonPicker.SelectedItem as CompetitionSeason;
-			if (season == null || season.Id == viewModel.CompetitionId)
+			if (!(SeasonPicker.SelectedItem is CompetitionSeason season) || season.Id == viewModel.CompetitionId)
 				return;
 
 			BindingContext = viewModel = new CompetitionDetailViewModel(season.Id);
