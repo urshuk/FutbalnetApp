@@ -17,8 +17,12 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <TableView Intent="Menu" HasUnevenRows="True" BackgroundColor="{DynamicResource BackgroundColor}">
+        <TableView Intent="Settings" HasUnevenRows="True" BackgroundColor="{DynamicResource BackgroundColor}">
             <TableRoot>
+                <TableSection Title="Notifikácie">
+                    <SwitchCell Text="Povoliť notifikácie" OnColor="{DynamicResource HighlightColor}" OnChanged="SwitchCell_OnChanged" On="{Binding NotificationsSet, Mode=TwoWay}"/>
+                    <EntryCell Label="Počet minút pred začiatkom zápasu" LabelColor="{DynamicResource TextColor}" HorizontalTextAlignment="End" Text="{Binding NotificationMinutesAhead, Mode=TwoWay}" Keyboard="Numeric"/>
+                </TableSection>
                 <TableSection Title="Tipy">
                     <ViewCell>
                         <StackLayout Padding="15,0,15,5" Spacing="0">
@@ -29,7 +33,7 @@
                     <ViewCell>
                         <StackLayout Padding="15,0,15,5" Spacing="0">
                             <Label Text="Časová os" Style="{StaticResource BaseLabel}"/>
-                            <Label Text="Na časovej osi sa ti zobrazia najbližšie zápasy tvojich obľúbených tímov" VerticalTextAlignment="Start" HeightRequest="-1" TextColor="{DynamicResource DarkAlternativeColor}" Style="{StaticResource BaseLabel}"/>
+                            <Label Text="Na časovej osi sa ti zobrazia najbližšie zápasy tvojich obľúbených tímov a notifikácia ťa upozorní na ich začiatok" VerticalTextAlignment="Start" HeightRequest="-1" TextColor="{DynamicResource DarkAlternativeColor}" Style="{StaticResource BaseLabel}"/>
                         </StackLayout>
                     </ViewCell>
                 </TableSection>
@@ -58,7 +62,7 @@
                     </ViewCell>
                     <ViewCell Height="30">
                         <StackLayout Orientation="Horizontal" Padding="15,0">
-                            <Label Text="Dizajnér" Style="{StaticResource BaseLabel}"/>
+                            <Label Text="Dizajn" Style="{StaticResource BaseLabel}"/>
                             <Label Text="Libi Bujňáková" Style="{StaticResource BaseLabel}" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
                         </StackLayout>
                     </ViewCell>

@@ -172,5 +172,10 @@ namespace FutbalnetApp.Services
 			var comp = comps.FirstOrDefault(x => x.Id == id);
 			return comp != null ? true : false;
 		}
+
+		public bool GetNotificationsSettings() => Preferences.Get("notificationsSet", true);
+		public void SetNotificationsSettings(bool value) => Preferences.Set("notificationsSet", value);
+		public int GetNotificationsMinutes() => Preferences.Get("notificationsMinutes", 0);
+		public void SetNotificationsMinutes(int value) => Preferences.Set("notificationsMinutes", value);
 	}
 }

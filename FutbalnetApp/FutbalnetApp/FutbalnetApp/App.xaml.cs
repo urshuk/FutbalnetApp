@@ -23,7 +23,7 @@ namespace FutbalnetApp
 		//roadmap
 		//club players
 		//timeline performance
-		//notifications
+		//notifications improve
 		//loading
 
 		public App()

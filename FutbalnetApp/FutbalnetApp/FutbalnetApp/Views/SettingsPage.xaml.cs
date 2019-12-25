@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FutbalnetApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
@@ -13,9 +14,11 @@ namespace FutbalnetApp.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SettingsPage : ContentPage
 	{
+        SettingsViewModel viewModel;
 		public SettingsPage()
 		{
 			InitializeComponent();
+            BindingContext = viewModel = new SettingsViewModel();
 		}
 
         private void FeedbackSendClicked(object sender, EventArgs e)
@@ -71,5 +74,22 @@ namespace FutbalnetApp.Views
                 DisplayAlert("Chyba", "Odosielanie zlyhalo", "OK");
             }
         }
-	}
+
+        private void EntryCell_Completed(object sender, EventArgs e)
+        {
+            viewModel.SaveSettingsCommand.Execute(null);
+        }
+
+        private void SwitchCell_OnChanged(object sender, ToggledEventArgs e)
+        {
+            viewModel.SaveSettingsCommand.Execute(null);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            viewModel.LoadSettingsCommand.Execute(null);
+        }
+    }
 }

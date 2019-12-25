@@ -24,5 +24,10 @@ namespace FutbalnetApp.Services
 		List<Club> GetClubs();
 		void SaveClub(Club value);
 		bool ClubExists(int id);
+
+		bool GetNotificationsSettings();
+		void SetNotificationsSettings(bool value);
+		int GetNotificationsMinutes();
+		void SetNotificationsMinutes(int value);
 	}
 }

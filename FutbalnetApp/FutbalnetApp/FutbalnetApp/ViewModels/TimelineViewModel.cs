@@ -1,4 +1,6 @@
 ﻿using FutbalnetApp.Models;
+using FutbalnetApp.Services;
+using Plugin.LocalNotifications;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -22,8 +24,17 @@ namespace FutbalnetApp.ViewModels
 		public TimelineViewModel()
 		{
 			LoadTimelineCommand = new Command(async () => await ExecuteLoadTimelineCommandAsync());
+			CrossLocalNotifications.Current.Show("title", "body", 100, DateTime.Now.AddSeconds(10));
 		}
 
+		private void SetMatchNotification(MatchPreview match)
+		{
+			if (!LocalDataStore.GetNotificationsSettings())
+				return;
+
+			var minutesAhead = LocalDataStore.GetNotificationsMinutes();
+			CrossLocalNotifications.Current.Show(match.ToString(), "Začiatok zápasu", match.Id, match.Datetime.AddMinutes(-minutesAhead));
+		}
 		private async Task<IEnumerable<MatchPreview>> GetTeamMatchesAsync(Team team, IEnumerable<CompetitionPreview> comps = null)
 		{
 			var matches = new List<MatchPreview>();
@@ -46,6 +57,7 @@ namespace FutbalnetApp.ViewModels
 							if (match != null && match.Status == "VYGENEROVANY")
 							{
 								matches.Add(match);
+								SetMatchNotification(match);
 							}
 						}
 					}
