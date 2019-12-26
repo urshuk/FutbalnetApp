@@ -18,6 +18,12 @@ namespace FutbalnetApp.ViewModels
 			get => favourites;
 			set => SetProperty(ref favourites, value);
 		}
+		public bool isEmpty;
+		public bool IsEmpty
+		{
+			get => isEmpty;
+			set => SetProperty(ref isEmpty, value);
+		}
 
 		public FavouritesViewModel()
 		{
@@ -43,6 +49,8 @@ namespace FutbalnetApp.ViewModels
 					new GenericGroup("Kluby", clubs),
 					new GenericGroup("Tímy", teams),
 				};
+
+				IsEmpty = (clubs.Count + teams.Count + comps.Count) == 0;
 
 				IsLoaded = true;
 			}

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:FutbalnetApp.Views"
              mc:Ignorable="d"
              Title="Obľúbené"
              x:Class="FutbalnetApp.Views.FavouritesPage">
@@ -57,19 +58,20 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Style="{StaticResource MainLayout}">
+            <Label FontSize="15" FontFamily="{StaticResource NormalFont}" IsVisible="{Binding IsEmpty}" Margin="0,20" HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalTextAlignment="Center" Text="Pridaj si ligy, kluby a tímy do obľúbených a nestrať prehľad"/>
             <CollectionView x:Name="FavouritesList"
                             IsGrouped="True"
                             Style="{StaticResource BaseCollectionView}"
                             ItemTemplate="{StaticResource FavouriteItem}"
                             GroupFooterTemplate="{StaticResource BlankFooter}"
                             GroupHeaderTemplate="{StaticResource GroupHeader}"
-                            EmptyView="Pridaj si ligy, kluby a tímy do obľúbených a nestrať prehľad"
                             SelectionChanged="FavouritesList_SelectionChanged"
                             ItemsSource="{Binding Favourites}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
                 </CollectionView.ItemsLayout>
             </CollectionView>
+            <views:AdBanner Size="SmartBannerPortrait" VerticalOptions="End"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

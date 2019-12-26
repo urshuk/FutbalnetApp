@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
+             xmlns:views="clr-namespace:FutbalnetApp.Views"
              mc:Ignorable="d"
              Title="Súťaže"
              x:Class="FutbalnetApp.Views.CompetitionSelectionPage">
@@ -79,6 +80,7 @@
                     </CollectionView.ItemsLayout>
                 </CollectionView>
             </tabs:ViewSwitcher>
+            <views:AdBanner Size="SmartBannerPortrait" VerticalOptions="End"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

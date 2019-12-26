@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
              xmlns:controls="clr-namespace:FutbalnetApp.Controls"
+             xmlns:views="clr-namespace:FutbalnetApp.Views"
              mc:Ignorable="d"
              Title="{Binding Title}"
              x:Class="FutbalnetApp.Views.PersonDetailPage">
@@ -208,6 +209,7 @@
                                 Header="true"
                                 ItemTemplate="{StaticResource TemplateSelector}"/>
                 </tabs:ViewSwitcher>
+                <views:AdBanner Size="SmartBannerPortrait" VerticalOptions="End"/>
             </StackLayout>
             <StackLayout Style="{StaticResource LoadingOverlay}"/>
             <ActivityIndicator Style="{StaticResource LoadingStyle}"/>

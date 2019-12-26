@@ -99,7 +99,7 @@
                         <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
                     </CollectionView.ItemsLayout>
                 </CollectionView>
-                <views:AdBanner Size="SmartBannerPortrait" VerticalOptions="EndAndExpand"/>
+                <views:AdBanner Size="SmartBannerPortrait" VerticalOptions="End"/>
             </StackLayout>
             <StackLayout Style="{StaticResource LoadingOverlay}"/>
             <ActivityIndicator Style="{StaticResource LoadingStyle}"/>
