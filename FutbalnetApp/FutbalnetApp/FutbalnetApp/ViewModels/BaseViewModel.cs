@@ -36,6 +36,11 @@ namespace FutbalnetApp.ViewModels
 			set { SetProperty(ref title, value); }
 		}
 
+		public void LogError(ErrorLog log)
+		{
+
+		}
+
 		protected bool SetProperty<T>(ref T backingStore, T value,
 			[CallerMemberName]string propertyName = "",
 			Action onChanged = null)

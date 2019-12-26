@@ -102,6 +102,15 @@ namespace FutbalnetApp.ViewModels
 			catch (Exception ex)
 			{
 				Debug.WriteLine(ex);
+				var log = new ErrorLog()
+				{
+					Exception = ex,
+					Object = null,
+					ObjectId = 0,
+					Action = "Loading timeline",
+					Datetime = DateTime.Now,
+				};
+				LogError(log);
 			}
 			finally
 			{
