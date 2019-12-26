@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:FutbalnetApp.Controls"
+             xmlns:views="clr-namespace:FutbalnetApp.Views"
              mc:Ignorable="d"
              Title="Časová os"
              x:Class="FutbalnetApp.Views.TimelinePage">
@@ -98,6 +99,7 @@
                         <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
                     </CollectionView.ItemsLayout>
                 </CollectionView>
+                <views:AdBanner Size="SmartBannerPortrait" VerticalOptions="EndAndExpand"/>
             </StackLayout>
             <StackLayout Style="{StaticResource LoadingOverlay}"/>
             <ActivityIndicator Style="{StaticResource LoadingStyle}"/>

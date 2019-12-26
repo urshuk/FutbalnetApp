@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Google.MobileAds;
 using Sharpnado.Presentation.Forms.iOS;
 using UIKit;
 using UserNotifications;
@@ -44,6 +45,7 @@ namespace FutbalnetApp.iOS
 
                 UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
             }
+            MobileAds.SharedInstance.Start(null);
             return base.FinishedLaunching(app, options);
         }
     }
