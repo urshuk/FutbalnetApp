@@ -70,7 +70,7 @@
                         <ViewCell Height="30">
                             <StackLayout Orientation="Horizontal" Padding="15,0">
                                 <Label Text="Verzia" Style="{StaticResource BaseLabel}"/>
-                                <Label Text="1.0b" Style="{StaticResource BaseLabel}" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                <Label Text="1.0.0" Style="{StaticResource BaseLabel}" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
                             </StackLayout>
                         </ViewCell>
                     </TableSection>

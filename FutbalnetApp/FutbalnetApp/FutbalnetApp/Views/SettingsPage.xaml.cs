@@ -59,7 +59,8 @@ namespace FutbalnetApp.Views
 					$"Model: {DeviceInfo.Model}\n" +
 					$"Manufacturer: {DeviceInfo.Manufacturer}\n" +
 					$"Device name: {DeviceInfo.Name}\n" +
-					$"Type: {DeviceInfo.DeviceType}\n";
+					$"Type: {DeviceInfo.DeviceType}\n" +
+					$"App Version: {VersionTracking.CurrentVersion}";
 
 				var mail = new MailMessage();
 				var SmtpServer = new SmtpClient("smtp.gmail.com");

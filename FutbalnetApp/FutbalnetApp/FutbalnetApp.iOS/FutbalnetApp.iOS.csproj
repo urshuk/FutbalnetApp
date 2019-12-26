@@ -56,7 +56,7 @@
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>
     </CodesignEntitlements>
-    <CodesignProvision>iOS Team Provisioning Profile: com.companyname.FutbalnetApp</CodesignProvision>
+    <CodesignProvision>iOS Team Provisioning Profile: com.vitvasak.FutbalVille</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
     <MtouchLink>None</MtouchLink>
