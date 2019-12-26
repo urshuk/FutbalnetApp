@@ -83,8 +83,9 @@
         </DataTemplate>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource MainLayout}">
-            <CollectionView x:Name="TimelineList"
+        <AbsoluteLayout>
+            <StackLayout Style="{StaticResource MainLayout}">
+                <CollectionView x:Name="TimelineList"
                             IsGrouped="True"
                             Style="{StaticResource BaseCollectionView}"
                             ItemTemplate="{StaticResource TemplateSelector}"
@@ -93,10 +94,13 @@
                             EmptyView="Žiadne zápasy vašich obľúbených tímov najbližších 14 dní"
                             SelectionChanged="TimelineList_SelectionChanged"
                             ItemsSource="{Binding MatchGroups}">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
-                </CollectionView.ItemsLayout>
-            </CollectionView>
-        </StackLayout>
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
+            </StackLayout>
+            <StackLayout Style="{StaticResource LoadingOverlay}"/>
+            <ActivityIndicator Style="{StaticResource LoadingStyle}"/>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

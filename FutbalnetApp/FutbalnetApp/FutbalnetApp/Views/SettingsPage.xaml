@@ -17,63 +17,65 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <TableView Intent="Settings" HasUnevenRows="True" BackgroundColor="{DynamicResource BackgroundColor}">
-            <TableRoot>
-                <TableSection Title="Notifikácie">
-                    <SwitchCell Text="Povoliť notifikácie" OnColor="{DynamicResource HighlightColor}" OnChanged="SwitchCell_OnChanged" On="{Binding NotificationsSet, Mode=TwoWay}"/>
-                    <EntryCell Label="Počet minút pred začiatkom zápasu" LabelColor="{DynamicResource TextColor}" HorizontalTextAlignment="End" Text="{Binding NotificationMinutesAhead, Mode=TwoWay}" Keyboard="Numeric"/>
-                </TableSection>
-                <TableSection Title="Tipy">
-                    <ViewCell>
-                        <StackLayout Padding="15,0,15,5" Spacing="0">
-                            <Label Text="Obľúbené" Style="{StaticResource BaseLabel}"/>
-                            <Label Text="Pridaj si ligy, kluby a tímy do zoznamu obľúbených a urýchliš si tým cestu k výsledkom" VerticalTextAlignment="Start" HeightRequest="-1" TextColor="{DynamicResource DarkAlternativeColor}" Style="{StaticResource BaseLabel}"/>
-                        </StackLayout>
-                    </ViewCell>
-                    <ViewCell>
-                        <StackLayout Padding="15,0,15,5" Spacing="0">
-                            <Label Text="Časová os" Style="{StaticResource BaseLabel}"/>
-                            <Label Text="Na časovej osi sa ti zobrazia najbližšie zápasy tvojich obľúbených tímov a notifikácia ťa upozorní na ich začiatok" VerticalTextAlignment="Start" HeightRequest="-1" TextColor="{DynamicResource DarkAlternativeColor}" Style="{StaticResource BaseLabel}"/>
-                        </StackLayout>
-                    </ViewCell>
-                </TableSection>
-                <TableSection Title="Napíš nám">
-                    <ViewCell>
-                        <StackLayout Padding="15,0">
-                            <Label Text="Nahlás problém" Padding="0, 10" Style="{StaticResource BaseLabel}"/>
-                            <Editor x:Name="BugEditor" Keyboard="Text" AutoSize="Disabled" HeightRequest="75" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Opíš čo najpodrobnejšie problém..."/>
-                            <Button Text="Odoslať" BackgroundColor="{DynamicResource AlternativeColor}" HorizontalOptions="Center" Clicked="BugSendClicked" FontSize="15" TextColor="{DynamicResource HighlightColor}"/>
-                        </StackLayout>
-                    </ViewCell>
-                    <ViewCell>
-                        <StackLayout Padding="15,0">
-                            <Label Text="Más nápad?" Padding="0, 10" Style="{StaticResource BaseLabel}"/>
-                            <Editor x:Name="FeedbackEditor" Keyboard="Text" AutoSize="Disabled" HeightRequest="75" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Daj nám vedieť čo by si zlepšil a ako..."/>
-                            <Button Text="Odoslať" BackgroundColor="{DynamicResource AlternativeColor}" HorizontalOptions="Center" Clicked="FeedbackSendClicked" FontSize="15" TextColor="{DynamicResource HighlightColor}"/>
-                        </StackLayout>
-                    </ViewCell>
-                </TableSection>
-                <TableSection Title="O aplikácii">
-                    <ViewCell Height="30">
-                        <StackLayout Orientation="Horizontal" Padding="15,0">
-                            <Label Text="Autor" Style="{StaticResource BaseLabel}"/>
-                            <Label Text="Vít Vašák" Style="{StaticResource BaseLabel}" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
-                        </StackLayout>
-                    </ViewCell>
-                    <ViewCell Height="30">
-                        <StackLayout Orientation="Horizontal" Padding="15,0">
-                            <Label Text="Dizajn" Style="{StaticResource BaseLabel}"/>
-                            <Label Text="Libi Bujňáková" Style="{StaticResource BaseLabel}" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
-                        </StackLayout>
-                    </ViewCell>
-                    <ViewCell Height="30">
-                        <StackLayout Orientation="Horizontal" Padding="15,0">
-                            <Label Text="Verzia" Style="{StaticResource BaseLabel}"/>
-                            <Label Text="1.0b" Style="{StaticResource BaseLabel}" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
-                        </StackLayout>
-                    </ViewCell>
-                </TableSection>
-            </TableRoot>
-        </TableView>
+        <StackLayout>
+            <TableView Intent="Settings" HasUnevenRows="True" BackgroundColor="{DynamicResource BackgroundColor}">
+                <TableRoot>
+                    <TableSection Title="Notifikácie">
+                        <SwitchCell Text="Povoliť notifikácie" OnColor="{DynamicResource HighlightColor}" OnChanged="SwitchCell_OnChanged" On="{Binding NotificationsSet, Mode=TwoWay}"/>
+                        <EntryCell Label="Počet minút pred začiatkom zápasu" LabelColor="{DynamicResource TextColor}" HorizontalTextAlignment="End" Text="{Binding NotificationMinutesAhead, Mode=TwoWay}" Keyboard="Numeric"/>
+                    </TableSection>
+                    <TableSection Title="Tipy">
+                        <ViewCell>
+                            <StackLayout Padding="15,0,15,5" Spacing="0">
+                                <Label Text="Obľúbené" Style="{StaticResource BaseLabel}"/>
+                                <Label Text="Pridaj si ligy, kluby a tímy do zoznamu obľúbených a urýchliš si tým cestu k výsledkom" VerticalTextAlignment="Start" HeightRequest="-1" TextColor="{DynamicResource DarkAlternativeColor}" Style="{StaticResource BaseLabel}"/>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Padding="15,0,15,5" Spacing="0">
+                                <Label Text="Časová os" Style="{StaticResource BaseLabel}"/>
+                                <Label Text="Na časovej osi sa ti zobrazia najbližšie zápasy tvojich obľúbených tímov a notifikácia ťa upozorní na ich začiatok" VerticalTextAlignment="Start" HeightRequest="-1" TextColor="{DynamicResource DarkAlternativeColor}" Style="{StaticResource BaseLabel}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection Title="Napíš nám">
+                        <ViewCell>
+                            <StackLayout Padding="15,0">
+                                <Label Text="Nahlás problém" Padding="0, 10" Style="{StaticResource BaseLabel}"/>
+                                <Editor x:Name="BugEditor" Keyboard="Text" AutoSize="Disabled" HeightRequest="75" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Opíš čo najpodrobnejšie problém..."/>
+                                <Button Text="Odoslať" BackgroundColor="{DynamicResource AlternativeColor}" Margin="0,0,0,5" HeightRequest="25" WidthRequest="100" HorizontalOptions="Center" Clicked="BugSendClicked" FontSize="15" TextColor="{DynamicResource HighlightColor}"/>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Padding="15,0">
+                                <Label Text="Más nápad?" Padding="0, 10" Style="{StaticResource BaseLabel}"/>
+                                <Editor x:Name="FeedbackEditor" Keyboard="Text" AutoSize="Disabled" HeightRequest="75" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Daj nám vedieť čo by si zlepšil a ako..."/>
+                                <Button Text="Odoslať" BackgroundColor="{DynamicResource AlternativeColor}" Margin="0,0,0,5" HeightRequest="25" WidthRequest="100" HorizontalOptions="Center" Clicked="FeedbackSendClicked" FontSize="15" TextColor="{DynamicResource HighlightColor}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection Title="O aplikácii">
+                        <ViewCell Height="30">
+                            <StackLayout Orientation="Horizontal" Padding="15,0">
+                                <Label Text="Autor" Style="{StaticResource BaseLabel}"/>
+                                <Label Text="Vít Vašák" Style="{StaticResource BaseLabel}" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell Height="30">
+                            <StackLayout Orientation="Horizontal" Padding="15,0">
+                                <Label Text="Dizajn" Style="{StaticResource BaseLabel}"/>
+                                <Label Text="Libi Bujňáková" Style="{StaticResource BaseLabel}" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell Height="30">
+                            <StackLayout Orientation="Horizontal" Padding="15,0">
+                                <Label Text="Verzia" Style="{StaticResource BaseLabel}"/>
+                                <Label Text="1.0b" Style="{StaticResource BaseLabel}" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

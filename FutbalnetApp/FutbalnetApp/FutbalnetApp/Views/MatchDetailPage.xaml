@@ -217,57 +217,58 @@
         </DataTemplate>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource MainLayout}">
-            <Grid RowSpacing="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="15"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="15"/>
-                    <RowDefinition Height="35"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Aspect="AspectFit" Source="{Binding Match.Teams[0].Club.Logo}">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="HomeTeamTapped"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Image Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Aspect="AspectFit" Source="{Binding Match.Teams[1].Club.Logo}">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="AwayTeamTapped"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Label Grid.Column="1" Grid.Row="0" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.Audience, StringFormat='{0} divákov'}">
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding Match.NotStartedYet}" Value="true">
-                            <Setter Property="IsVisible" Value="False" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-                <Label Grid.Column="1" Grid.Row="1" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.ScoreString}"/>
-                <Label Grid.Column="1" Grid.Row="2" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.PartialScoreString}"/>
-                <Label Grid.Column="1" Grid.Row="2" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" IsVisible="{Binding Match.NotStartedYet}" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.Datetime, StringFormat='{0:dd.MM. hh:mm}'}"/>
-                <Label Grid.Column="0" Grid.Row="3" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" VerticalOptions="StartAndExpand" FontSize="12" Padding="0,5,0,0" VerticalTextAlignment="Start" HorizontalTextAlignment="Center" Text="{Binding Match.Teams[0].Name}"/>
-                <Label Grid.Column="2" Grid.Row="3" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" VerticalOptions="StartAndExpand" FontSize="12" Padding="0,5,0,0" VerticalTextAlignment="Start" HorizontalTextAlignment="Center" Text="{Binding Match.Teams[1].Name}"/>
-            </Grid>
-            <tabs:TabHostView x:Name="Tabs"
+        <AbsoluteLayout>
+            <StackLayout Style="{StaticResource MainLayout}">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="35"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Aspect="AspectFit" Source="{Binding Match.Teams[0].Club.Logo}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="HomeTeamTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Aspect="AspectFit" Source="{Binding Match.Teams[1].Club.Logo}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="AwayTeamTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Grid.Column="1" Grid.Row="0" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.Audience, StringFormat='{0} divákov'}">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding Match.NotStartedYet}" Value="true">
+                                <Setter Property="IsVisible" Value="False" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Label Grid.Column="1" Grid.Row="1" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.ScoreString}"/>
+                    <Label Grid.Column="1" Grid.Row="2" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.PartialScoreString}"/>
+                    <Label Grid.Column="1" Grid.Row="2" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" IsVisible="{Binding Match.NotStartedYet}" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.Datetime, StringFormat='{0:dd.MM. hh:mm}'}"/>
+                    <Label Grid.Column="0" Grid.Row="3" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" VerticalOptions="StartAndExpand" FontSize="12" Padding="0,5,0,0" VerticalTextAlignment="Start" HorizontalTextAlignment="Center" Text="{Binding Match.Teams[0].Name}"/>
+                    <Label Grid.Column="2" Grid.Row="3" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" VerticalOptions="StartAndExpand" FontSize="12" Padding="0,5,0,0" VerticalTextAlignment="Start" HorizontalTextAlignment="Center" Text="{Binding Match.Teams[1].Name}"/>
+                </Grid>
+                <tabs:TabHostView x:Name="Tabs"
                               Margin="0,10,0,0"
                               Style="{StaticResource TabsContainer}"
                               SelectedIndex="{Binding Source={x:Reference TabSwitcher}, Path=SelectedIndex, Mode=TwoWay}">
-                <tabs:TabHostView.Tabs>
-                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Prehľad"/>
-                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Zostavy"/>
-                    <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Delegáti"/>
-                </tabs:TabHostView.Tabs>
-            </tabs:TabHostView>
-            <tabs:ViewSwitcher x:Name="TabSwitcher"
+                    <tabs:TabHostView.Tabs>
+                        <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Prehľad"/>
+                        <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Zostavy"/>
+                        <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Delegáti"/>
+                    </tabs:TabHostView.Tabs>
+                </tabs:TabHostView>
+                <tabs:ViewSwitcher x:Name="TabSwitcher"
                                Animate="True"
                                Style="{StaticResource TabsContent}"
                                SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
-                <CollectionView x:Name="EventList"
+                    <CollectionView x:Name="EventList"
                                 IsGrouped="True"
                                 Style="{StaticResource BaseCollectionView}"
                                 ItemTemplate="{StaticResource EventItem}"
@@ -275,9 +276,9 @@
                                 GroupHeaderTemplate="{StaticResource GroupHeader}"
                                 SelectionChanged="OnPlayerSelectionChanged"
                                 ItemsSource="{Binding Events}"/>
-                <ScrollView VerticalScrollBarVisibility="Never">
-                    <StackLayout>
-                        <CollectionView x:Name="Lineups"
+                    <ScrollView VerticalScrollBarVisibility="Never">
+                        <StackLayout>
+                            <CollectionView x:Name="Lineups"
                                         IsGrouped="True"
                                         ItemSizingStrategy="MeasureFirstItem"
                                         Style="{StaticResource BaseCollectionView}"
@@ -286,7 +287,7 @@
                                         GroupFooterTemplate="{StaticResource BlankFooter}"
                                         GroupHeaderTemplate="{StaticResource GroupHeader}"
                                         ItemsSource="{Binding Lineups}"/>
-                        <Label Text="Realizačný tím" 
+                            <Label Text="Realizačný tím" 
                                FontSize="15"
                                HeightRequest="33"
                                HorizontalTextAlignment="Center"
@@ -296,47 +297,50 @@
                                FontFamily="{StaticResource BoldFont}"
                                TextColor="{DynamicResource TextColor}"
                                VerticalTextAlignment="Center"/>
-                        <StackLayout x:Name="CoachingStaff"
+                            <StackLayout x:Name="CoachingStaff"
                                     BindableLayout.ItemTemplate="{StaticResource StaffItem}"
                                     BindableLayout.ItemsSource="{Binding CoachingStaff}"/>
-                    </StackLayout>
-                </ScrollView>
-                <Grid ColumnSpacing="0" RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="Meno" FontSize="15" FontFamily="{StaticResource BoldFont}" TextColor="{DynamicResource TextColor}"/>
-                    <Label Grid.Row="0" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="Funkcia" FontSize="15" FontFamily="{StaticResource BoldFont}" TextColor="{DynamicResource TextColor}" HorizontalTextAlignment="Center"/>
-                    <Label Grid.Row="1" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.Referee.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
-                    <Label Grid.Row="1" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="Rozhodca" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
-                    <Label Grid.Row="2" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.AssistantReferee1.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}"/>
-                    <Label Grid.Row="2" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="1. asistent rozhodcu" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" TextColor="{DynamicResource TextColor}"/>
-                    <Label Grid.Row="3" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.AssistantReferee2.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
-                    <Label Grid.Row="3" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="2. asistent rozhodcu" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
-                    <Label Grid.Row="4" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.Delegate.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}"/>
-                    <Label Grid.Row="4" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="Delegát" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" TextColor="{DynamicResource TextColor}"/>
-                    <Label Grid.Row="5" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.Videotech.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
-                    <Label Grid.Row="5" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="Videotechnik" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
-                    <Label Grid.Row="6" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.HeadOrganizer.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}"/>
-                    <Label Grid.Row="6" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="Hlavný usporiadateľ" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" TextColor="{DynamicResource TextColor}"/>
-                </Grid>
-                <tabs:ViewSwitcher.Triggers>
-                    <DataTrigger TargetType="tabs:ViewSwitcher" Binding="{Binding Match.NotStartedYet}" Value="true">
-                        <Setter Property="IsVisible" Value="False" />
-                    </DataTrigger>
-                </tabs:ViewSwitcher.Triggers>
-            </tabs:ViewSwitcher>
-            <Label FontSize="15" FontFamily="{StaticResource NormalFont}" Margin="0,20" IsVisible="{Binding Match.NotStartedYet}" HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalTextAlignment="Center" Text="Zápas ešte nezačal"/>
-        </StackLayout>
+                        </StackLayout>
+                    </ScrollView>
+                    <Grid ColumnSpacing="0" RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="Meno" FontSize="15" FontFamily="{StaticResource BoldFont}" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="0" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="Funkcia" FontSize="15" FontFamily="{StaticResource BoldFont}" TextColor="{DynamicResource TextColor}" HorizontalTextAlignment="Center"/>
+                        <Label Grid.Row="1" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.Referee.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="1" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="Rozhodca" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="2" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.AssistantReferee1.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="2" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="1. asistent rozhodcu" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="3" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.AssistantReferee2.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="3" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="2. asistent rozhodcu" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="4" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.Delegate.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="4" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="Delegát" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="5" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.Videotech.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="5" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="Videotechnik" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="6" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.HeadOrganizer.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="6" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="Hlavný usporiadateľ" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" TextColor="{DynamicResource TextColor}"/>
+                    </Grid>
+                    <tabs:ViewSwitcher.Triggers>
+                        <DataTrigger TargetType="tabs:ViewSwitcher" Binding="{Binding Match.NotStartedYet}" Value="true">
+                            <Setter Property="IsVisible" Value="False" />
+                        </DataTrigger>
+                    </tabs:ViewSwitcher.Triggers>
+                </tabs:ViewSwitcher>
+                <Label FontSize="15" FontFamily="{StaticResource NormalFont}" Margin="0,20" IsVisible="{Binding Match.NotStartedYet}" HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalTextAlignment="Center" Text="Zápas ešte nezačal"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource LoadingOverlay}"/>
+            <ActivityIndicator Style="{StaticResource LoadingStyle}"/>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

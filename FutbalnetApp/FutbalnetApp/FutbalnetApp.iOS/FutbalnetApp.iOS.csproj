@@ -204,13 +204,13 @@
     <ImageAsset Include="Assets.xcassets\DefaultPersonLogo.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\FavouriteIcon.imageset\favorites-icon.pdf">
+    <ImageAsset Include="Assets.xcassets\FavouriteIcon.imageset\favorite-fill-icon.pdf">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\FavouriteNoFillIcon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\FavouriteNoFillIcon.imageset\favorite-nofill-icon.pdf">
+    <ImageAsset Include="Assets.xcassets\FavouriteNoFillIcon.imageset\favorite-nofill-icon2.pdf">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\GoalIcon.imageset\green-ball-icon.pdf">
@@ -228,7 +228,7 @@
     <ImageAsset Include="Assets.xcassets\RedCardIcon.imageset\red-card-icon.pdf">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SearchIcon.imageset\search-icon.pdf">
+    <ImageAsset Include="Assets.xcassets\SearchIcon.imageset\search-icon1.pdf">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\SecondYellowCardIcon.imageset\mixed-card-icon.pdf">

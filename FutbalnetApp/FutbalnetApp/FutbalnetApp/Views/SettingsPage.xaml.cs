@@ -40,6 +40,7 @@ namespace FutbalnetApp.Views
                 SmtpServer.Credentials = new System.Net.NetworkCredential("vitvasakport@gmail.com", "vvport1598");
 
                 SmtpServer.Send(mail);
+                FeedbackEditor.Text = "";
                 DisplayAlert("Odoslané", "Ďakujeme za váš názor", "OK");
 
             }
@@ -67,6 +68,7 @@ namespace FutbalnetApp.Views
                 SmtpServer.Credentials = new System.Net.NetworkCredential("vitvasakport@gmail.com", "vvport1598");
 
                 SmtpServer.Send(mail);
+                BugEditor.Text = "";
                 DisplayAlert("Odoslané", "Ďakujeme za upozornenie na problém", "OK");
             }
             catch (Exception)
