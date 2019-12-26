@@ -25,7 +25,8 @@ namespace FutbalnetApp.Views
 		{
 			base.OnAppearing();
 
-			viewModel.LoadTimelineCommand.Execute(null);
+			if (!viewModel.IsLoaded)
+				viewModel.LoadTimelineCommand.Execute(null);
 		}
 
 		private async void TimelineList_SelectionChanged(object sender, SelectionChangedEventArgs e)

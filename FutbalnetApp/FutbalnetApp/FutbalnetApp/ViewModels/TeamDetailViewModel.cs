@@ -94,7 +94,7 @@ namespace FutbalnetApp.ViewModels
 						foreach (var round in part.Rounds)
 						{
 							var fullRound = await SportnetStore.GetCompetitionRoundAsync(Competition.Id, part.Id, round.Id);
-							var match = fullRound.Matches.FirstOrDefault(x => x.Teams.FirstOrDefault(y => y.Id == Team.Id) != null);
+							var match = fullRound.Matches.FirstOrDefault(x => x.Teams?.FirstOrDefault(y => y.Id == Team.Id) != null);
 							if (match != null)
 							{
 								Matches.Add(match);
