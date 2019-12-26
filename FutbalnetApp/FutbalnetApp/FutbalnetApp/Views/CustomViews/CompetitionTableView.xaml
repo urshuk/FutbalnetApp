@@ -151,13 +151,11 @@
     </ContentView.Resources>
     <ContentView.Content>
         <CollectionView x:Name="tableCollection"
+                        Style="{StaticResource BaseCollectionView}"
                         ItemsSource="{Binding ItemsSource, Source={Reference CompetitionTable}}"
                         HeaderTemplate="{StaticResource TableHeader}"
                         Header="true"
                         ItemTemplate="{StaticResource TemplateSelector}"
-                        SelectionMode="Single"
-                        Margin="0,25,0,0"
-                        VerticalScrollBarVisibility="Never"
                         SelectionChanged="OnSelectionChanged"/>
     </ContentView.Content>
 </ContentView>

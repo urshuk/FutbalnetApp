@@ -175,9 +175,6 @@
                 </StackLayout.Triggers>
             </StackLayout>
         </DataTemplate>
-        <DataTemplate x:Key="GroupFooter">
-            <Label/>
-        </DataTemplate>
         <DataTemplate x:Key="LineupItem">
             <Grid ColumnSpacing="0">
                 <Grid.RowDefinitions>
@@ -220,8 +217,8 @@
         </DataTemplate>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="25,10,25,0" Spacing="0" BackgroundColor="{DynamicResource BackgroundColor}">
-            <Grid RowSpacing="0" Margin="0,0,0,10">
+        <StackLayout Style="{StaticResource MainLayout}">
+            <Grid RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="15"/>
                     <RowDefinition Height="25"/>
@@ -257,9 +254,8 @@
                 <Label Grid.Column="2" Grid.Row="3" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" VerticalOptions="StartAndExpand" FontSize="12" Padding="0,5,0,0" VerticalTextAlignment="Start" HorizontalTextAlignment="Center" Text="{Binding Match.Teams[1].Name}"/>
             </Grid>
             <tabs:TabHostView x:Name="Tabs"
-                              VerticalOptions="Start"
-                              MinimumHeightRequest="33"
-                              HeightRequest="33"
+                              Margin="0,10,0,0"
+                              Style="{StaticResource TabsContainer}"
                               SelectedIndex="{Binding Source={x:Reference TabSwitcher}, Path=SelectedIndex, Mode=TwoWay}">
                 <tabs:TabHostView.Tabs>
                     <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Prehľad"/>
@@ -269,16 +265,14 @@
             </tabs:TabHostView>
             <tabs:ViewSwitcher x:Name="TabSwitcher"
                                Animate="True"
-                               Margin="0,10,0,0"
-                               VerticalOptions="FillAndExpand"
+                               Style="{StaticResource TabsContent}"
                                SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
                 <CollectionView x:Name="EventList"
                                 IsGrouped="True"
-                                VerticalScrollBarVisibility="Never"
+                                Style="{StaticResource BaseCollectionView}"
                                 ItemTemplate="{StaticResource EventItem}"
-                                GroupFooterTemplate="{StaticResource GroupFooter}"
+                                GroupFooterTemplate="{StaticResource BlankFooter}"
                                 GroupHeaderTemplate="{StaticResource GroupHeader}"
-                                SelectionMode="Single"
                                 SelectionChanged="OnPlayerSelectionChanged"
                                 ItemsSource="{Binding Events}"/>
                 <ScrollView VerticalScrollBarVisibility="Never">
@@ -286,12 +280,11 @@
                         <CollectionView x:Name="Lineups"
                                         IsGrouped="True"
                                         ItemSizingStrategy="MeasureFirstItem"
+                                        Style="{StaticResource BaseCollectionView}"
                                         HeightRequest="{Binding LineupsHeight}"
                                         ItemTemplate="{StaticResource LineupItem}"
-                                        GroupFooterTemplate="{StaticResource GroupFooter}"
+                                        GroupFooterTemplate="{StaticResource BlankFooter}"
                                         GroupHeaderTemplate="{StaticResource GroupHeader}"
-                                        SelectionMode="None"
-                                        VerticalScrollBarVisibility="Never"
                                         ItemsSource="{Binding Lineups}"/>
                         <Label Text="Realizačný tím" 
                                FontSize="15"

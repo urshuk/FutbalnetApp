@@ -24,7 +24,6 @@ namespace FutbalnetApp.ViewModels
 		public TimelineViewModel()
 		{
 			LoadTimelineCommand = new Command(async () => await ExecuteLoadTimelineCommandAsync());
-			CrossLocalNotifications.Current.Show("title", "body", 100, DateTime.Now.AddSeconds(10));
 		}
 
 		private void SetMatchNotification(MatchPreview match)

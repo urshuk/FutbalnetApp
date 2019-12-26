@@ -67,30 +67,24 @@
             </Grid>
         </DataTemplate>
         <controls:ListDataTemplateSelector x:Key="TemplateSelector" First="{StaticResource ResultItem}" Alternative="{StaticResource ResultItemAlternative}"/>
-        <Style x:Key="ResultsList" TargetType="CollectionView">
-            <Setter Property="ItemTemplate" Value="{StaticResource TemplateSelector}"/>
-            <Setter Property="SelectionMode" Value="Single"/>
-            <Setter Property="Margin" Value="0,0,0,0"/>
-            <Setter Property="VerticalScrollBarVisibility" Value="Never"/>
-            <Setter Property="VerticalOptions" Value="FillAndExpand"/>
-            <Setter Property="ItemsLayout">
-                <Setter.Value>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </ContentView.Resources>
     <ContentView.Content>
-        <StackLayout Margin="0,25,0,0" Spacing="10">
+        <StackLayout Spacing="0">
             <StackLayout Orientation="Horizontal">
                 <Label TextColor="{DynamicResource TextColor}" Text="Kolo" VerticalTextAlignment="Center" HorizontalOptions="Start"/>
                 <Picker x:Name="RoundPicker" BackgroundColor="{DynamicResource AlternativeColor}" HorizontalOptions="Center" WidthRequest="30" HeightRequest="20" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" ItemsSource="{Binding Part.Rounds, Source={Reference Results}}" SelectedItem="{Binding Round, Source={Reference Results}, Mode=TwoWay}" Focused="RoundPicker_Focused" Unfocused="OnRoundChanged"/>
                 <Label TextColor="{DynamicResource TextColor}" Text="{Binding Round.Datetime, Source={Reference Results}, StringFormat='{0:dd.MM.yyyy}'}" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
             <CollectionView x:Name="MatchList"
+                            Margin="0,10,0,0"
                             ItemsSource="{Binding ItemsSource, Source={Reference Results}}"
-                            Style="{StaticResource ResultsList}"
-                            SelectionChanged="OnSelectionChanged"/>
+                            ItemTemplate="{StaticResource TemplateSelector}"
+                            Style="{StaticResource BaseCollectionView}"
+                            SelectionChanged="OnSelectionChanged">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+            </CollectionView>
         </StackLayout>
     </ContentView.Content>
 </ContentView>

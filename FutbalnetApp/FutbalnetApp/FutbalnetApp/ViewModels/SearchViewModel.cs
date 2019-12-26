@@ -23,6 +23,7 @@ namespace FutbalnetApp.ViewModels
 		public SearchViewModel()
 		{
 			LoadSearchResultsCommand = new Command<string>(async (term) => await ExecuteLoadSearchResultsCommand(term));
+			IsLoaded = true;
 			Clubs = new ObservableCollection<SearchResult>();
 			Persons = new ObservableCollection<SearchResult>();
 			Competitions = new ObservableCollection<SearchResult>();

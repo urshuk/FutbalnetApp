@@ -114,12 +114,10 @@
     <ContentView.Content>
         <CollectionView ItemsSource="{Binding ItemsSource, Source={Reference CompetitionStats}}"
                         x:Name="StatsList"
+                        Style="{StaticResource BaseCollectionView}"
                         HeaderTemplate="{StaticResource TableHeader}"
                         Header="true"
                         ItemTemplate="{StaticResource TemplateSelector}"
-                        SelectionMode="Single"
-                        Margin="0,25,0,0"
-                        VerticalScrollBarVisibility="Never"
                         SelectionChanged="OnSelectionChanged"/>
     </ContentView.Content>
 </ContentView>

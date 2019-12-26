@@ -69,22 +69,10 @@
             </Grid>
         </DataTemplate>
         <controls:ListDataTemplateSelector x:Key="TemplateSelector" First="{StaticResource ResultItem}" Alternative="{StaticResource ResultItemAlternative}"/>
-        <Style x:Key="ResultsList" TargetType="CollectionView">
-            <Setter Property="ItemTemplate" Value="{StaticResource TemplateSelector}"/>
-            <Setter Property="SelectionMode" Value="Single"/>
-            <Setter Property="Margin" Value="0,0,0,0"/>
-            <Setter Property="VerticalScrollBarVisibility" Value="Never"/>
-            <Setter Property="VerticalOptions" Value="FillAndExpand"/>
-            <Setter Property="ItemsLayout">
-                <Setter.Value>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout  Padding="25,10,25,0" Spacing="0" BackgroundColor="{DynamicResource BackgroundColor}">
-            <Grid RowSpacing="0" Margin="0,0,0,10">
+        <StackLayout Style="{StaticResource MainLayout}">
+            <Grid RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="80"/>
                 </Grid.RowDefinitions>
@@ -98,9 +86,8 @@
                 <ImageButton Grid.Column="2" Grid.Row="0" Style="{StaticResource FavouriteToggle}"/>
             </Grid>
             <tabs:TabHostView x:Name="Tabs"
-                              VerticalOptions="Start"
-                              MinimumHeightRequest="33"
-                              HeightRequest="33"
+                              Margin="0,10,0,0"
+                              Style="{StaticResource TabsContainer}"
                               SelectedIndex="{Binding Source={x:Reference TabSwitcher}, Path=SelectedIndex, Mode=TwoWay}">
                 <tabs:TabHostView.Tabs>
                     <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Zápasy"/>
@@ -109,18 +96,23 @@
             </tabs:TabHostView>
             <tabs:ViewSwitcher x:Name="TabSwitcher"
                                Animate="True"
-                               VerticalOptions="FillAndExpand"
+                               Style="{StaticResource TabsContent}"
                                SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
-                <StackLayout Spacing="0" Margin="0,5,0,0">
-                    <Label Text="{Binding Competition.Name}" VerticalTextAlignment="Center" Margin="0,15,0,10" HeightRequest="20" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15">
+                <StackLayout Spacing="0">
+                    <Label Text="{Binding Competition.Name}" VerticalTextAlignment="Center" HeightRequest="20" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Competition_Tapped"/>
                         </Label.GestureRecognizers>
                     </Label>
                     <CollectionView x:Name="MatchList"
+                                    ItemTemplate="{StaticResource TemplateSelector}"
                             ItemsSource="{Binding Matches}"
-                            Style="{StaticResource ResultsList}"
-                            SelectionChanged="MatchList_SelectionChanged"/>
+                            Style="{StaticResource BaseCollectionView}"
+                            SelectionChanged="MatchList_SelectionChanged">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+                        </CollectionView.ItemsLayout>
+                    </CollectionView>
                 </StackLayout>
                 <views:CompetitionTableView BindingContext="{Binding Table}" ItemsSource="{Binding OrderedTableClubs}" OrderIndex="{Binding TableOrderIndex}" Command="{Binding OrderTableCommand}"/>
             </tabs:ViewSwitcher>

@@ -142,8 +142,8 @@
         <controls:ListDataTemplateSelector x:Key="TemplateSelector" First="{StaticResource StatItem}" Alternative="{StaticResource StatItemAlternative}"/>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout  Padding="25,10,25,0" Spacing="0" BackgroundColor="{DynamicResource BackgroundColor}">
-            <Grid RowSpacing="0" Margin="0,0,0,10">
+        <StackLayout Style="{StaticResource MainLayout}">
+            <Grid RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
@@ -157,9 +157,8 @@
                 <Label Grid.Column="1" Grid.Row="1" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="15" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" Text=""/>
             </Grid>
             <tabs:TabHostView x:Name="Tabs"
-                              VerticalOptions="Start"
-                              MinimumHeightRequest="33"
-                              HeightRequest="33"
+                              Margin="0,10,0,0"
+                              Style="{StaticResource TabsContainer}"
                               SelectedIndex="{Binding Source={x:Reference TabSwitcher}, Path=SelectedIndex, Mode=TwoWay}">
                 <tabs:TabHostView.Tabs>
                     <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Info"/>
@@ -168,10 +167,9 @@
             </tabs:TabHostView>
             <tabs:ViewSwitcher x:Name="TabSwitcher"
                                Animate="True"
-                               Margin="0,10,0,0"
-                               VerticalOptions="FillAndExpand"
+                               Style="{StaticResource TabsContent}"
                                SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
-                <Grid ColumnSpacing="0" RowSpacing="0" Margin="0,25,0,0">
+                <Grid ColumnSpacing="0" RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
@@ -204,12 +202,10 @@
                     <Label Grid.Row="7" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.MembershipFeeTo, StringFormat='{0:dd.MM.yyyy}'}"/>
                 </Grid>
                 <CollectionView ItemsSource="{Binding OrderedStats}"
-                        HeaderTemplate="{StaticResource StatsHeader}"
-                        Header="true"
-                        ItemTemplate="{StaticResource TemplateSelector}"
-                        SelectionMode="Single"
-                        Margin="0,25,0,0"
-                        VerticalScrollBarVisibility="Never"/>
+                                Style="{StaticResource BaseCollectionView}"
+                                HeaderTemplate="{StaticResource StatsHeader}"
+                                Header="true"
+                                ItemTemplate="{StaticResource TemplateSelector}"/>
             </tabs:ViewSwitcher>
         </StackLayout>
     </ContentPage.Content>

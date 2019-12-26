@@ -81,23 +81,17 @@
                 </Label>
             </StackLayout>
         </DataTemplate>
-        <DataTemplate x:Key="GroupFooter">
-            <Label/>
-        </DataTemplate>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="25,10,25,0" Spacing="0" BackgroundColor="{DynamicResource BackgroundColor}">
+        <StackLayout Style="{StaticResource MainLayout}">
             <CollectionView x:Name="TimelineList"
                             IsGrouped="True"
-                            VerticalScrollBarVisibility="Never"
+                            Style="{StaticResource BaseCollectionView}"
                             ItemTemplate="{StaticResource TemplateSelector}"
-                            GroupFooterTemplate="{StaticResource GroupFooter}"
+                            GroupFooterTemplate="{StaticResource BlankFooter}"
                             GroupHeaderTemplate="{StaticResource GroupHeader}"
-                            SelectionMode="Single"
                             EmptyView="Žiadne zápasy vašich obľúbených tímov najbližších 14 dní"
-                            EmptyViewTemplate="{StaticResource NoResultsTemplate}"
                             SelectionChanged="TimelineList_SelectionChanged"
-                            VerticalOptions="FillAndExpand"
                             ItemsSource="{Binding MatchGroups}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>

@@ -8,13 +8,11 @@
              Title="Hľadať"
              x:Class="FutbalnetApp.Views.SearchPage">
     <ContentPage.Content>
-        <StackLayout Padding="25,10,25,0" Spacing="0" BackgroundColor="{DynamicResource BackgroundColor}">
+        <StackLayout Style="{StaticResource MainLayout}">
             <SearchBar x:Name="SearchBar" Keyboard="Plain" FontFamily="{StaticResource NormalFont}" TextChanged="SearchBar_TextChanged" CancelButtonColor="{DynamicResource TextColor}" Placeholder="Hľadajte ľudí, kluby, súťaže, zväzy" Text="{Binding SearchTerm, Mode=TwoWay}" BackgroundColor="{DynamicResource BackgroundColor}" TextColor="{DynamicResource TextColor}"/>
 
             <tabs:TabHostView x:Name="Competitions"
-                              VerticalOptions="Start"
-                              MinimumHeightRequest="33"
-                              HeightRequest="33"
+                              Style="{StaticResource TabsContainer}"
                               SelectedIndex="{Binding Source={x:Reference ResultsSwitcher}, Path=SelectedIndex, Mode=TwoWay}">
                 <tabs:TabHostView.Tabs>
                     <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Ľudia"/>
@@ -25,32 +23,48 @@
             </tabs:TabHostView>
             <tabs:ViewSwitcher x:Name="ResultsSwitcher"
                                Animate="True"
-                               VerticalOptions="FillAndExpand"
+                               Style="{StaticResource TabsContent}"
                                SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
                 <CollectionView x:Name="PersonsList"
                                 ItemsSource="{Binding Persons}"
-                                Style="{StaticResource SecondaryList}"
+                                ItemTemplate="{StaticResource ListItemSecondary}"
+                                Style="{StaticResource BaseCollectionView}"
                                 EmptyView="Žiadne výsledky sa nenašli"
-                                EmptyViewTemplate="{StaticResource NoResultsTemplate}"
-                                SelectionChanged="PersonsList_SelectionChanged"/>
+                                SelectionChanged="PersonsList_SelectionChanged">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
                 <CollectionView x:Name="ClubsList"
                                 ItemsSource="{Binding Clubs}"
-                                Style="{StaticResource SecondaryList}"
+                                Style="{StaticResource BaseCollectionView}"
+                                ItemTemplate="{StaticResource ListItemSecondary}"
                                 EmptyView="Žiadne výsledky sa nenašli"
-                                EmptyViewTemplate="{StaticResource NoResultsTemplate}"
-                                SelectionChanged="ClubsList_SelectionChanged"/>
+                                SelectionChanged="ClubsList_SelectionChanged">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
                 <CollectionView x:Name="CompetitionsList"
                                 ItemsSource="{Binding Competitions}"
-                                Style="{StaticResource SecondaryList}"
+                                Style="{StaticResource BaseCollectionView}"
+                                ItemTemplate="{StaticResource ListItemSecondary}"
                                 EmptyView="Žiadne výsledky sa nenašli"
-                                EmptyViewTemplate="{StaticResource NoResultsTemplate}"
-                                SelectionChanged="CompetitionsList_SelectionChanged"/>
+                                SelectionChanged="CompetitionsList_SelectionChanged">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
                 <CollectionView x:Name="UnionsList"
                                 ItemsSource="{Binding Unions}"
-                                Style="{StaticResource SecondaryList}"
+                                Style="{StaticResource BaseCollectionView}"
+                                ItemTemplate="{StaticResource ListItemSecondary}"
                                 EmptyView="Žiadne výsledky sa nenašli"
-                                EmptyViewTemplate="{StaticResource NoResultsTemplate}"
-                                SelectionChanged="UnionsList_SelectionChanged"/>
+                                SelectionChanged="UnionsList_SelectionChanged">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
             </tabs:ViewSwitcher>
         </StackLayout>
     </ContentPage.Content>

@@ -25,6 +25,7 @@ namespace FutbalnetApp
 		//timeline performance
 		//notifications improve
 		//loading
+		//green lines
 
 		public App()
 		{

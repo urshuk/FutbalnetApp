@@ -54,22 +54,16 @@
                 <BoxView Margin="0,0,0,4" BackgroundColor="{DynamicResource HighlightColor}" HeightRequest="2" VerticalOptions="Start" HorizontalOptions="FillAndExpand" />
             </StackLayout>
         </DataTemplate>
-        <DataTemplate x:Key="GroupFooter">
-            <Label/>
-        </DataTemplate>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="25,0" Spacing="0" BackgroundColor="{DynamicResource BackgroundColor}">
+        <StackLayout Style="{StaticResource MainLayout}">
             <CollectionView x:Name="FavouritesList"
                             IsGrouped="True"
-                            VerticalScrollBarVisibility="Never"
+                            Style="{StaticResource BaseCollectionView}"
                             ItemTemplate="{StaticResource FavouriteItem}"
-                            GroupFooterTemplate="{StaticResource GroupFooter}"
+                            GroupFooterTemplate="{StaticResource BlankFooter}"
                             GroupHeaderTemplate="{StaticResource GroupHeader}"
-                            SelectionMode="Single"
                             EmptyView="Pridaj si ligy, kluby a tímy do obľúbených a nestrať prehľad"
-                            EmptyViewTemplate="{StaticResource NoResultsTemplate}"
-                            VerticalOptions="FillAndExpand"
                             SelectionChanged="FavouritesList_SelectionChanged"
                             ItemsSource="{Binding Favourites}">
                 <CollectionView.ItemsLayout>
