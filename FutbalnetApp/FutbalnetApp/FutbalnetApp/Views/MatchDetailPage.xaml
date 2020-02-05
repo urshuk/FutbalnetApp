@@ -28,7 +28,7 @@
                             <DataTrigger TargetType="Image" Binding="{Binding Type}" Value="NPK">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="PenaltyMissIcon.png"/>
                                         <On Platform="iOS" Value="PenaltyMissIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>

@@ -30,6 +30,14 @@ namespace FutbalnetApp.ViewModels
 			Unions = new ObservableCollection<SearchResult>();
 		}
 
+		public void ClearResults()
+		{
+			Clubs.Clear();
+			Persons.Clear();
+			Competitions.Clear();
+			Unions.Clear();
+		}
+
 		async Task ExecuteLoadSearchResultsCommand(string term)
 		{
 			if (IsBusy)

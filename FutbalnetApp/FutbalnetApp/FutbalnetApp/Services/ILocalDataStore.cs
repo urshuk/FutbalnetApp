@@ -29,5 +29,8 @@ namespace FutbalnetApp.Services
 		void SetNotificationsSettings(bool value);
 		int GetNotificationsMinutes();
 		void SetNotificationsMinutes(int value);
+
+		bool GetAdsSettings();
+		void SetAdsSettings(bool value);
 	}
 }

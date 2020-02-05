@@ -7,6 +7,7 @@ using FutbalnetApp.Views;
 using System.Collections.Generic;
 using FutbalnetApp.Models;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace FutbalnetApp
 {
@@ -19,12 +20,14 @@ namespace FutbalnetApp
 		public static string AzureBackendUrl =
 			DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5000" : "http://localhost:5000";
 		public static string SportnetApiUrl = "https://futbalnet.sportnet.online/api";
+		bool IsConnected => Connectivity.NetworkAccess == NetworkAccess.Internet;
 
 		//roadmap
 		//club players
 		//timeline performance
 		//notifications improve
-		//loading
+		//UI design
+		//movements
 		//green lines
 
 		public App()
@@ -36,15 +39,19 @@ namespace FutbalnetApp
 			MainPage = new AppShell();
 		}
 
-		protected override void OnStart()
+		protected override async void OnStart()
 		{
 			base.OnStart();
-			ISportnetDataStore SportnetStore = DependencyService.Get<ISportnetDataStore>();
-			Seasons = SportnetStore.GetSeasons();
 
 			Theme theme = DependencyService.Get<IEnvironment>().GetOperatingSystemTheme();
-
 			SetTheme(theme);
+
+			await CheckConnectionAsync();
+
+			MainPage = new AppShell();
+
+			ISportnetDataStore SportnetStore = DependencyService.Get<ISportnetDataStore>();
+			Seasons = SportnetStore.GetSeasons();
 		}
 
 		protected override void OnSleep()
@@ -52,15 +59,25 @@ namespace FutbalnetApp
 			// Handle when your app sleeps
 		}
 
-		protected override void OnResume()
+		protected override async void OnResume()
 		{
 			base.OnResume();
 
 			Theme theme = DependencyService.Get<IEnvironment>().GetOperatingSystemTheme();
 
 			SetTheme(theme);
+
+			await CheckConnectionAsync();
 		}
 
+		async Task CheckConnectionAsync()
+		{
+			if (!IsConnected)
+			{
+				await MainPage.DisplayAlert("Žiadny prístup k internetu", "Skontrolujte svoje internetové pripojenie", "OK");
+				await CheckConnectionAsync();
+			}
+		}
 		void SetTheme(Theme theme)
 		{
 			if (theme == Theme.Dark)

@@ -68,6 +68,7 @@
         <DataTemplate x:Key="BlankFooter">
             <Label/>
         </DataTemplate>
+        
         <controls:ListDataTemplateSelector x:Key="ListTemplateSelector" First="{StaticResource ListItem}" Alternative="{StaticResource ListItemAlternative}"/>
 
         <Style TargetType="NavigationPage">

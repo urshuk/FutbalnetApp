@@ -21,13 +21,18 @@ namespace FutbalnetApp.ViewModels
 		int selectedCompetitionIndex = 0;
 		public int SelectedCompetitionIndex
 		{
-			get { return selectedCompetitionIndex; }
-			set { SetProperty(ref selectedCompetitionIndex, value); }
+			get => selectedCompetitionIndex;
+			set => SetProperty(ref selectedCompetitionIndex, value);
 		}
 		public int SelectedCategoryIndex { get; set; }
 		public Command LoadCompetitionsCommand { get; set; }
 		public Command ReloadListsCommand { get; set; }
-		public UnionPreview Union { get; set; }
+		private UnionPreview union;
+		public UnionPreview Union
+		{
+			get => union;
+			set => SetProperty(ref union, value);
+		}
 
 		public CompetitionSelectionViewModel()
 		{

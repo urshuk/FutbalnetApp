@@ -11,7 +11,8 @@ namespace FutbalnetApp.Views
         public Sizes Size { get; set; }
         public AdBanner()
         {
-            this.BackgroundColor = Color.Accent;
+
+            BackgroundColor = (Color)Application.Current.Resources["BackgroundColor"];
         }
     }
 }

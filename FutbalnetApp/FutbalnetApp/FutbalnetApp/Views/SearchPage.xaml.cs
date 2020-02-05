@@ -64,6 +64,10 @@ namespace FutbalnetApp.Views
 			{
 				viewModel.LoadSearchResultsCommand.Execute(SearchBar.Text);
 			}
+			else
+			{
+				viewModel.ClearResults();
+			}
 		}
 	}
 }

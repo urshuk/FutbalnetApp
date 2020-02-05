@@ -32,7 +32,8 @@ namespace FutbalnetApp.ViewModels
 				return;
 
 			var minutesAhead = LocalDataStore.GetNotificationsMinutes();
-			CrossLocalNotifications.Current.Show(match.ToString(), "Začiatok zápasu", match.Id, match.Datetime.AddMinutes(-minutesAhead));
+			var message = minutesAhead > 0 ? $"Začiatok zápasu o {minutesAhead} min." : "Začiatok zápasu.";
+			CrossLocalNotifications.Current.Show(match.ToString(), message, match.Id, match.Datetime.AddMinutes(-minutesAhead));
 		}
 		private async Task<IEnumerable<MatchPreview>> GetTeamMatchesAsync(Team team, IEnumerable<CompetitionPreview> comps = null)
 		{

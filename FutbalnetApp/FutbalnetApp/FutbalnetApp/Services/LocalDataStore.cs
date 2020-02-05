@@ -177,5 +177,8 @@ namespace FutbalnetApp.Services
 		public void SetNotificationsSettings(bool value) => Preferences.Set("notificationsSet", value);
 		public int GetNotificationsMinutes() => Preferences.Get("notificationsMinutes", 0);
 		public void SetNotificationsMinutes(int value) => Preferences.Set("notificationsMinutes", value);
+
+		public bool GetAdsSettings() => Preferences.Get("adsSet", false);
+		public void SetAdsSettings(bool value) => Preferences.Set("adsSet", value);
 	}
 }
