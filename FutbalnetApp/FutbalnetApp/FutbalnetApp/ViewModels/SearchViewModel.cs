@@ -40,9 +40,6 @@ namespace FutbalnetApp.ViewModels
 
 		async Task ExecuteLoadSearchResultsCommand(string term)
 		{
-			if (IsBusy)
-				return;
-
 			IsBusy = true;
 
 			try
