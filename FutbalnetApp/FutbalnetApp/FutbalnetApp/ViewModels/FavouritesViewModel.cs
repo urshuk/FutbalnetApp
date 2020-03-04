@@ -27,10 +27,10 @@ namespace FutbalnetApp.ViewModels
 
 		public FavouritesViewModel()
 		{
-			LoadFavouritesCommand = new Command(() => ExecuteLoadFavouritesCommand());
+			LoadFavouritesCommand = new Command(async () => await ExecuteLoadFavouritesCommand());
 		}
 
-		void ExecuteLoadFavouritesCommand()
+		async Task ExecuteLoadFavouritesCommand()
 		{
 			if (IsBusy)
 				return;
@@ -65,7 +65,7 @@ namespace FutbalnetApp.ViewModels
 					Action = "Loading Favourites",
 					Datetime = DateTime.Now,
 				};
-				LogError(log);
+				await LogError(log);
 			}
 			finally
 			{

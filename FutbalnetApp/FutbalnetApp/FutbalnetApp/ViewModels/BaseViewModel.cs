@@ -7,6 +7,9 @@ using Xamarin.Forms;
 
 using FutbalnetApp.Models;
 using FutbalnetApp.Services;
+using MongoDB.Driver;
+using MongoDB.Bson;
+using System.Threading.Tasks;
 
 namespace FutbalnetApp.ViewModels
 {
@@ -18,27 +21,37 @@ namespace FutbalnetApp.ViewModels
 		bool isBusy = false;
 		public bool IsBusy
 		{
-			get { return isBusy; }
-			set { SetProperty(ref isBusy, value); }
+			get => isBusy;
+			set => SetProperty(ref isBusy, value);
 		}
 
 		bool isLoaded = false;
 		public bool IsLoaded
 		{
-			get { return isLoaded; }
-			set { SetProperty(ref isLoaded, value); }
+			get => isLoaded;
+			set => SetProperty(ref isLoaded, value);
+		}
+
+		bool adsEnabled = false;
+		public bool AdsEnabled
+		{
+			get => adsEnabled;
+			set => SetProperty(ref adsEnabled, value);
 		}
 
 		string title = string.Empty;
 		public string Title
 		{
-			get { return title; }
-			set { SetProperty(ref title, value); }
+			get => title;
+			set => SetProperty(ref title, value);
 		}
 
-		public void LogError(ErrorLog log)
+		public async Task LogError(ErrorLog log)
 		{
-
+			var client = new MongoClient("mongodb+srv://mongoAdmin:mongoDraslik1598@freecluster-aqcdc.azure.mongodb.net/test?retryWrites=true&w=majority");
+			var database = client.GetDatabase("Logging");
+			var collection = database.GetCollection<ErrorLog>("errors");
+			await collection.InsertOneAsync(log);
 		}
 
 		protected bool SetProperty<T>(ref T backingStore, T value,

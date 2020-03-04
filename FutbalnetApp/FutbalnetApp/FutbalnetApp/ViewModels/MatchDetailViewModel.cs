@@ -202,7 +202,7 @@ namespace FutbalnetApp.ViewModels
 					Action = "Loading Match",
 					Datetime = DateTime.Now,
 				};
-				LogError(log);
+				await LogError(log);
 			}
 			finally
 			{

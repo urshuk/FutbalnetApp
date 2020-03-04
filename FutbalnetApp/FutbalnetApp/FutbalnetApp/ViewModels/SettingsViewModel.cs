@@ -10,6 +10,7 @@ namespace FutbalnetApp.ViewModels
 		private int notificationMinutesAhead;
 
 		public bool NotificationsSet { get; set; }
+		public bool AdsSet { get; set; }
 		public int NotificationMinutesAhead
 		{
 			get => notificationMinutesAhead;
@@ -33,11 +34,13 @@ namespace FutbalnetApp.ViewModels
 		{
 			LocalDataStore.SetNotificationsMinutes(NotificationMinutesAhead);
 			LocalDataStore.SetNotificationsSettings(NotificationsSet);
+			LocalDataStore.SetAdsSettings(AdsSet);
 		}
 		void ExecuteLoadSettingsCommand()
 		{
 			NotificationsSet = LocalDataStore.GetNotificationsSettings();
 			NotificationMinutesAhead = LocalDataStore.GetNotificationsMinutes();
+			AdsSet = LocalDataStore.GetAdsSettings();
 		}
 	}
 }

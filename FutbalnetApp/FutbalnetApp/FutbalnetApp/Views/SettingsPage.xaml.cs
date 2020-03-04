@@ -102,5 +102,9 @@ namespace FutbalnetApp.Views
 
 			viewModel.LoadSettingsCommand.Execute(null);
 		}
+
+		private void BugEditor_TextChanged(object sender, TextChangedEventArgs e) => BugSendButton.IsEnabled = e.NewTextValue.Length > 2;
+
+		private void FeedbackEditor_TextChanged(object sender, TextChangedEventArgs e) => FeedbackSendButton.IsEnabled = e.NewTextValue.Length > 2;
 	}
 }

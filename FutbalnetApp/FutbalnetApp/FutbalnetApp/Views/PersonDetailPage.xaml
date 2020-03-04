@@ -140,6 +140,62 @@
                 <Label Grid.Column="4" Style="{StaticResource DefaultLabel}" Text="{Binding RC}"/>
             </Grid>
         </DataTemplate>
+        <DataTemplate x:Key="TransferItem">
+            <Grid BackgroundColor="{DynamicResource BackgroundColor}" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource DefaultLabel}" FontFamily="{StaticResource BoldFont}" Text="{Binding Type}"/>
+                <Image Grid.Column="1" Grid.Row="0" Aspect="AspectFit">
+                    <Image.Source>
+                        <OnPlatform x:TypeArguments="FileImageSource">
+                            <On Platform="Android" Value="PenaltyMissIcon.png"/>
+                            <On Platform="iOS" Value="PenaltyMissIcon.pdf"/>
+                        </OnPlatform>
+                    </Image.Source>
+                </Image>
+                <Image Grid.Column="1" Grid.Row="1" Aspect="AspectFit">
+                    <Image.Source>
+                        <OnPlatform x:TypeArguments="FileImageSource">
+                            <On Platform="Android" Value="PenaltyMissIcon.png"/>
+                            <On Platform="iOS" Value="PenaltyMissIcon.pdf"/>
+                        </OnPlatform>
+                    </Image.Source>
+                </Image>
+                <Label Grid.Column="2" Grid.Row="0" Style="{StaticResource DefaultLabel}" LineBreakMode="NoWrap" HorizontalTextAlignment="Start" Text="{Binding SourceClub}"/>
+                <Label Grid.Column="2" Grid.Row="1" Style="{StaticResource DefaultLabel}" LineBreakMode="NoWrap" HorizontalTextAlignment="Start" Text="{Binding DestinationClub}"/>
+                <Label Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource DefaultLabel}" Text="{Binding From, StringFormat='{0:dd.MM.yyy}'}"/>
+                <!--<Label Grid.Column="3" Grid.Row="1" Style="{StaticResource DefaultLabel}" Text="{Binding To, StringFormat='{0:dd.MM.yyy}', TargetNullValue='-'}"/>-->
+                <Image Grid.Column="4" Grid.Row="0" Grid.RowSpan="2">
+                    <Image.Triggers>
+                        <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="APROOVED">
+                            <Setter Property="Source">
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="PenaltyMissIcon.png"/>
+                                    <On Platform="iOS" Value="PenaltyMissIcon.pdf"/>
+                                </OnPlatform>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="REJECTED">
+                            <Setter Property="Source">
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="PenaltyMissIcon.png"/>
+                                    <On Platform="iOS" Value="PenaltyMissIcon.pdf"/>
+                                </OnPlatform>
+                            </Setter>
+                        </DataTrigger>
+                    </Image.Triggers>
+                </Image>
+            </Grid>
+        </DataTemplate>
         <controls:ListDataTemplateSelector x:Key="TemplateSelector" First="{StaticResource StatItem}" Alternative="{StaticResource StatItemAlternative}"/>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -165,6 +221,7 @@
                     <tabs:TabHostView.Tabs>
                         <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Info"/>
                         <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Štatistiky"/>
+                        <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Prestupy"/>
                     </tabs:TabHostView.Tabs>
                 </tabs:TabHostView>
                 <tabs:ViewSwitcher x:Name="TabSwitcher"
@@ -208,6 +265,9 @@
                                 HeaderTemplate="{StaticResource StatsHeader}"
                                 Header="true"
                                 ItemTemplate="{StaticResource TemplateSelector}"/>
+                    <CollectionView ItemsSource="{Binding Transfers}"
+                                Style="{StaticResource BaseCollectionView}"
+                                ItemTemplate="{StaticResource TransferItem}"/>
                 </tabs:ViewSwitcher>
                 <views:AdBanner Size="SmartBannerPortrait" VerticalOptions="End"/>
             </StackLayout>

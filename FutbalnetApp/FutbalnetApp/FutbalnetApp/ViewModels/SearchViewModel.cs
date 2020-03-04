@@ -88,7 +88,7 @@ namespace FutbalnetApp.ViewModels
 					Action = "Searching",
 					Datetime = DateTime.Now,
 				};
-				LogError(log);
+				await LogError(log);
 			}
 			finally
 			{

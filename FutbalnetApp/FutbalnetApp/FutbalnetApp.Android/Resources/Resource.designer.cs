@@ -26,6 +26,7 @@ namespace FutbalnetApp.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Plugin.LocalNotifications.Resource.Drawable.plugin_lc_smallicon = global::FutbalnetApp.Droid.Resource.Drawable.plugin_lc_smallicon;
 			global::Sharpnado.Presentation.Forms.Droid.Resource.Animation.abc_fade_in = global::FutbalnetApp.Droid.Resource.Animation.abc_fade_in;
 			global::Sharpnado.Presentation.Forms.Droid.Resource.Animation.abc_fade_out = global::FutbalnetApp.Droid.Resource.Animation.abc_fade_out;
 			global::Sharpnado.Presentation.Forms.Droid.Resource.Animation.abc_grow_fade_in_from_bottom = global::FutbalnetApp.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
@@ -7760,22 +7761,25 @@ namespace FutbalnetApp.Droid
 			public const int notify_panel_notification_icon_bg = 2131165300;
 			
 			// aapt resource value: 0x7F070075
-			public const int tab_about = 2131165301;
+			public const int plugin_lc_smallicon = 2131165301;
 			
 			// aapt resource value: 0x7F070076
-			public const int tab_feed = 2131165302;
+			public const int tab_about = 2131165302;
 			
 			// aapt resource value: 0x7F070077
-			public const int tooltip_frame_dark = 2131165303;
+			public const int tab_feed = 2131165303;
 			
 			// aapt resource value: 0x7F070078
-			public const int tooltip_frame_light = 2131165304;
+			public const int tooltip_frame_dark = 2131165304;
 			
 			// aapt resource value: 0x7F070079
-			public const int top_shadow = 2131165305;
+			public const int tooltip_frame_light = 2131165305;
 			
 			// aapt resource value: 0x7F07007A
-			public const int xamarin_logo = 2131165306;
+			public const int top_shadow = 2131165306;
+			
+			// aapt resource value: 0x7F07007B
+			public const int xamarin_logo = 2131165307;
 			
 			static Drawable()
 			{

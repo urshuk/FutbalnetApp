@@ -145,7 +145,7 @@ namespace FutbalnetApp.ViewModels
 					Action = "Loading Team",
 					Datetime = DateTime.Now,
 				};
-				LogError(log);
+				await LogError(log);
 			}
 			finally
 			{

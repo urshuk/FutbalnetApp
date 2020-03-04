@@ -100,7 +100,7 @@
                                Style="{StaticResource TabsContent}"
                                SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
                     <StackLayout Spacing="0">
-                        <Label Text="{Binding Competition.Name}" VerticalTextAlignment="Center" HeightRequest="20" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15">
+                        <Label Text="{Binding Competition.Name}" Margin="0,0,0,10" VerticalTextAlignment="Center" HeightRequest="20" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Competition_Tapped"/>
                             </Label.GestureRecognizers>

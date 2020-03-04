@@ -42,18 +42,29 @@
                         <ViewCell>
                             <StackLayout Padding="15,0">
                                 <Label Text="Nahlás problém" Padding="0, 10" Style="{StaticResource BaseLabel}"/>
-                                <Editor x:Name="BugEditor" Keyboard="Text" AutoSize="Disabled" HeightRequest="75" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Opíš čo najpodrobnejšie problém..."/>
-                                <Button Text="Odoslať" BackgroundColor="{DynamicResource AlternativeColor}" Margin="0,0,0,5" HeightRequest="25" WidthRequest="100" HorizontalOptions="Center" Clicked="BugSendClicked" FontSize="15" TextColor="{DynamicResource HighlightColor}"/>
+                                <Editor x:Name="BugEditor" Keyboard="Text" AutoSize="Disabled" HeightRequest="75" TextChanged="BugEditor_TextChanged" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Opíš čo najpodrobnejšie problém..."/>
+                                <Button x:Name="BugSendButton" Text="Odoslať" BackgroundColor="{DynamicResource AlternativeColor}" IsEnabled="False" Margin="0,0,0,5" HeightRequest="25" WidthRequest="100" HorizontalOptions="Center" Clicked="BugSendClicked" FontSize="15" TextColor="{DynamicResource HighlightColor}"/>
                             </StackLayout>
                         </ViewCell>
                         <ViewCell>
                             <StackLayout Padding="15,0">
                                 <Label Text="Más nápad?" Padding="0, 10" Style="{StaticResource BaseLabel}"/>
-                                <Editor x:Name="FeedbackEditor" Keyboard="Text" AutoSize="Disabled" HeightRequest="75" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Daj nám vedieť čo by si zlepšil a ako..."/>
-                                <Button Text="Odoslať" BackgroundColor="{DynamicResource AlternativeColor}" Margin="0,0,0,5" HeightRequest="25" WidthRequest="100" HorizontalOptions="Center" Clicked="FeedbackSendClicked" FontSize="15" TextColor="{DynamicResource HighlightColor}"/>
+                                <Editor x:Name="FeedbackEditor" Keyboard="Text" AutoSize="Disabled" HeightRequest="75" TextChanged="FeedbackEditor_TextChanged" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Daj nám vedieť čo by si zlepšil a ako..."/>
+                                <Button x:Name="FeedbackSendButton" Text="Odoslať" BackgroundColor="{DynamicResource AlternativeColor}" IsEnabled="False" Margin="0,0,0,5" HeightRequest="25" WidthRequest="100" HorizontalOptions="Center" Clicked="FeedbackSendClicked" FontSize="15" TextColor="{DynamicResource HighlightColor}"/>
                             </StackLayout>
                         </ViewCell>
                     </TableSection>
+                    <!--
+                    <TableSection Title="Podpora">
+                        <ViewCell>
+                            <StackLayout Padding="15,0,15,5" Spacing="0">
+                                <Label Text="O reklamách" Style="{StaticResource BaseLabel}"/>
+                                <Label Text="Povoľ reklamy a podpor tak ďalší vývoj aplikácie a opravy chýb. Reklamy sú malé a navrhnuté tak, aby vá" VerticalTextAlignment="Start" HeightRequest="-1" TextColor="{DynamicResource DarkAlternativeColor}" Style="{StaticResource BaseLabel}"/>
+                            </StackLayout>
+                        </ViewCell>
+                        <SwitchCell Text="Povoliť reklamy" OnColor="{DynamicResource HighlightColor}" OnChanged="SwitchCell_OnChanged" On="{Binding AdsSet, Mode=TwoWay}"/>
+                    </TableSection>
+                    -->
                     <TableSection Title="O aplikácii">
                         <ViewCell Height="30">
                             <StackLayout Orientation="Horizontal" Padding="15,0">

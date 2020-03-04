@@ -116,7 +116,7 @@ namespace FutbalnetApp.ViewModels
 					Action = "Loading competitions",
 					Datetime = DateTime.Now,
 				};
-				LogError(log);
+				await LogError(log);
 			}
 			finally
 			{

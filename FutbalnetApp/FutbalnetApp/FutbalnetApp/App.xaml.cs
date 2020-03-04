@@ -74,7 +74,7 @@ namespace FutbalnetApp
 		{
 			if (!IsConnected)
 			{
-				await MainPage.DisplayAlert("Žiadny prístup k internetu", "Skontrolujte svoje internetové pripojenie", "OK");
+				await MainPage.DisplayAlert("Žiadny prístup k internetu", "Skontrolujte vaše internetové pripojenie a skúste znova.", "OK");
 				await CheckConnectionAsync();
 			}
 		}

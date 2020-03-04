@@ -29,6 +29,7 @@ namespace FutbalnetApp.ViewModels
 		}
 		public Command OrderStatsCommand { get; set; }
 		public ObservableCollection<PlayerStatsSeason> OrderedStats { get; set; }
+		public ObservableCollection<Transfer> Transfers { get; set; }
 		public PlayerStatsSeason PlayerStatsSummary { get; set; }
 		public List<PlayerStatsSeason> PlayerStatsSeasons { get; set; }
 
@@ -37,6 +38,7 @@ namespace FutbalnetApp.ViewModels
 		{
 			PersonId = id;
 			OrderedStats = new ObservableCollection<PlayerStatsSeason>();
+			Transfers = new ObservableCollection<Transfer>();
 			LoadPersonCommand = new Command(async () => await ExecuteLoadPersonCommand());
 			OrderStatsCommand = new Command<string>((parameter) => ExecuteOrderStatsCommand(parameter));
 		}
@@ -115,15 +117,23 @@ namespace FutbalnetApp.ViewModels
 				{
 					Stats = await SportnetStore.GetPlayerStatsSummaryAsync(PersonId)
 				};
-				var seasons = await SportnetStore.GetSeasonsAsync();
+
+				var transfers = await SportnetStore.GetPlayerTransfersAsync(PersonId);
+				foreach (var transfer in transfers)
+				{
+					transfer.SourceClub = await SportnetStore.GetClubAsync(transfer.SourceClub.Id);
+					transfer.DestinationClub = await SportnetStore.GetClubAsync(transfer.DestinationClub.Id);
+					Transfers.Add(transfer);
+				}
+
 				PlayerStatsSeasons = new List<PlayerStatsSeason>();
-				foreach (var season in seasons)
+				foreach (var season in App.Seasons)
 				{
 					var stat = new PlayerStatsSeason
 					{
 						Season = season,
 						Stats = await SportnetStore.GetPlayerStatsBySeasonAsync(PersonId, season)
-				};
+					};
 					PlayerStatsSeasons.Add(stat);
 				}
 				OrderStatsCommand.Execute("Seasons");
@@ -141,7 +151,7 @@ namespace FutbalnetApp.ViewModels
 					Action = "Loading Person",
 					Datetime = DateTime.Now,
 				};
-				LogError(log);
+				await LogError(log);
 			}
 			finally
 			{

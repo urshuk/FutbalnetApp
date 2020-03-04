@@ -84,7 +84,7 @@ namespace FutbalnetApp.ViewModels
 					Action = "Loading Club",
 					Datetime = DateTime.Now,
 				};
-				LogError(log);
+				await LogError(log);
 			}
 			finally
 			{
