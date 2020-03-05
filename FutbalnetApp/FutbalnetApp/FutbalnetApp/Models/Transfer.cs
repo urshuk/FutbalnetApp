@@ -21,5 +21,6 @@ namespace FutbalnetApp.Models
 		public ClubPreview SourceClub { get; set; }
 		[JsonProperty("club_destination")]
 		public ClubPreview DestinationClub { get; set; }
+		public string DateRange => $"{From?.ToString("dd.MM.yyyy")} - {To?.ToString("dd.MM.yyyy")}";
 	}
 }

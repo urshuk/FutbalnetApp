@@ -141,8 +141,9 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="TransferItem">
-            <Grid BackgroundColor="{DynamicResource BackgroundColor}" RowSpacing="0">
+            <Grid BackgroundColor="{DynamicResource BackgroundColor}" Margin="0,0,0,20" RowSpacing="0">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
@@ -150,45 +151,44 @@
                     <ColumnDefinition Width="40"/>
                     <ColumnDefinition Width="20"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="70"/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource DefaultLabel}" FontFamily="{StaticResource BoldFont}" Text="{Binding Type}"/>
-                <Image Grid.Column="1" Grid.Row="0" Aspect="AspectFit">
-                    <Image.Source>
-                        <OnPlatform x:TypeArguments="FileImageSource">
-                            <On Platform="Android" Value="PenaltyMissIcon.png"/>
-                            <On Platform="iOS" Value="PenaltyMissIcon.pdf"/>
-                        </OnPlatform>
-                    </Image.Source>
-                </Image>
+                <BoxView Grid.Row="0" Grid.ColumnSpan="4" BackgroundColor="{DynamicResource AlternativeColor}"/>
+                <Label Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource DefaultLabel}" FontFamily="{StaticResource BoldFont}" Text="{Binding Type}"/>
                 <Image Grid.Column="1" Grid.Row="1" Aspect="AspectFit">
                     <Image.Source>
                         <OnPlatform x:TypeArguments="FileImageSource">
-                            <On Platform="Android" Value="PenaltyMissIcon.png"/>
-                            <On Platform="iOS" Value="PenaltyMissIcon.pdf"/>
+                            <On Platform="Android" Value="GreenArrowIcon.png"/>
+                            <On Platform="iOS" Value="GreenArrowIcon.pdf"/>
                         </OnPlatform>
                     </Image.Source>
                 </Image>
-                <Label Grid.Column="2" Grid.Row="0" Style="{StaticResource DefaultLabel}" LineBreakMode="NoWrap" HorizontalTextAlignment="Start" Text="{Binding SourceClub}"/>
+                <Image Grid.Column="1" Grid.Row="2" Aspect="AspectFit">
+                    <Image.Source>
+                        <OnPlatform x:TypeArguments="FileImageSource">
+                            <On Platform="Android" Value="RedArrowIcon.png"/>
+                            <On Platform="iOS" Value="RedArrowIcon.pdf"/>
+                        </OnPlatform>
+                    </Image.Source>
+                </Image>
+                <Label Grid.Column="2" Grid.Row="2" Style="{StaticResource DefaultLabel}" LineBreakMode="NoWrap" HorizontalTextAlignment="Start" Text="{Binding SourceClub}"/>
                 <Label Grid.Column="2" Grid.Row="1" Style="{StaticResource DefaultLabel}" LineBreakMode="NoWrap" HorizontalTextAlignment="Start" Text="{Binding DestinationClub}"/>
-                <Label Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource DefaultLabel}" Text="{Binding From, StringFormat='{0:dd.MM.yyy}'}"/>
-                <!--<Label Grid.Column="3" Grid.Row="1" Style="{StaticResource DefaultLabel}" Text="{Binding To, StringFormat='{0:dd.MM.yyy}', TargetNullValue='-'}"/>-->
-                <Image Grid.Column="4" Grid.Row="0" Grid.RowSpan="2">
+                <Label Grid.Column="2" Grid.Row="0" Style="{StaticResource DefaultLabel}" HorizontalTextAlignment="Start" Text="{Binding DateRange}"/>
+                <Image Grid.Column="3" Grid.Row="0">
                     <Image.Triggers>
                         <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="APROOVED">
                             <Setter Property="Source">
                                 <OnPlatform x:TypeArguments="FileImageSource">
-                                    <On Platform="Android" Value="PenaltyMissIcon.png"/>
-                                    <On Platform="iOS" Value="PenaltyMissIcon.pdf"/>
+                                    <On Platform="Android" Value="ApprovedIcon.png"/>
+                                    <On Platform="iOS" Value="ApprovedIcon.pdf"/>
                                 </OnPlatform>
                             </Setter>
                         </DataTrigger>
                         <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="REJECTED">
                             <Setter Property="Source">
                                 <OnPlatform x:TypeArguments="FileImageSource">
-                                    <On Platform="Android" Value="PenaltyMissIcon.png"/>
-                                    <On Platform="iOS" Value="PenaltyMissIcon.pdf"/>
+                                    <On Platform="Android" Value="RejectedIcon.png"/>
+                                    <On Platform="iOS" Value="RejectedIcon.pdf"/>
                                 </OnPlatform>
                             </Setter>
                         </DataTrigger>

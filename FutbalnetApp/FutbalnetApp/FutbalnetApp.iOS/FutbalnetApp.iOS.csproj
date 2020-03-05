@@ -190,6 +190,9 @@
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ApprovedIcon.imageset\approved-icon.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\CompetitionIcon.imageset\competitions-icon.pdf">
       <Visible>false</Visible>
     </ImageAsset>
@@ -217,6 +220,21 @@
     <ImageAsset Include="Assets.xcassets\GoalIcon.imageset\green-ball-icon.pdf">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\GreenArrowIcon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\GreenArrowIcon.imageset\green-arrow-icon.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\RedArrowIcon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ApprovedIcon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\RejectedIcon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\OwnGoalIcon.imageset\red-ball-icon.pdf">
       <Visible>false</Visible>
     </ImageAsset>
@@ -226,7 +244,13 @@
     <ImageAsset Include="Assets.xcassets\PenaltyMissIcon.imageset\penalty-miss-icon.pdf">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\RedArrowIcon.imageset\red-arrow-icon.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\RedCardIcon.imageset\red-card-icon.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\RejectedIcon.imageset\rejected-icon.pdf">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\SearchIcon.imageset\search-icon1.pdf">
