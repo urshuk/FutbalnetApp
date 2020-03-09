@@ -73,8 +73,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>Apple Development: Vit Vasak (5P8KYHJ76M)</CodesignKey>
+    <CodesignEntitlements>
+    </CodesignEntitlements>
+    <OptimizePNGs>true</OptimizePNGs>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignProvision>iOS Team Provisioning Profile: com.vitvasak.FutbalVille</CodesignProvision>
+    <CodesignExtraArgs />
+    <CodesignResourceRules />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
@@ -133,9 +140,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\1024.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\120.png">
       <Visible>false</Visible>
     </ImageAsset>
@@ -188,6 +192,9 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\logo-app.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\ApprovedIcon.imageset\approved-icon.pdf">
