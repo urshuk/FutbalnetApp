@@ -49,8 +49,8 @@ namespace FutbalnetApp.iOS
                         break;
                 }
 
-                //bannerView.AdUnitId = "ca-app-pub-7533314111096448/5172387086"; // My
-                bannerView.AdUnitId = "ca-app-pub-3940256099942544/2934735716"; //Test
+                bannerView.AdUnitId = "ca-app-pub-7533314111096448/5172387086"; // My
+                //bannerView.AdUnitId = "ca-app-pub-3940256099942544/2934735716"; //Test
                 foreach (UIWindow uiWindow in UIApplication.SharedApplication.Windows)
                 {
                     if (uiWindow.RootViewController != null)
