@@ -22,7 +22,7 @@
                 <TableRoot>
                     <TableSection Title="Notifikácie">
                         <SwitchCell Text="Povoliť notifikácie" OnColor="{DynamicResource HighlightColor}" OnChanged="SwitchCell_OnChanged" On="{Binding NotificationsSet, Mode=TwoWay}"/>
-                        <EntryCell Label="Počet minút pred začiatkom zápasu" LabelColor="{DynamicResource TextColor}" HorizontalTextAlignment="End" Text="{Binding NotificationMinutesAhead, Mode=TwoWay}" Keyboard="Numeric"/>
+                        <EntryCell Label="Upozornenie pred zápasom (min)" LabelColor="{DynamicResource TextColor}" Completed="EntryCell_Completed"  HorizontalTextAlignment="End" Text="{Binding NotificationMinutesAhead, Mode=TwoWay}" Keyboard="Numeric"/>
                     </TableSection>
                     <TableSection Title="Tipy">
                         <ViewCell>

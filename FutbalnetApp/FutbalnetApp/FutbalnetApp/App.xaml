@@ -10,13 +10,13 @@
     <Application.Resources>
         <Color x:Key="HighlightColor">#65B17F</Color>
         <Color x:Key="BackgroundColor">#FFFFFF</Color>
-        <Color x:Key="AlternativeColor">#F8F8F8</Color>
+        <Color x:Key="AlternativeColor">#F0F0F0</Color>
         <Color x:Key="DarkAlternativeColor">#888888</Color>
         <Color x:Key="TextColor">#000000</Color>
 
         <Color x:Key="HighlightColorLight">#65B17F</Color>
         <Color x:Key="BackgroundColorLight">#FFFFFF</Color>
-        <Color x:Key="AlternativeColorLight">#F8F8F8</Color>
+        <Color x:Key="AlternativeColorLight">#F0F0F0</Color>
         <Color x:Key="DarkAlternativeColorLight">#888888</Color>
         <Color x:Key="TextColorLight">#000000</Color>
 

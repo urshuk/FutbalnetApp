@@ -19,7 +19,7 @@ namespace FutbalnetApp.Models
 		[JsonProperty("competition.id")]
 		public int CompetitionId { get; set; }
 		[JsonProperty("datetime")]
-		public DateTime Datetime { get; set; }
+		public DateTime? Datetime { get; set; }
 		[JsonProperty("match_status")]
 		public string Status { get; set; }
 

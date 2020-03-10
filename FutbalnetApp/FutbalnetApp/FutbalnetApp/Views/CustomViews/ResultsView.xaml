@@ -15,7 +15,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="25"/>
                     <ColumnDefinition Width="12"/>
-                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="63"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25"/>
@@ -34,7 +34,7 @@
                         </DataTrigger>
                     </Frame.Triggers>
                 </Frame>
-                <Label Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Datetime, StringFormat='{0:dd.MMM hh:mm}'}"/>
+                <Label Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Datetime, StringFormat='{0:dd.MMM hh:mm}', TargetNullValue='Odložený'}"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="ResultItemAlternative">
@@ -44,7 +44,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="25"/>
                     <ColumnDefinition Width="12"/>
-                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="63"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25"/>
@@ -63,7 +63,7 @@
                         </DataTrigger>
                     </Frame.Triggers>
                 </Frame>
-                <Label Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Datetime, StringFormat='{0:dd.MMM hh:mm}'}"/>
+                <Label Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Datetime, StringFormat='{0:dd.MMM hh:mm}', TargetNullValue='Odložený'}"/>
             </Grid>
         </DataTemplate>
         <controls:ListDataTemplateSelector x:Key="TemplateSelector" First="{StaticResource ResultItem}" Alternative="{StaticResource ResultItemAlternative}"/>

@@ -39,8 +39,8 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
-  <key>GADApplicationIdentifier</key>
-  <string>ca-app-pub-7533314111096448~4242448797</string>
+	<string>1.0.1</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-7533314111096448~4242448797</string>
 </dict>
 </plist>
