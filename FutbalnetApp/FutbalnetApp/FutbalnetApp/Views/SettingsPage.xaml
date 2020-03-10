@@ -48,7 +48,7 @@
                         </ViewCell>
                         <ViewCell>
                             <StackLayout Padding="15,0">
-                                <Label Text="Más nápad?" Padding="0, 10" Style="{StaticResource BaseLabel}"/>
+                                <Label Text="Máš nápad?" Padding="0, 10" Style="{StaticResource BaseLabel}"/>
                                 <Editor x:Name="FeedbackEditor" Keyboard="Text" AutoSize="Disabled" HeightRequest="75" TextChanged="FeedbackEditor_TextChanged" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Daj nám vedieť čo by si zlepšil a ako..."/>
                                 <Button x:Name="FeedbackSendButton" Text="Odoslať" BackgroundColor="{DynamicResource AlternativeColor}" IsEnabled="False" Margin="0,0,0,5" HeightRequest="25" WidthRequest="100" HorizontalOptions="Center" Clicked="FeedbackSendClicked" FontSize="15" TextColor="{DynamicResource HighlightColor}"/>
                             </StackLayout>

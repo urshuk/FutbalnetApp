@@ -36,7 +36,7 @@
                         </DataTrigger>
                     </Frame.Triggers>
                 </Frame>
-                <Label Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Datetime, StringFormat='{0:dd.MMM hh:mm}'}"/>
+                <Label Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Datetime, StringFormat='{0:dd.MMM HH:mm}'}"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="ResultItemAlternative">
@@ -65,7 +65,7 @@
                         </DataTrigger>
                     </Frame.Triggers>
                 </Frame>
-                <Label Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Datetime, StringFormat='{0:dd.MMM hh:mm}'}"/>
+                <Label Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Datetime, StringFormat='{0:dd.MMM HH:mm}'}"/>
             </Grid>
         </DataTemplate>
         <controls:ListDataTemplateSelector x:Key="TemplateSelector" First="{StaticResource ResultItem}" Alternative="{StaticResource ResultItemAlternative}"/>
