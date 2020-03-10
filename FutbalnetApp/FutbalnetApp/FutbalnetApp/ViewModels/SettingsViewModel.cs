@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace FutbalnetApp.ViewModels
@@ -11,6 +12,7 @@ namespace FutbalnetApp.ViewModels
 
 		public bool NotificationsSet { get; set; }
 		public bool AdsSet { get; set; }
+		public string AppVersion => VersionTracking.CurrentVersion;
 		public int NotificationMinutesAhead
 		{
 			get => notificationMinutesAhead;
