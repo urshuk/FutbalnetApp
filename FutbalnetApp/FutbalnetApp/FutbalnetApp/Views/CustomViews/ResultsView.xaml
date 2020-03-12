@@ -116,7 +116,7 @@
         <StackLayout Spacing="0">
             <StackLayout Orientation="Horizontal">
                 <Label TextColor="{DynamicResource TextColor}" Text="Kolo" VerticalTextAlignment="Center" HorizontalOptions="Start"/>
-                <Picker x:Name="RoundPicker" BackgroundColor="{DynamicResource AlternativeColor}" HorizontalOptions="Center" HeightRequest="20" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" ItemsSource="{Binding Part.Rounds, Source={Reference Results}}" SelectedItem="{Binding Round, Source={Reference Results}, Mode=TwoWay}" Focused="RoundPicker_Focused" Unfocused="OnRoundChanged"/>
+                <Picker x:Name="RoundPicker" BackgroundColor="{DynamicResource AlternativeColor}" FontSize="14" HorizontalOptions="Center" HeightRequest="20" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" ItemsSource="{Binding Part.Rounds, Source={Reference Results}}" SelectedItem="{Binding Round, Source={Reference Results}, Mode=TwoWay}" Focused="RoundPicker_Focused" Unfocused="OnRoundChanged"/>
                 <Label TextColor="{DynamicResource TextColor}" Text="{Binding Round.Datetime, Source={Reference Results}, StringFormat='{0:dd.MM.yyyy}'}" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
             <CollectionView x:Name="MatchList"
