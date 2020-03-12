@@ -41,16 +41,42 @@
                     <TableSection Title="Napíš nám">
                         <ViewCell>
                             <StackLayout Padding="15,0">
-                                <Label Text="Nahlás problém" Padding="0, 10" Style="{StaticResource BaseLabel}"/>
-                                <Editor x:Name="BugEditor" Keyboard="Text" AutoSize="Disabled" HeightRequest="75" TextChanged="BugEditor_TextChanged" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Opíš čo najpodrobnejšie problém..."/>
-                                <Button x:Name="BugSendButton" Text="Odoslať" BackgroundColor="{DynamicResource AlternativeColor}" IsEnabled="False" Margin="0,0,0,5" HeightRequest="25" WidthRequest="100" HorizontalOptions="Center" Clicked="BugSendClicked" FontSize="15" TextColor="{DynamicResource HighlightColor}"/>
+                                <Label Text="Nahlás problém" Padding="0" Style="{StaticResource BaseLabel}"/>
+                                <Editor x:Name="BugEditor" Keyboard="Text" FontSize="14" AutoSize="Disabled" TextChanged="BugEditor_TextChanged" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Opíš čo najpodrobnejšie problém...">
+                                    <Editor.HeightRequest>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <On Platform="Android" Value="100"/>
+                                            <On Platform="iOS" Value="75"/>
+                                        </OnPlatform>
+                                    </Editor.HeightRequest>
+                                </Editor>
+                                <Button x:Name="BugSendButton" Text="Odoslať" BackgroundColor="{DynamicResource AlternativeColor}" Padding="0" IsEnabled="False" Margin="0,0,0,5" HeightRequest="25" WidthRequest="100" HorizontalOptions="Center" Clicked="BugSendClicked" FontSize="15">
+                                    <Button.Triggers>
+                                        <Trigger TargetType="Button" Property="IsEnabled" Value="True">
+                                            <Setter Property="TextColor" Value="{DynamicResource HighlightColor}"/>
+                                        </Trigger>
+                                    </Button.Triggers>
+                                </Button>
                             </StackLayout>
                         </ViewCell>
                         <ViewCell>
                             <StackLayout Padding="15,0">
-                                <Label Text="Máš nápad?" Padding="0, 10" Style="{StaticResource BaseLabel}"/>
-                                <Editor x:Name="FeedbackEditor" Keyboard="Text" AutoSize="Disabled" HeightRequest="75" TextChanged="FeedbackEditor_TextChanged" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Daj nám vedieť čo by si zlepšil a ako..."/>
-                                <Button x:Name="FeedbackSendButton" Text="Odoslať" BackgroundColor="{DynamicResource AlternativeColor}" IsEnabled="False" Margin="0,0,0,5" HeightRequest="25" WidthRequest="100" HorizontalOptions="Center" Clicked="FeedbackSendClicked" FontSize="15" TextColor="{DynamicResource HighlightColor}"/>
+                                <Label Text="Máš nápad?" Padding="0" Style="{StaticResource BaseLabel}"/>
+                                <Editor x:Name="FeedbackEditor" Keyboard="Text" FontSize="14" AutoSize="Disabled" TextChanged="FeedbackEditor_TextChanged" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Daj nám vedieť čo by si zlepšil a ako...">
+                                    <Editor.HeightRequest>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <On Platform="Android" Value="100"/>
+                                            <On Platform="iOS" Value="75"/>
+                                        </OnPlatform>
+                                    </Editor.HeightRequest>
+                                </Editor>
+                                <Button x:Name="FeedbackSendButton" Text="Odoslať" BackgroundColor="{DynamicResource AlternativeColor}" Padding="0" IsEnabled="False" Margin="0,0,0,5" HeightRequest="25" WidthRequest="100" HorizontalOptions="Center" Clicked="FeedbackSendClicked" FontSize="15">
+                                    <Button.Triggers>
+                                        <Trigger TargetType="Button" Property="IsEnabled" Value="True">
+                                            <Setter Property="TextColor" Value="{DynamicResource HighlightColor}"/>
+                                        </Trigger>
+                                    </Button.Triggers>
+                                </Button>
                             </StackLayout>
                         </ViewCell>
                     </TableSection>
