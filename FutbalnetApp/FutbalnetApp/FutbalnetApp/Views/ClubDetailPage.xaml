@@ -19,9 +19,48 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Padding="0" Grid.Column="0" Grid.Row="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}"/>
-                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Padding="0" Grid.Column="0" Grid.Row="1" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Age}"/>
-                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Padding="0" Grid.Column="0" Grid.Row="2" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Sex}"/>
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Grid.Column="0" Grid.Row="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}">
+                    <Label.Padding>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0,-10,0,-10"/>
+                            <On Platform="iOS" Value="0"/>
+                        </OnPlatform>
+                    </Label.Padding>
+                    <Label.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0,-10,0,-10"/>
+                            <On Platform="iOS" Value="0"/>
+                        </OnPlatform>
+                    </Label.Margin>
+                </Label>
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Grid.Column="0" Grid.Row="1" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Age}">
+                    <Label.Padding>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0,-10,0,-10"/>
+                            <On Platform="iOS" Value="0"/>
+                        </OnPlatform>
+                    </Label.Padding>
+                    <Label.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0,-10,0,-10"/>
+                            <On Platform="iOS" Value="0"/>
+                        </OnPlatform>
+                    </Label.Margin>
+                </Label>
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Grid.Column="0" Grid.Row="2" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Sex}">
+                    <Label.Padding>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0,-10,0,-10"/>
+                            <On Platform="iOS" Value="0"/>
+                        </OnPlatform>
+                    </Label.Padding>
+                    <Label.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0,-10,0,-10"/>
+                            <On Platform="iOS" Value="0"/>
+                        </OnPlatform>
+                    </Label.Margin>
+                </Label>
                 <Label Grid.Column="1" Grid.RowSpan="3" TextColor="{DynamicResource TextColor}" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
             </Grid>
         </DataTemplate>
@@ -52,7 +91,14 @@
                         </Image.Triggers>
                     </Image>
                     <Label Grid.Column="1" Grid.Row="0" Margin="5,0,0,0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15" VerticalTextAlignment="End" Text="{Binding Club.Name}"/>
-                    <Button Grid.Column="1" Grid.Row="1" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="{DynamicResource AlternativeColor}" Text="Kontakt info" WidthRequest="100" HeightRequest="30" Clicked="Button_Clicked"/>
+                    <Button Grid.Column="1" Grid.Row="1" TextColor="{DynamicResource HighlightColor}" Padding="0" FontFamily="{StaticResource NormalFont}" FontSize="13" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="{DynamicResource AlternativeColor}" Text="Kontakt info" HeightRequest="30" Clicked="Button_Clicked">
+                        <Button.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android" Value="120"/>
+                                <On Platform="iOS" Value="100"/>
+                            </OnPlatform>
+                        </Button.WidthRequest>
+                    </Button>
                     <ImageButton Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource FavouriteToggle}"/>
                 </Grid>
                 <CollectionView x:Name="TeamsList"
