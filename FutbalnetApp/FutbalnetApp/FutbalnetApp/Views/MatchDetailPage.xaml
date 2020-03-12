@@ -184,15 +184,15 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <StackLayout Grid.Column="0" Orientation="Horizontal">
+                <StackLayout Grid.Column="0" HeightRequest="25" Orientation="Horizontal">
                     <Label WidthRequest="20" Text="{Binding HomePlayer.Number}" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
                     <Label Text="{Binding HomePlayer.Person.Fullname}" LineBreakMode="NoWrap" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="LineupHomePlayerTapped"/>
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
-                <StackLayout Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
-                    <Label WidthRequest="20" Text="{Binding AwayPlayer.Number}" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
+                <StackLayout Grid.Column="1" HeightRequest="25" Orientation="Horizontal" FlowDirection="RightToLeft">
+                    <Label WidthRequest="20" Text="{Binding AwayPlayer.Number}" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="End" FontSize="12" VerticalTextAlignment="Center"/>
                     <Label Text="{Binding AwayPlayer.Person.Fullname}" LineBreakMode="NoWrap" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="LineupAwayPlayerTapped"/>
@@ -297,16 +297,22 @@
                                 SelectionChanged="OnPlayerSelectionChanged"
                                 ItemsSource="{Binding Events}"/>
                     <ScrollView VerticalScrollBarVisibility="Never">
-                        <StackLayout>
+                        <StackLayout Spacing="0">
                             <CollectionView x:Name="Lineups"
                                         IsGrouped="True"
-                                        ItemSizingStrategy="MeasureFirstItem"
-                                        Style="{StaticResource BaseCollectionView}"
                                         HeightRequest="{Binding LineupsHeight}"
+                                        Style="{StaticResource BaseCollectionView}"
                                         ItemTemplate="{StaticResource LineupItem}"
                                         GroupFooterTemplate="{StaticResource BlankFooter}"
                                         GroupHeaderTemplate="{StaticResource GroupHeader}"
-                                        ItemsSource="{Binding Lineups}"/>
+                                        ItemsSource="{Binding Lineups}">
+                                <CollectionView.ItemSizingStrategy>
+                                    <OnPlatform x:TypeArguments="ItemSizingStrategy">
+                                        <On Platform="Android" Value="MeasureAllItems"/>
+                                        <On Platform="iOS" Value="MeasureFirstItem"/>
+                                    </OnPlatform>
+                                </CollectionView.ItemSizingStrategy>
+                            </CollectionView>
                             <Label Text="Realizačný tím" 
                                FontSize="15"
                                HeightRequest="33"

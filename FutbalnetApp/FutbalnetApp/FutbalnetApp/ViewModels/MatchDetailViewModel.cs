@@ -80,14 +80,26 @@ namespace FutbalnetApp.ViewModels
 				}
 			}
 
-			Lineups = new List<LineupGroup>
+			if (Device.RuntimePlatform == Device.iOS)
 			{
-				new LineupGroup("BugFix", new List<LineupViewModel>()),
-				new LineupGroup("Základná zostava", starters),
-				new LineupGroup("Náhradníci", subs),
-			};
+				Lineups = new List<LineupGroup>
+				{
+					new LineupGroup("BugFix", new List<LineupViewModel>()),
+					new LineupGroup("Základná zostava", starters),
+					new LineupGroup("Náhradníci", subs),
+				};
+			}
+			else
+			{
+				Lineups = new List<LineupGroup>
+				{
+					new LineupGroup("Základná zostava", starters),
+					new LineupGroup("Náhradníci", subs),
+				};
+			}
 
-			LineupsHeight = ((Lineups.ElementAt(1).Count + Lineups.Last().Count) * 25) + 67;
+
+			LineupsHeight = ((starters.Count + subs.Count) * 25) + 67;
 
 			foreach (var item in Match.CoachingStaff)
 			{
