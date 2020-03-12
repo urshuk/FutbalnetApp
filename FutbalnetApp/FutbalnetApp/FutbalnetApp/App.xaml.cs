@@ -36,7 +36,10 @@ namespace FutbalnetApp
 
 			DependencyService.Register<SportnetDataStore>();
 			DependencyService.Register<LocalDataStore>();
-			MainPage = new AppShell();
+			if (Device.RuntimePlatform == Device.iOS)
+			{
+				MainPage = new AppShell();
+			}
 		}
 
 		protected override async void OnStart()

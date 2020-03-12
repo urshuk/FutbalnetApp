@@ -26,6 +26,8 @@
         <Color x:Key="DarkAlternativeColorDark">#888888</Color>
         <Color x:Key="TextColorDark">#F8F8F8</Color>
 
+        <x:Boolean x:Key="bla">True</x:Boolean>
+
         <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
             <On Platform="Android" Value="Montserrat-Medium.ttf#Montserrat" />
             <On Platform="UWP" Value="/Assets/Montserrat-Medium.ttf#Montserrat" />
@@ -83,7 +85,12 @@
             <Setter Property="HeightRequest" Value="33" />
         </Style>
         <Style x:Key="FavouriteToggle" TargetType="ImageButton">
-            <Setter Property="Source" Value="FavouriteNoFillIcon.pdf" />
+            <Setter Property="Source">
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="ic_favorite_nofill.xml"/>
+                    <On Platform="iOS" Value="FavouriteNoFillIcon.pdf"/>
+                </OnPlatform>
+            </Setter>
             <Setter Property="HeightRequest" Value="30" />
             <Setter Property="WidthRequest" Value="30" />
             <Setter Property="VerticalOptions" Value="Center" />
@@ -91,7 +98,20 @@
             <Setter Property="Command" Value="{Binding ToggleFavouriteCommand}" />
             <Style.Triggers>
                 <DataTrigger TargetType="ImageButton" Binding="{Binding IsFavourite}" Value="True">
-                    <Setter Property="Source" Value="FavouriteIcon.pdf" />
+                    <Setter Property="Source">
+                        <OnPlatform x:TypeArguments="FileImageSource">
+                            <On Platform="Android" Value="ic_favorite_fill.xml"/>
+                            <On Platform="iOS" Value="FavouriteIcon.pdf"/>
+                        </OnPlatform>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger TargetType="ImageButton" Binding="{Binding IsFavourite}" Value="False">
+                    <Setter Property="Source">
+                        <OnPlatform x:TypeArguments="FileImageSource">
+                            <On Platform="Android" Value="ic_favorite_nofill.xml"/>
+                            <On Platform="iOS" Value="FavouriteNoFillIcon.pdf"/>
+                        </OnPlatform>
+                    </Setter>
                 </DataTrigger>
             </Style.Triggers>
         </Style>

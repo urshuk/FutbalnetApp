@@ -28,7 +28,7 @@
                             <DataTrigger TargetType="Image" Binding="{Binding Type}" Value="NPK">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value="PenaltyMissIcon.png"/>
+                                        <On Platform="Android" Value="ic_penalty_miss.xml"/>
                                         <On Platform="iOS" Value="PenaltyMissIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
@@ -36,7 +36,7 @@
                             <DataTrigger TargetType="Image" Binding="{Binding Type}" Value="SUBST">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="ic_substitution.xml"/>
                                         <On Platform="iOS" Value="SubstitutionIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
@@ -44,7 +44,7 @@
                             <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="PENALTY">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="ic_grey_ball.xml"/>
                                         <On Platform="iOS" Value="PenaltyGoalIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
@@ -52,7 +52,7 @@
                             <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="GAME">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="ic_green_ball.xml"/>
                                         <On Platform="iOS" Value="GoalIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
@@ -60,7 +60,7 @@
                             <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="STANDARD">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="ic_black_ball.xml"/>
                                         <On Platform="iOS" Value="StandardGoalIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
@@ -68,7 +68,7 @@
                             <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="OWN">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="ic_red_ball.xml"/>
                                         <On Platform="iOS" Value="OwnGoalIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
@@ -76,7 +76,7 @@
                             <DataTrigger TargetType="Image" Binding="{Binding CardType}" Value="ZK">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="ic_yellow_card.xml"/>
                                         <On Platform="iOS" Value="YellowCardIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
@@ -84,7 +84,7 @@
                             <DataTrigger TargetType="Image" Binding="{Binding CardType}" Value="CK">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="ic_red_card.xml"/>
                                         <On Platform="iOS" Value="RedCardIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
@@ -92,7 +92,7 @@
                             <DataTrigger TargetType="Image" Binding="{Binding CardType}" Value="2ZK">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="ic_mixed_card.xml"/>
                                         <On Platform="iOS" Value="SecondYellowCardIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
@@ -232,11 +232,31 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Aspect="AspectFit" Source="{Binding Match.Teams[0].Club.Logo}">
+                        <Image.Triggers>
+                            <DataTrigger TargetType="Image" Binding="{Binding Match.Teams[0].Club.Logo}" Value="none">
+                                <Setter Property="Source">
+                                    <OnPlatform x:TypeArguments="FileImageSource">
+                                        <On Platform="Android" Value="ic_club.xml"/>
+                                        <On Platform="iOS" Value="DefaultClubLogo.pdf"/>
+                                    </OnPlatform>
+                                </Setter>
+                            </DataTrigger>
+                        </Image.Triggers>
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="HomeTeamTapped"/>
                         </Image.GestureRecognizers>
                     </Image>
                     <Image Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Aspect="AspectFit" Source="{Binding Match.Teams[1].Club.Logo}">
+                        <Image.Triggers>
+                            <DataTrigger TargetType="Image" Binding="{Binding Match.Teams[1].Club.Logo}" Value="none">
+                                <Setter Property="Source">
+                                    <OnPlatform x:TypeArguments="FileImageSource">
+                                        <On Platform="Android" Value="ic_club.xml"/>
+                                        <On Platform="iOS" Value="DefaultClubLogo.pdf"/>
+                                    </OnPlatform>
+                                </Setter>
+                            </DataTrigger>
+                        </Image.Triggers>
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="AwayTeamTapped"/>
                         </Image.GestureRecognizers>

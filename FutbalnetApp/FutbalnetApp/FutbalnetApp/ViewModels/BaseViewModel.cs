@@ -48,10 +48,10 @@ namespace FutbalnetApp.ViewModels
 
 		public async Task LogError(ErrorLog log)
 		{
-			var client = new MongoClient("mongodb+srv://mongoAdmin:mongoDraslik1598@freecluster-aqcdc.azure.mongodb.net/test?retryWrites=true&w=majority");
-			var database = client.GetDatabase("Logging");
-			var collection = database.GetCollection<ErrorLog>("errors");
-			await collection.InsertOneAsync(log);
+			//var client = new MongoClient("mongodb+srv://mongoAdmin:mongoDraslik1598@freecluster-aqcdc.azure.mongodb.net/test?retryWrites=true&w=majority");
+			//var database = client.GetDatabase("Logging");
+			//var collection = database.GetCollection<ErrorLog>("errors");
+			//await collection.InsertOneAsync(log);
 		}
 
 		protected bool SetProperty<T>(ref T backingStore, T value,
