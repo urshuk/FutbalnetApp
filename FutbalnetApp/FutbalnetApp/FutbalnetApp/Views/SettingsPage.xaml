@@ -22,7 +22,13 @@
                 <TableRoot>
                     <TableSection Title="Notifikácie">
                         <SwitchCell Text="Povoliť notifikácie" OnColor="{DynamicResource HighlightColor}" OnChanged="SwitchCell_OnChanged" On="{Binding NotificationsSet, Mode=TwoWay}"/>
-                        <EntryCell Label="Upozornenie pred zápasom (min)" LabelColor="{DynamicResource TextColor}" Completed="EntryCell_Completed"  HorizontalTextAlignment="End" Text="{Binding NotificationMinutesAhead, Mode=TwoWay}" Keyboard="Numeric"/>
+                        <ViewCell Height="50">
+                            <StackLayout Orientation="Horizontal" Padding="15,0">
+                                <Label Text="Upozornenie pred zápasom" Style="{StaticResource BaseLabel}"/>
+                                <Picker x:Name="minutePicker" BackgroundColor="{DynamicResource AlternativeColor}" FontSize="14" HorizontalOptions="Center" HeightRequest="20" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" ItemsSource="{Binding MinuteOptions}" SelectedItem="{Binding NotificationMinutesAhead, Mode=TwoWay}" Unfocused="minutePicker_Unfocused"/>
+                                <Label Text="min" Style="{StaticResource BaseLabel}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                            </StackLayout>
+                        </ViewCell>
                     </TableSection>
                     <TableSection Title="Tipy">
                         <ViewCell>

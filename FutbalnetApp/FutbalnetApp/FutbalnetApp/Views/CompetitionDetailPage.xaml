@@ -12,7 +12,7 @@
         <AbsoluteLayout>
             <StackLayout Style="{StaticResource MainLayout}">
                 <StackLayout Orientation="Horizontal" Margin="0,0,0,10" HorizontalOptions="CenterAndExpand" Spacing="5">
-                    <Label Text="{Binding Competition.Name}" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" LineBreakMode="NoWrap" FontSize="18" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    <Label Text="{Binding Competition.Name}" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" LineBreakMode="TailTruncation" FontSize="18" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                     <ImageButton HeightRequest="20" WidthRequest="20" Style="{StaticResource FavouriteToggle}"/>
                 </StackLayout>
                 <Picker x:Name="PartPicker" Margin="0,0,0,10" HeightRequest="20" FontSize="14" BackgroundColor="{DynamicResource AlternativeColor}" ItemsSource="{Binding Competition.Parts}" SelectedItem="{Binding Part, Mode=TwoWay}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Focused="PartPicker_Focused" Unfocused="OnPartChanged">

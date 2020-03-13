@@ -19,7 +19,7 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Grid.Column="0" Grid.Row="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}">
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" LineBreakMode="TailTruncation" Grid.Column="0" Grid.Row="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}">
                     <Label.Padding>
                         <OnPlatform x:TypeArguments="Thickness">
                             <On Platform="Android" Value="0,-10,0,-10"/>

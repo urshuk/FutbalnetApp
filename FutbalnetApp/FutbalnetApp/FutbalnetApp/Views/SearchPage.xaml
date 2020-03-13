@@ -67,7 +67,7 @@
                     </CollectionView.ItemsLayout>
                 </CollectionView>
             </tabs:ViewSwitcher>
-            <views:AdBanner Size="SmartBannerPortrait" VerticalOptions="End"/>
+            <views:AdBanner Size="SmartBannerPortrait" HeightRequest="50" MinimumWidthRequest="500" VerticalOptions="End"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

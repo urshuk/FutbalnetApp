@@ -100,7 +100,7 @@
                         </Image.Triggers>
                     </Image>
                 </StackLayout>
-                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Player.Fullname}" Padding="0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
+                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Player.Fullname}" LineBreakMode="TailTruncation" Padding="0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding ClubIndex}" Value="1">
                             <Setter Property="FlowDirection" Value="LeftToRight"/>
@@ -139,7 +139,7 @@
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
-                <Label Grid.Row="1" Grid.Column="2" Text="{Binding SubPlayer.Fullname}" Padding="0" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
+                <Label Grid.Row="1" Grid.Column="2" Text="{Binding SubPlayer.Fullname}" LineBreakMode="TailTruncation" Padding="0" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding ClubIndex}" Value="1">
                             <Setter Property="FlowDirection" Value="LeftToRight"/>
@@ -186,14 +186,14 @@
                 </Grid.ColumnDefinitions>
                 <StackLayout Grid.Column="0" HeightRequest="25" Orientation="Horizontal">
                     <Label WidthRequest="20" Text="{Binding HomePlayer.Number}" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
-                    <Label Text="{Binding HomePlayer.Person.Fullname}" LineBreakMode="NoWrap" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding HomePlayer.Person.Fullname}" LineBreakMode="TailTruncation" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="LineupHomePlayerTapped"/>
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
                 <StackLayout Grid.Column="1" HeightRequest="25" Orientation="Horizontal" FlowDirection="RightToLeft">
                     <Label WidthRequest="20" Text="{Binding AwayPlayer.Number}" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="End" FontSize="12" VerticalTextAlignment="Center"/>
-                    <Label Text="{Binding AwayPlayer.Person.Fullname}" LineBreakMode="NoWrap" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding AwayPlayer.Person.Fullname}" LineBreakMode="TailTruncation" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="LineupAwayPlayerTapped"/>
                     </StackLayout.GestureRecognizers>
@@ -207,12 +207,12 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="63"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Text="{Binding Persons[0].Fullname}" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Start" FontSize="12" VerticalTextAlignment="Center"/>
+                <Label Grid.Column="0" Text="{Binding Persons[0].Fullname}" LineBreakMode="TailTruncation" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Start" FontSize="12" VerticalTextAlignment="Center"/>
                 <Label Grid.Column="1" Text="{Binding Function}" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" FontSize="12" VerticalTextAlignment="Center"/>
-                <Label Grid.Column="2" Text="{Binding Persons[1].Fullname}" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="End" FontSize="12" VerticalTextAlignment="Center"/>
+                <Label Grid.Column="2" Text="{Binding Persons[1].Fullname}" LineBreakMode="TailTruncation" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="End" FontSize="12" VerticalTextAlignment="Center"/>
             </Grid>
         </DataTemplate>
     </ContentPage.Resources>

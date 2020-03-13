@@ -83,7 +83,7 @@
                     <ColumnDefinition Width="25"/>
                     <ColumnDefinition Width="25"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Style="{StaticResource DefaultLabel}" VerticalOptions="StartAndExpand" HorizontalTextAlignment="Start" Text="{Binding Player.Fullname}"/>
+                <Label Grid.Column="0" Style="{StaticResource DefaultLabel}" LineBreakMode="TailTruncation" VerticalOptions="StartAndExpand" HorizontalTextAlignment="Start" Text="{Binding Player.Fullname}"/>
                 <Label Grid.Column="1" Style="{StaticResource DefaultLabel}" Text="{Binding G}"/>
                 <Label Grid.Column="2" Style="{StaticResource DefaultLabel}" Text="{Binding Min}"/>
                 <Label Grid.Column="3" Style="{StaticResource DefaultLabel}" Text="{Binding YC}"/>
@@ -102,7 +102,7 @@
                     <ColumnDefinition Width="25"/>
                     <ColumnDefinition Width="25"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Style="{StaticResource DefaultLabel}" VerticalOptions="StartAndExpand" HorizontalTextAlignment="Start" Text="{Binding Player.Fullname}"/>
+                <Label Grid.Column="0" Style="{StaticResource DefaultLabel}" LineBreakMode="TailTruncation" VerticalOptions="StartAndExpand" HorizontalTextAlignment="Start" Text="{Binding Player.Fullname}"/>
                 <Label Grid.Column="1" Style="{StaticResource DefaultLabel}" Text="{Binding G}"/>
                 <Label Grid.Column="2" Style="{StaticResource DefaultLabel}" Text="{Binding Min}"/>
                 <Label Grid.Column="3" Style="{StaticResource DefaultLabel}" Text="{Binding YC}"/>

@@ -85,17 +85,6 @@ namespace FutbalnetApp.Views
 				DisplayAlert("Chyba", "Odosielanie zlyhalo", "OK");
 			}
 		}
-
-		private void EntryCell_Completed(object sender, EventArgs e)
-		{
-			viewModel.SaveSettingsCommand.Execute(null);
-		}
-
-		private void SwitchCell_OnChanged(object sender, ToggledEventArgs e)
-		{
-			viewModel.SaveSettingsCommand.Execute(null);
-		}
-
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
@@ -104,7 +93,16 @@ namespace FutbalnetApp.Views
 		}
 
 		private void BugEditor_TextChanged(object sender, TextChangedEventArgs e) => BugSendButton.IsEnabled = e.NewTextValue.Length > 2;
-
 		private void FeedbackEditor_TextChanged(object sender, TextChangedEventArgs e) => FeedbackSendButton.IsEnabled = e.NewTextValue.Length > 2;
+
+		private void minutePicker_Unfocused(object sender, FocusEventArgs e)
+		{
+			viewModel.SaveSettingsCommand.Execute(null);
+		}
+		private void SwitchCell_OnChanged(object sender, ToggledEventArgs e)
+		{
+			viewModel.SaveSettingsCommand.Execute(null);
+		}
+
 	}
 }
