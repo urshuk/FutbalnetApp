@@ -46,8 +46,8 @@ namespace FutbalnetApp.Droid
 						adView.AdSize = AdSize.Banner;
 						break;
 				}
-				//adView.AdUnitId = "ca-app-pub-7533314111096448/5729497657"; //production id
-				adView.AdUnitId = "ca-app-pub-3940256099942544/6300978111"; //test id
+				adView.AdUnitId = "ca-app-pub-7533314111096448/5729497657"; //production id
+				//adView.AdUnitId = "ca-app-pub-3940256099942544/6300978111"; //test id
 
 				var adParams = new LinearLayout.LayoutParams(LayoutParams.WrapContent, LayoutParams.WrapContent);
 				adView.LayoutParameters = adParams;
