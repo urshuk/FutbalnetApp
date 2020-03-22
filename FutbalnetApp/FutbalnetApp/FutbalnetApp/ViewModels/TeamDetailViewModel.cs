@@ -76,6 +76,7 @@ namespace FutbalnetApp.ViewModels
 				LocalDataStore.SaveTeam(Team);
 				IsFavourite = true;
 			}
+			MessagingCenter.Send(this, "FavouritesUpdated");
 		}
 
 		async Task LoadTeamMatchesAsync()

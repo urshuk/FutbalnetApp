@@ -8,8 +8,6 @@ namespace FutbalnetApp.ViewModels
 {
 	public class SettingsViewModel : BaseViewModel
 	{
-		private int notificationMinutesAhead;
-
 		public bool NotificationsSet { get; set; }
 		public bool AdsSet { get; set; }
 		public string AppVersion => VersionTracking.CurrentVersion;

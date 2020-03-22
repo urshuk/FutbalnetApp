@@ -104,5 +104,9 @@ namespace FutbalnetApp.Views
 			viewModel.SaveSettingsCommand.Execute(null);
 		}
 
+		private void ViewCell_Tapped(object sender, EventArgs e)
+		{
+			minutePicker.Focus();
+		}
 	}
 }
