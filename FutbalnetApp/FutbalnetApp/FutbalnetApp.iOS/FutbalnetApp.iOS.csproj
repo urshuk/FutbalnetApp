@@ -82,6 +82,7 @@
     <CodesignProvision>iOS Team Provisioning Profile: com.vitvasak.FutbalVille</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
+    <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
