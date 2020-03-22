@@ -30,6 +30,12 @@ namespace FutbalnetApp.Services
 		int GetNotificationsMinutes();
 		void SetNotificationsMinutes(int value);
 
+		NotificationMatch GetNotification(int matchId);
+		void DeleteNotification(int matchId);
+		List<NotificationMatch> GetNotificationMatches();
+		void SaveNotificationMatch(NotificationMatch match);
+		bool NotificationExists(int matchId);
+
 		bool GetAdsSettings();
 		void SetAdsSettings(bool value);
 	}

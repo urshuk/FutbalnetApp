@@ -28,14 +28,13 @@ namespace FutbalnetApp.ViewModels
 
 		private void SetMatchNotification(MatchPreview match)
 		{
-			if (!LocalDataStore.GetNotificationsSettings())
-				return;
-
-			var minutesAhead = LocalDataStore.GetNotificationsMinutes();
-			var message = minutesAhead > 0 ? $"Začiatok zápasu o {minutesAhead} min." : "Začiatok zápasu.";
-			if (match.Datetime.HasValue)
-				CrossLocalNotifications.Current.Show(match.ToString(), message, match.Id, match.Datetime.Value.AddMinutes(-minutesAhead));
-
+			var not = new NotificationMatch
+			{
+				MatchId = match.Id,
+				MatchName = match.ToString(),
+				DateTime = match.Datetime
+			};
+			LocalDataStore.SaveNotificationMatch(not);
 		}
 		private async Task<IEnumerable<MatchPreview>> GetTeamMatchesAsync(Team team, IEnumerable<CompetitionPreview> comps = null)
 		{
@@ -52,14 +51,28 @@ namespace FutbalnetApp.ViewModels
 					var competition = await SportnetStore.GetCompetitionAsync(comp.Id);
 					foreach (var part in competition.Parts)
 					{
-						foreach (var round in part.Rounds.Where(x => (x.Datetime - DateTime.Today).Days < 15 && (x.Datetime.Date >= DateTime.Today)))
+						/*foreach (var round in part.Rounds.Where(x => (x.Datetime - DateTime.Today).Days < 15 && (x.Datetime.Date >= DateTime.Today)))
 						{
 							var fullRound = await SportnetStore.GetCompetitionRoundAsync(competition.Id, part.Id, round.Id);
 							var match = fullRound.Matches.FirstOrDefault(x => x.Teams != null && x.Teams.FirstOrDefault(y => y.Id == team.Id) != null); ;
-							if (match != null && match.Status == "VYGENEROVANY")
+							if (match != null && match.Status == "VYGENEROVANY" && match.Datetime != null)
 							{
 								matches.Add(match);
 								SetMatchNotification(match);
+							}
+						}*/
+						var currentRoundNumber = part.Rounds.FirstOrDefault(x => (x.Datetime.Date >= DateTime.Today.AddDays(-1))).Number;
+						foreach (var round in part.Rounds.Where(x => ((x.Datetime - DateTime.Today).Days < 17 && (x.Datetime.Date >= DateTime.Today)) || x.Number >= currentRoundNumber - 1))
+						{
+							var fullRound = await SportnetStore.GetCompetitionRoundAsync(competition.Id, part.Id, round.Id);
+							var match = fullRound.Matches.FirstOrDefault(x => x.Teams != null && x.Teams.FirstOrDefault(y => y.Id == team.Id) != null); ;
+							if (match != null && match.Status == "VYGENEROVANY" && match.Datetime != null)
+							{
+								if ((match.Datetime.Value.Date - DateTime.Today).Days < 15 && (match.Datetime.Value.Date >= DateTime.Today))
+								{
+									matches.Add(match);
+									SetMatchNotification(match);
+								}
 							}
 						}
 					}

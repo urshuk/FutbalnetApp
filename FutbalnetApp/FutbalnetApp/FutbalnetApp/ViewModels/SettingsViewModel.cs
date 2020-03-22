@@ -42,6 +42,8 @@ namespace FutbalnetApp.ViewModels
 			LocalDataStore.SetNotificationsMinutes(NotificationMinutesAhead);
 			LocalDataStore.SetNotificationsSettings(NotificationsSet);
 			LocalDataStore.SetAdsSettings(AdsSet);
+			MessagingCenter.Send(this, "SettinsUpdated");
+
 		}
 		void ExecuteLoadSettingsCommand()
 		{
