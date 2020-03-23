@@ -30,6 +30,7 @@ namespace FutbalnetApp.Views
 
 				mail.From = new MailAddress("vitvasakport@gmail.com");
 				mail.To.Add("vitvasak@outlook.com");
+				mail.IsBodyHtml = true;
 				mail.Subject = "FutbalVille-Feedback";
 				mail.Body = FeedbackEditor.Text;
 
@@ -53,13 +54,13 @@ namespace FutbalnetApp.Views
 		{
 			try
 			{
-				var deviceInfo = $"\n\n\nPlatform: {DeviceInfo.Platform}\n" +
-					$"Idiom: {DeviceInfo.Idiom}\n" +
-					$"Version: {DeviceInfo.VersionString}\n" +
-					$"Model: {DeviceInfo.Model}\n" +
-					$"Manufacturer: {DeviceInfo.Manufacturer}\n" +
-					$"Device name: {DeviceInfo.Name}\n" +
-					$"Type: {DeviceInfo.DeviceType}\n" +
+				var deviceInfo = $"<br/><br/><br/>Platform: {DeviceInfo.Platform}<br/>" +
+					$"Idiom: {DeviceInfo.Idiom}<br/>" +
+					$"Version: {DeviceInfo.VersionString}<br/>" +
+					$"Model: {DeviceInfo.Model}<br/>" +
+					$"Manufacturer: {DeviceInfo.Manufacturer}<br/>" +
+					$"Device name: {DeviceInfo.Name}<br/>" +
+					$"Type: {DeviceInfo.DeviceType}<br/>" +
 					$"App Version: {VersionTracking.CurrentVersion}";
 
 				var mail = new MailMessage();
@@ -67,6 +68,7 @@ namespace FutbalnetApp.Views
 
 				mail.From = new MailAddress("vitvasakport@gmail.com");
 				mail.To.Add("vitvasak@outlook.com");
+				mail.IsBodyHtml = true;
 				mail.Subject = "FutbalVille-Bug";
 				mail.Body = BugEditor.Text + deviceInfo;
 
