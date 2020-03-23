@@ -140,9 +140,10 @@ namespace FutbalnetApp.ViewModels
 				Debug.WriteLine(ex);
 				var log = new ErrorLog()
 				{
-					Exception = ex,
-					Object = Team,
-					ObjectId = TeamId,
+					ExceptionType = ex.GetType().ToString(),
+					Status = ErrorLog.LogStatus.Unread,
+					Message = ex.Message,
+					ObjectId = TeamId.ToString(),
 					Action = "Loading Team",
 					Datetime = DateTime.Now,
 				};

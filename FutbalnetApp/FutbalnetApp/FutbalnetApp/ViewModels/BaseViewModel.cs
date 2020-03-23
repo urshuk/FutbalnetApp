@@ -17,6 +17,7 @@ namespace FutbalnetApp.ViewModels
 	{
 		public ISportnetDataStore SportnetStore => DependencyService.Get<ISportnetDataStore>();
 		public ILocalDataStore LocalDataStore => DependencyService.Get<ILocalDataStore>();
+		public IDatabaseStore DatabaseStore => DependencyService.Get<IDatabaseStore>();
 
 		bool isBusy = false;
 		public bool IsBusy
@@ -46,13 +47,7 @@ namespace FutbalnetApp.ViewModels
 			set => SetProperty(ref title, value);
 		}
 
-		public async Task LogError(ErrorLog log)
-		{
-			//var client = new MongoClient("mongodb+srv://mongoAdmin:mongoDraslik1598@freecluster-aqcdc.azure.mongodb.net/test?retryWrites=true&w=majority");
-			//var database = client.GetDatabase("Logging");
-			//var collection = database.GetCollection<ErrorLog>("errors");
-			//await collection.InsertOneAsync(log);
-		}
+		public async Task LogError(ErrorLog log) => await DatabaseStore.PostErrorLog(log);
 
 		protected bool SetProperty<T>(ref T backingStore, T value,
 			[CallerMemberName]string propertyName = "",

@@ -208,9 +208,10 @@ namespace FutbalnetApp.ViewModels
 				Debug.WriteLine(ex);
 				var log = new ErrorLog()
 				{
-					Exception = ex,
-					Object = Match,
-					ObjectId = MatchId,
+					ExceptionType = ex.GetType().ToString(),
+					Status = ErrorLog.LogStatus.Unread,
+					Message = ex.Message,
+					ObjectId = MatchId.ToString(),
 					Action = "Loading Match",
 					Datetime = DateTime.Now,
 				};

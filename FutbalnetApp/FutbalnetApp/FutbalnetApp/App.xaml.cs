@@ -18,9 +18,9 @@ namespace FutbalnetApp
 		//To debug on Android emulators run the web backend against .NET Core not IIS
 		//If using other emulators besides stock Google images you may need to adjust the IP address
 		public static IEnumerable<Season> Seasons { get; set; }
-		public static string AzureBackendUrl =
-			DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5000" : "http://localhost:5000";
+
 		public static string SportnetApiUrl = "https://futbalnet.sportnet.online/api";
+		public static string FutbalVilleApiUrl = "https://futbalvilleblazor.azurewebsites.net/api";
 		bool IsConnected => Connectivity.NetworkAccess == NetworkAccess.Internet;
 
 		//roadmap
@@ -36,6 +36,7 @@ namespace FutbalnetApp
 			InitializeComponent();
 
 			DependencyService.Register<SportnetDataStore>();
+			DependencyService.Register<DatabaseStore>();
 			DependencyService.Register<LocalDataStore>();
 			if (Device.RuntimePlatform == Device.iOS)
 			{
