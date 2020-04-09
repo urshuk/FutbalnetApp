@@ -40,7 +40,10 @@ namespace FutbalnetApp.Views
 			if (!(e.CurrentSelection.FirstOrDefault() is MatchEventViewModel eventItem))
 				return;
 
-			await Navigation.PushAsync(new PersonDetailPage(eventItem.Player.Id));
+			if (eventItem.Type == "SUBST")
+				await Navigation.PushAsync(new PersonDetailPage(eventItem.SubPlayer.Id));
+			else
+				await Navigation.PushAsync(new PersonDetailPage(eventItem.Player.Id));
 
 			// Manually deselect item.
 			EventList.SelectedItem = null;

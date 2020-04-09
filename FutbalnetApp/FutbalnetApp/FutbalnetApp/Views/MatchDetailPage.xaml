@@ -100,7 +100,7 @@
                         </Image.Triggers>
                     </Image>
                 </StackLayout>
-                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Player.Fullname}" LineBreakMode="TailTruncation" Padding="0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
+                <Label Grid.Row="0" Grid.Column="2" Text="{Binding SubPlayer.Fullname}" LineBreakMode="TailTruncation" Padding="0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding ClubIndex}" Value="1">
                             <Setter Property="FlowDirection" Value="LeftToRight"/>
@@ -139,7 +139,7 @@
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
-                <Label Grid.Row="1" Grid.Column="2" Text="{Binding SubPlayer.Fullname}" LineBreakMode="TailTruncation" Padding="0" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
+                <Label Grid.Row="1" Grid.Column="2" Text="{Binding Player.Fullname}" LineBreakMode="TailTruncation" Padding="0" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding ClubIndex}" Value="1">
                             <Setter Property="FlowDirection" Value="LeftToRight"/>
