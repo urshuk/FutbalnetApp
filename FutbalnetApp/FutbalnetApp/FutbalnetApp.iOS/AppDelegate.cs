@@ -28,7 +28,7 @@ namespace FutbalnetApp.iOS
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
 			SharpnadoInitializer.Initialize();
-            LoadApplication(new App());
+			LoadApplication(new App());
             if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
             {
                 // Ask the user for permission to get notifications on iOS 10.0+

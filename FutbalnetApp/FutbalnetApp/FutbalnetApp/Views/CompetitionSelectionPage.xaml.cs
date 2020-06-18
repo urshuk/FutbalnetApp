@@ -28,10 +28,7 @@ namespace FutbalnetApp.Views
 
 			viewModel.Union = union;
 			viewModel.ReloadListsCommand.Execute(null);
-			competitionSelector.SelectedIndex = 0;
 			//viewModel.ParentUnionId = union.Id;
-
-			// Manually deselect item.
 			UnionList.SelectedItem = null;
 		}
 
