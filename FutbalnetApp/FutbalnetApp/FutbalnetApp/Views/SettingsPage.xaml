@@ -43,6 +43,19 @@
                                 <Label Text="Na časovej osi sa ti zobrazia najbližšie zápasy tvojich obľúbených tímov a notifikácia ťa upozorní na ich začiatok" VerticalTextAlignment="Start" HeightRequest="-1" TextColor="{DynamicResource DarkAlternativeColor}" Style="{StaticResource BaseLabel}"/>
                             </StackLayout>
                         </ViewCell>
+                        <ViewCell>
+                            <Button x:Name="GoToFVButton" 
+                                    Text="Zisti viac" 
+                                    BackgroundColor="{DynamicResource AlternativeColor}"
+                                    TextColor="{DynamicResource HighlightColor}"
+                                    Padding="0" 
+                                    Margin="0,5" 
+                                    HeightRequest="25" 
+                                    WidthRequest="100" 
+                                    HorizontalOptions="Center" 
+                                    Clicked="GoToFVButton_Clicked" 
+                                    FontSize="15"/>
+                        </ViewCell>
                     </TableSection>
                     <TableSection Title="Napíš nám">
                         <ViewCell>

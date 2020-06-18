@@ -110,5 +110,10 @@ namespace FutbalnetApp.Views
 		{
 			minutePicker.Focus();
 		}
+
+		private async void GoToFVButton_Clicked(object sender, EventArgs e)
+		{
+			await Browser.OpenAsync("https://futbalville.sk/", BrowserLaunchMode.SystemPreferred);
+		}
 	}
 }

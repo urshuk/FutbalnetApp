@@ -53,6 +53,7 @@ namespace FutbalnetApp.ViewModels
 					var competition = await SportnetStore.GetCompetitionAsync(comp.Id);
 					foreach (var part in competition.Parts)
 					{
+						//for matches from other rounds i guess
 						/*foreach (var round in part.Rounds.Where(x => (x.Datetime - DateTime.Today).Days < 15 && (x.Datetime.Date >= DateTime.Today)))
 						{
 							roundcouunt++;
