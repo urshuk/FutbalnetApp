@@ -41,7 +41,7 @@
                                     </OnPlatform>
                                 </Setter>
                             </DataTrigger>
-                            <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="PENALTY">
+                            <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="Gól z penalty">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
                                         <On Platform="Android" Value="ic_grey_ball.xml"/>
@@ -49,7 +49,7 @@
                                     </OnPlatform>
                                 </Setter>
                             </DataTrigger>
-                            <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="GAME">
+                            <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="Gól z hry">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
                                         <On Platform="Android" Value="ic_green_ball.xml"/>
@@ -57,7 +57,7 @@
                                     </OnPlatform>
                                 </Setter>
                             </DataTrigger>
-                            <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="STANDARD">
+                            <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="Gól zo štandardnej situácie">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
                                         <On Platform="Android" Value="ic_black_ball.xml"/>
@@ -65,7 +65,7 @@
                                     </OnPlatform>
                                 </Setter>
                             </DataTrigger>
-                            <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="OWN">
+                            <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="Vlastný gól">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
                                         <On Platform="Android" Value="ic_red_ball.xml"/>
@@ -111,45 +111,18 @@
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
-                <Label Grid.Row="1" Grid.Column="2" Padding="0" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding GoalType}" Value="{Null}">
-                            <Setter Property="Text" Value=""/>
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding GoalType}" Value="GAME">
-                            <Setter Property="Text" Value="Gól z hry"/>
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding GoalType}" Value="PENALTY">
-                            <Setter Property="Text" Value="Gól z penalty"/>
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding GoalType}" Value="OWN">
-                            <Setter Property="Text" Value="Vlastný gól"/>
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding GoalType}" Value="STANDARD">
-                            <Setter Property="Text" Value="Gól zo štandardnej situácie"/>
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding ClubIndex}" Value="1">
-                            <Setter Property="FlowDirection" Value="LeftToRight"/>
-                            <Setter Property="HorizontalTextAlignment" Value="End"/>
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-                <Label Grid.Row="1" Grid.Column="2" Text="{Binding CardReason}" Padding="0" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
+                <Label Grid.Row="1" Grid.Column="2" Padding="0" TextColor="{DynamicResource DarkAlternativeColor}" LineBreakMode="TailTruncation" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
+                    <Label.Text>
+                        <MultiBinding StringFormat="{}{0}{1}{2}">
+                            <Binding Path="GoalType"/>
+                            <Binding Path="CardReason"/>
+                            <Binding Path="SubbedPlayerName"/>
+                        </MultiBinding>
+                    </Label.Text>
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding ClubIndex}" Value="1">
                             <Setter Property="FlowDirection" Value="LeftToRight"/>
                             <Setter Property="HorizontalTextAlignment" Value="End"/>
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-                <Label Grid.Row="1" Grid.Column="2" LineBreakMode="TailTruncation" Padding="0" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding ClubIndex}" Value="1">
-                            <Setter Property="FlowDirection" Value="LeftToRight"/>
-                            <Setter Property="HorizontalTextAlignment" Value="End"/>
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding Type}" Value="SUBST">
-                            <Setter Property="Text" Value="{Binding Player.Fullname}"/>
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
@@ -301,6 +274,7 @@
                                 GroupFooterTemplate="{StaticResource BlankFooter}"
                                 GroupHeaderTemplate="{StaticResource GroupHeader}"
                                 SelectionChanged="OnPlayerSelectionChanged"
+                                    ItemSizingStrategy="MeasureFirstItem"
                                 ItemsSource="{Binding Events}"/>
                     <ScrollView VerticalScrollBarVisibility="Never">
                         <StackLayout Spacing="0">

@@ -156,6 +156,23 @@ namespace FutbalnetApp.ViewModels
 					SubIndex = item.SubIndex,
 					SubPlayerNumber = item.SubPlayerNumber,
 				};
+				switch (item.GoalType)
+				{
+					case "GAME":
+						matchEvent.GoalType = "Gól z hry";
+						break;
+					case "PENALTY":
+						matchEvent.GoalType = "Gól z penalty";
+						break;
+					case "OWN":
+						matchEvent.GoalType = "Vlastný gól";
+						break;
+					case "STANDARD":
+						matchEvent.GoalType = "Gól zo štandardnej situácie";
+						break;
+					default:
+						break;
+				}
 				foreach (var starter in Match.Players.ElementAt(item.ClubIndex).Starters)
 				{
 					if (starter.Number == item.PlayerNumber)
@@ -171,6 +188,10 @@ namespace FutbalnetApp.ViewModels
 
 					if (sub.Number == item.SubPlayerNumber)
 						matchEvent.SubPlayer = sub.Person;
+				}
+				if (item.Type == "SUBST")
+				{
+					matchEvent.SubbedPlayerName = matchEvent.Player.Fullname;
 				}
 				matchEvents.Add(matchEvent);
 			}
