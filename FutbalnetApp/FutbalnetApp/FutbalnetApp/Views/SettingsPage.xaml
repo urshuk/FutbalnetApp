@@ -45,13 +45,12 @@
                         </ViewCell>
                         <ViewCell>
                             <Button x:Name="GoToFVButton" 
-                                    Text="Zisti viac" 
+                                    Text="Viac na webe FV" 
                                     BackgroundColor="{DynamicResource AlternativeColor}"
                                     TextColor="{DynamicResource HighlightColor}"
-                                    Padding="0" 
+                                    Padding="10, 0" 
                                     Margin="0,5" 
                                     HeightRequest="25" 
-                                    WidthRequest="100" 
                                     HorizontalOptions="Center" 
                                     Clicked="GoToFVButton_Clicked" 
                                     FontSize="15"/>

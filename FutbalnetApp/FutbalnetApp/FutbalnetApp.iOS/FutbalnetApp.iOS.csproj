@@ -29,8 +29,8 @@
     <MtouchDebug>true</MtouchDebug>
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
     <MtouchProfiling>false</MtouchProfiling>
-    <CodesignKey>iPhone Developer: vitvasak@outlook.com (5P8KYHJ76M)</CodesignKey>
-    <CodesignProvision>iOS Team Provisioning Profile: com.companyname.FutbalnetApp</CodesignProvision>
+    <CodesignKey>Apple Distribution: Vit Vasak (USSK54STU9)</CodesignKey>
+    <CodesignProvision>iOS Team Store Provisioning Profile: com.vitvasak.FutbalVille</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
     <CodesignEntitlements />
