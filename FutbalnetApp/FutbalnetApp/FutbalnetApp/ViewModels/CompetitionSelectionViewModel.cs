@@ -19,12 +19,18 @@ namespace FutbalnetApp.ViewModels
 		public IEnumerable<CompetitionPreview> AllCompetitions { get; set; }
 		public IEnumerable<UnionPreview> AllUnions { get; set; }
 		int selectedCompetitionIndex = 0;
+		int selectedCategoryIndex = 0;
+
 		public int SelectedCompetitionIndex
 		{
 			get => selectedCompetitionIndex;
 			set => SetProperty(ref selectedCompetitionIndex, value);
 		}
-		public int SelectedCategoryIndex { get; set; }
+		public int SelectedCategoryIndex
+		{
+			get => selectedCategoryIndex;
+			set => SetProperty(ref selectedCategoryIndex, value);
+		}
 		public Command LoadCompetitionsCommand { get; set; }
 		public Command ReloadListsCommand { get; set; }
 		private UnionPreview union;
