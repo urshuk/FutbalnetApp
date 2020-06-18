@@ -38,48 +38,48 @@
                                        Style="{StaticResource TabsContent}"
                                        Animate="True"
                                        SelectedIndex="{Binding SelectedCategoryIndex, Mode=TwoWay}">
-                        <CollectionView x:Name="MCompsList"
-                                        ItemTemplate="{StaticResource ListItemSecondary}"
-                                        Style="{StaticResource BaseCollectionView}"
+                        <ListView x:Name="MCompsList"
+                                        ItemTemplate="{StaticResource ListItemSecondary2}"
+                                        Style="{StaticResource BaseListView}"
                                         ItemsSource="{Binding MenCompetitions}"
-                                        EmptyView="Žiadne súťaže v tejto kategórii"
-                                        SelectionChanged="OnCompetitionSelected">
-                            <CollectionView.ItemsLayout>
+                                        ItemSelected="OnCompetitionSelected">
+                            <!--EmptyView="Žiadne súťaže v tejto kategórii"-->
+                            <!--<CollectionView.ItemsLayout>
                                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
-                            </CollectionView.ItemsLayout>
-                        </CollectionView>
-                        <CollectionView x:Name="WCompsList"
-                                        ItemTemplate="{StaticResource ListItemSecondary}"
+                            </CollectionView.ItemsLayout>-->
+                        </ListView>
+                        <ListView x:Name="WCompsList"
+                                        ItemTemplate="{StaticResource ListItemSecondary2}"
                                         ItemsSource="{Binding WomenCompetitions}"
-                                        SelectionChanged="OnCompetitionSelected"
-                                        EmptyView="Žiadne súťaže v tejto kategórii"
-                                        Style="{StaticResource BaseCollectionView}">
+                                        ItemSelected="OnCompetitionSelected"
+                                        Style="{StaticResource BaseListView}">
+                            <!--EmptyView="Žiadne súťaže v tejto kategórii"
                             <CollectionView.ItemsLayout>
                                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
-                            </CollectionView.ItemsLayout>
-                        </CollectionView>
-                        <CollectionView x:Name="YCompsList"
-                                        ItemTemplate="{StaticResource ListItemSecondary}"
-                                        Style="{StaticResource BaseCollectionView}"
+                            </CollectionView.ItemsLayout>-->
+                        </ListView>
+                        <ListView x:Name="YCompsList"
+                                        ItemTemplate="{StaticResource ListItemSecondary2}"
+                                        Style="{StaticResource BaseListView}"
                                         ItemsSource="{Binding YoungCompetitions}"
-                                        EmptyView="Žiadne súťaže v tejto kategórii"
-                                        SelectionChanged="OnCompetitionSelected">
+                                        ItemSelected="OnCompetitionSelected">
+                            <!--EmptyView="Žiadne súťaže v tejto kategórii"
                             <CollectionView.ItemsLayout>
                                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
-                            </CollectionView.ItemsLayout>
-                        </CollectionView>
+                            </CollectionView.ItemsLayout>-->
+                        </ListView>
                     </tabs:ViewSwitcher>
                 </StackLayout>
-                <CollectionView x:Name="UnionList"
+                <ListView x:Name="UnionList"
                                 Margin="0,10,0,0"
-                                ItemTemplate="{StaticResource ListItemSecondary}"
+                                ItemTemplate="{StaticResource ListItemSecondary2}"
                                 ItemsSource="{Binding SubUnions}"
-                                Style="{StaticResource BaseCollectionView}"
-                                SelectionChanged="UnionList_SelectionChanged">
-                    <CollectionView.ItemsLayout>
+                                Style="{StaticResource BaseListView}"
+                                ItemSelected="UnionList_SelectionChanged">
+                    <!--<CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
-                    </CollectionView.ItemsLayout>
-                </CollectionView>
+                    </CollectionView.ItemsLayout>-->
+                </ListView>
             </tabs:ViewSwitcher>
             <views:AdBanner Size="SmartBannerPortrait" HeightRequest="50" MinimumWidthRequest="500" VerticalOptions="End"/>
         </StackLayout>
