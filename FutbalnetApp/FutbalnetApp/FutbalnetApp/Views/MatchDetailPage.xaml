@@ -28,7 +28,7 @@
                             <DataTrigger TargetType="Image" Binding="{Binding Type}" Value="NPK">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value="PenaltyMissIcon.png"/>
+                                        <On Platform="Android" Value="ic_penalty_miss.xml"/>
                                         <On Platform="iOS" Value="PenaltyMissIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
@@ -36,39 +36,39 @@
                             <DataTrigger TargetType="Image" Binding="{Binding Type}" Value="SUBST">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="ic_substitution.xml"/>
                                         <On Platform="iOS" Value="SubstitutionIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
                             </DataTrigger>
-                            <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="PENALTY">
+                            <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="Gól z penalty">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="ic_grey_ball.xml"/>
                                         <On Platform="iOS" Value="PenaltyGoalIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
                             </DataTrigger>
-                            <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="GAME">
+                            <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="Gól z hry">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="ic_green_ball.xml"/>
                                         <On Platform="iOS" Value="GoalIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
                             </DataTrigger>
-                            <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="STANDARD">
+                            <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="Gól zo štandardnej situácie">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="ic_black_ball.xml"/>
                                         <On Platform="iOS" Value="StandardGoalIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
                             </DataTrigger>
-                            <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="OWN">
+                            <DataTrigger TargetType="Image" Binding="{Binding GoalType}" Value="Vlastný gól">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="ic_red_ball.xml"/>
                                         <On Platform="iOS" Value="OwnGoalIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
@@ -76,7 +76,7 @@
                             <DataTrigger TargetType="Image" Binding="{Binding CardType}" Value="ZK">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="ic_yellow_card.xml"/>
                                         <On Platform="iOS" Value="YellowCardIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
@@ -84,7 +84,7 @@
                             <DataTrigger TargetType="Image" Binding="{Binding CardType}" Value="CK">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="ic_red_card.xml"/>
                                         <On Platform="iOS" Value="RedCardIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
@@ -92,7 +92,7 @@
                             <DataTrigger TargetType="Image" Binding="{Binding CardType}" Value="2ZK">
                                 <Setter Property="Source">
                                     <OnPlatform x:TypeArguments="FileImageSource">
-                                        <On Platform="Android" Value=""/>
+                                        <On Platform="Android" Value="ic_mixed_card.xml"/>
                                         <On Platform="iOS" Value="SecondYellowCardIcon.pdf"/>
                                     </OnPlatform>
                                 </Setter>
@@ -100,46 +100,25 @@
                         </Image.Triggers>
                     </Image>
                 </StackLayout>
-                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Player.Fullname}" Padding="0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
+                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Player.Fullname}" LineBreakMode="TailTruncation" Padding="0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding ClubIndex}" Value="1">
                             <Setter Property="FlowDirection" Value="LeftToRight"/>
                             <Setter Property="HorizontalTextAlignment" Value="End"/>
                         </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-                <Label Grid.Row="1" Grid.Column="2" Padding="0" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding GoalType}" Value="{Null}">
-                            <Setter Property="Text" Value=""/>
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding GoalType}" Value="GAME">
-                            <Setter Property="Text" Value="Gól z hry"/>
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding GoalType}" Value="PENALTY">
-                            <Setter Property="Text" Value="Gól z penalty"/>
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding GoalType}" Value="OWN">
-                            <Setter Property="Text" Value="Vlastný gól"/>
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding GoalType}" Value="STANDARD">
-                            <Setter Property="Text" Value="Gól zo štandardnej situácie"/>
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding ClubIndex}" Value="1">
-                            <Setter Property="FlowDirection" Value="LeftToRight"/>
-                            <Setter Property="HorizontalTextAlignment" Value="End"/>
+                        <DataTrigger TargetType="Label" Binding="{Binding Type}" Value="SUBST">
+                            <Setter Property="Text" Value="{Binding SubPlayer.Fullname}"/>
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
-                <Label Grid.Row="1" Grid.Column="2" Text="{Binding CardReason}" Padding="0" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding ClubIndex}" Value="1">
-                            <Setter Property="FlowDirection" Value="LeftToRight"/>
-                            <Setter Property="HorizontalTextAlignment" Value="End"/>
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-                <Label Grid.Row="1" Grid.Column="2" Text="{Binding SubPlayer.Fullname}" Padding="0" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
+                <Label Grid.Row="1" Grid.Column="2" Padding="0" TextColor="{DynamicResource DarkAlternativeColor}" LineBreakMode="TailTruncation" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center">
+                    <Label.Text>
+                        <MultiBinding StringFormat="{}{0}{1}{2}">
+                            <Binding Path="GoalType"/>
+                            <Binding Path="CardReason"/>
+                            <Binding Path="SubbedPlayerName"/>
+                        </MultiBinding>
+                    </Label.Text>
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding ClubIndex}" Value="1">
                             <Setter Property="FlowDirection" Value="LeftToRight"/>
@@ -184,16 +163,16 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <StackLayout Grid.Column="0" Orientation="Horizontal">
+                <StackLayout Grid.Column="0" HeightRequest="25" Orientation="Horizontal">
                     <Label WidthRequest="20" Text="{Binding HomePlayer.Number}" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
-                    <Label Text="{Binding HomePlayer.Person.Fullname}" LineBreakMode="NoWrap" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding HomePlayer.Person.Fullname}" LineBreakMode="TailTruncation" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="LineupHomePlayerTapped"/>
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
-                <StackLayout Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
-                    <Label WidthRequest="20" Text="{Binding AwayPlayer.Number}" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
-                    <Label Text="{Binding AwayPlayer.Person.Fullname}" LineBreakMode="NoWrap" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
+                <StackLayout Grid.Column="1" HeightRequest="25" Orientation="Horizontal" FlowDirection="RightToLeft">
+                    <Label WidthRequest="20" Text="{Binding AwayPlayer.Number}" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="End" FontSize="12" VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding AwayPlayer.Person.Fullname}" LineBreakMode="TailTruncation" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center"/>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="LineupAwayPlayerTapped"/>
                     </StackLayout.GestureRecognizers>
@@ -207,12 +186,12 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="63"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Text="{Binding Persons[0].Fullname}" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Start" FontSize="12" VerticalTextAlignment="Center"/>
+                <Label Grid.Column="0" Text="{Binding Persons[0].Fullname}" LineBreakMode="TailTruncation" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Start" FontSize="12" VerticalTextAlignment="Center"/>
                 <Label Grid.Column="1" Text="{Binding Function}" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" FontSize="12" VerticalTextAlignment="Center"/>
-                <Label Grid.Column="2" Text="{Binding Persons[1].Fullname}" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="End" FontSize="12" VerticalTextAlignment="Center"/>
+                <Label Grid.Column="2" Text="{Binding Persons[1].Fullname}" LineBreakMode="TailTruncation" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="End" FontSize="12" VerticalTextAlignment="Center"/>
             </Grid>
         </DataTemplate>
     </ContentPage.Resources>
@@ -232,11 +211,31 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Aspect="AspectFit" Source="{Binding Match.Teams[0].Club.Logo}">
+                        <Image.Triggers>
+                            <DataTrigger TargetType="Image" Binding="{Binding Match.Teams[0].Club.Logo}" Value="none">
+                                <Setter Property="Source">
+                                    <OnPlatform x:TypeArguments="FileImageSource">
+                                        <On Platform="Android" Value="ic_club.xml"/>
+                                        <On Platform="iOS" Value="DefaultClubLogo.pdf"/>
+                                    </OnPlatform>
+                                </Setter>
+                            </DataTrigger>
+                        </Image.Triggers>
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="HomeTeamTapped"/>
                         </Image.GestureRecognizers>
                     </Image>
                     <Image Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Aspect="AspectFit" Source="{Binding Match.Teams[1].Club.Logo}">
+                        <Image.Triggers>
+                            <DataTrigger TargetType="Image" Binding="{Binding Match.Teams[1].Club.Logo}" Value="none">
+                                <Setter Property="Source">
+                                    <OnPlatform x:TypeArguments="FileImageSource">
+                                        <On Platform="Android" Value="ic_club.xml"/>
+                                        <On Platform="iOS" Value="DefaultClubLogo.pdf"/>
+                                    </OnPlatform>
+                                </Setter>
+                            </DataTrigger>
+                        </Image.Triggers>
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="AwayTeamTapped"/>
                         </Image.GestureRecognizers>
@@ -250,7 +249,7 @@
                     </Label>
                     <Label Grid.Column="1" Grid.Row="1" TextColor="{DynamicResource HighlightColor}" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.ScoreString}"/>
                     <Label Grid.Column="1" Grid.Row="2" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.PartialScoreString}"/>
-                    <Label Grid.Column="1" Grid.Row="2" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" IsVisible="{Binding Match.NotStartedYet}" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.Datetime, StringFormat='{0:dd.MM. hh:mm}'}"/>
+                    <Label Grid.Column="1" Grid.Row="2" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" IsVisible="{Binding Match.NotStartedYet}" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Match.Datetime, StringFormat='{0:dd.MM. HH:mm}'}"/>
                     <Label Grid.Column="0" Grid.Row="3" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" VerticalOptions="StartAndExpand" FontSize="12" Padding="0,5,0,0" VerticalTextAlignment="Start" HorizontalTextAlignment="Center" Text="{Binding Match.Teams[0].Name}"/>
                     <Label Grid.Column="2" Grid.Row="3" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" VerticalOptions="StartAndExpand" FontSize="12" Padding="0,5,0,0" VerticalTextAlignment="Start" HorizontalTextAlignment="Center" Text="{Binding Match.Teams[1].Name}"/>
                 </Grid>
@@ -275,18 +274,25 @@
                                 GroupFooterTemplate="{StaticResource BlankFooter}"
                                 GroupHeaderTemplate="{StaticResource GroupHeader}"
                                 SelectionChanged="OnPlayerSelectionChanged"
+                                    ItemSizingStrategy="MeasureFirstItem"
                                 ItemsSource="{Binding Events}"/>
                     <ScrollView VerticalScrollBarVisibility="Never">
-                        <StackLayout>
+                        <StackLayout Spacing="0">
                             <CollectionView x:Name="Lineups"
                                         IsGrouped="True"
-                                        ItemSizingStrategy="MeasureFirstItem"
-                                        Style="{StaticResource BaseCollectionView}"
                                         HeightRequest="{Binding LineupsHeight}"
+                                        Style="{StaticResource BaseCollectionView}"
                                         ItemTemplate="{StaticResource LineupItem}"
                                         GroupFooterTemplate="{StaticResource BlankFooter}"
                                         GroupHeaderTemplate="{StaticResource GroupHeader}"
-                                        ItemsSource="{Binding Lineups}"/>
+                                        ItemsSource="{Binding Lineups}">
+                                <CollectionView.ItemSizingStrategy>
+                                    <OnPlatform x:TypeArguments="ItemSizingStrategy">
+                                        <On Platform="Android" Value="MeasureAllItems"/>
+                                        <On Platform="iOS" Value="MeasureFirstItem"/>
+                                    </OnPlatform>
+                                </CollectionView.ItemSizingStrategy>
+                            </CollectionView>
                             <Label Text="Realizačný tím" 
                                FontSize="15"
                                HeightRequest="33"
@@ -318,17 +324,17 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Row="0" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="Meno" FontSize="15" FontFamily="{StaticResource BoldFont}" TextColor="{DynamicResource TextColor}"/>
                         <Label Grid.Row="0" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="Funkcia" FontSize="15" FontFamily="{StaticResource BoldFont}" TextColor="{DynamicResource TextColor}" HorizontalTextAlignment="Center"/>
-                        <Label Grid.Row="1" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.Referee.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="1" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.Referee.Fullname, FallbackValue='Nezúčastnený', TargetNullValue='Nezúčastnený'}" FontSize="13" FontFamily="{StaticResource NormalFont}" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
                         <Label Grid.Row="1" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="Rozhodca" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
-                        <Label Grid.Row="2" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.AssistantReferee1.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="2" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.AssistantReferee1.Fullname, FallbackValue='Nezúčastnený', TargetNullValue='Nezúčastnený'}" FontSize="13" FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}"/>
                         <Label Grid.Row="2" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="1. asistent rozhodcu" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" TextColor="{DynamicResource TextColor}"/>
-                        <Label Grid.Row="3" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.AssistantReferee2.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="3" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.AssistantReferee2.Fullname, FallbackValue='Nezúčastnený', TargetNullValue='Nezúčastnený'}" FontSize="13" FontFamily="{StaticResource NormalFont}" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
                         <Label Grid.Row="3" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="2. asistent rozhodcu" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
-                        <Label Grid.Row="4" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.Delegate.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="4" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.Delegate.Fullname, FallbackValue='Nezúčastnený', TargetNullValue='Nezúčastnený'}" FontSize="13" FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}"/>
                         <Label Grid.Row="4" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="Delegát" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" TextColor="{DynamicResource TextColor}"/>
-                        <Label Grid.Row="5" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.Videotech.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="5" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.Videotech.Fullname, FallbackValue='Nezúčastnený', TargetNullValue='Nezúčastnený'}" FontSize="13" FontFamily="{StaticResource NormalFont}" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
                         <Label Grid.Row="5" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="Videotechnik" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AlternativeColor}" TextColor="{DynamicResource TextColor}"/>
-                        <Label Grid.Row="6" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.HeadOrganizer.Fullname}" FontSize="13" FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}"/>
+                        <Label Grid.Row="6" Grid.Column="0" Padding="5" VerticalTextAlignment="Center" Text="{Binding Match.Officials.HeadOrganizer.Fullname, FallbackValue='Nezúčastnený', TargetNullValue='Nezúčastnený'}" FontSize="13" FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}"/>
                         <Label Grid.Row="6" Grid.Column="1" Padding="5" VerticalTextAlignment="Center" Text="Hlavný usporiadateľ" FontSize="13" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" TextColor="{DynamicResource TextColor}"/>
                     </Grid>
                     <tabs:ViewSwitcher.Triggers>

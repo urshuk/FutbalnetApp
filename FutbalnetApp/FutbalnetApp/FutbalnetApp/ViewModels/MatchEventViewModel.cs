@@ -9,5 +9,6 @@ namespace FutbalnetApp.ViewModels
 	{
 		public PersonPreview Player { get; set; }
 		public PersonPreview SubPlayer { get; set; }
+		public string SubbedPlayerName { get; set; }
 	}
 }

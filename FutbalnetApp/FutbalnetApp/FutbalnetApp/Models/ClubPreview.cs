@@ -18,7 +18,7 @@ namespace FutbalnetApp.Models
 		[JsonProperty("logo.url")]
 		public string LogoBase { get; set; }
 		public int LogoId => int.TryParse(LogoBase.Substring(LogoBase.LastIndexOf("/") + 1), out int result) ? result : -1;
-		public string Logo => LogoUrl != null ? $"https://futbalnet.sportnet.online/api/images/{LogoId}" : "DefaultClubLogo.pdf";
+		public string Logo => LogoUrl != null ? $"https://futbalnet.sportnet.online/api/images/{LogoId}" : "none";
 
 		public override string ToString() => Name;
 	}

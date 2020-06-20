@@ -30,6 +30,7 @@ namespace FutbalnetApp.Views
 
 				mail.From = new MailAddress("vitvasakport@gmail.com");
 				mail.To.Add("vitvasak@outlook.com");
+				mail.IsBodyHtml = true;
 				mail.Subject = "FutbalVille-Feedback";
 				mail.Body = FeedbackEditor.Text;
 
@@ -53,13 +54,13 @@ namespace FutbalnetApp.Views
 		{
 			try
 			{
-				var deviceInfo = $"\n\n\nPlatform: {DeviceInfo.Platform}\n" +
-					$"Idiom: {DeviceInfo.Idiom}\n" +
-					$"Version: {DeviceInfo.VersionString}\n" +
-					$"Model: {DeviceInfo.Model}\n" +
-					$"Manufacturer: {DeviceInfo.Manufacturer}\n" +
-					$"Device name: {DeviceInfo.Name}\n" +
-					$"Type: {DeviceInfo.DeviceType}\n" +
+				var deviceInfo = $"<br/><br/><br/>Platform: {DeviceInfo.Platform}<br/>" +
+					$"Idiom: {DeviceInfo.Idiom}<br/>" +
+					$"Version: {DeviceInfo.VersionString}<br/>" +
+					$"Model: {DeviceInfo.Model}<br/>" +
+					$"Manufacturer: {DeviceInfo.Manufacturer}<br/>" +
+					$"Device name: {DeviceInfo.Name}<br/>" +
+					$"Type: {DeviceInfo.DeviceType}<br/>" +
 					$"App Version: {VersionTracking.CurrentVersion}";
 
 				var mail = new MailMessage();
@@ -67,6 +68,7 @@ namespace FutbalnetApp.Views
 
 				mail.From = new MailAddress("vitvasakport@gmail.com");
 				mail.To.Add("vitvasak@outlook.com");
+				mail.IsBodyHtml = true;
 				mail.Subject = "FutbalVille-Bug";
 				mail.Body = BugEditor.Text + deviceInfo;
 
@@ -85,17 +87,6 @@ namespace FutbalnetApp.Views
 				DisplayAlert("Chyba", "Odosielanie zlyhalo", "OK");
 			}
 		}
-
-		private void EntryCell_Completed(object sender, EventArgs e)
-		{
-			viewModel.SaveSettingsCommand.Execute(null);
-		}
-
-		private void SwitchCell_OnChanged(object sender, ToggledEventArgs e)
-		{
-			viewModel.SaveSettingsCommand.Execute(null);
-		}
-
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
@@ -104,7 +95,25 @@ namespace FutbalnetApp.Views
 		}
 
 		private void BugEditor_TextChanged(object sender, TextChangedEventArgs e) => BugSendButton.IsEnabled = e.NewTextValue.Length > 2;
-
 		private void FeedbackEditor_TextChanged(object sender, TextChangedEventArgs e) => FeedbackSendButton.IsEnabled = e.NewTextValue.Length > 2;
+
+		private void minutePicker_Unfocused(object sender, FocusEventArgs e)
+		{
+			viewModel.SaveSettingsCommand.Execute(null);
+		}
+		private void SwitchCell_OnChanged(object sender, ToggledEventArgs e)
+		{
+			viewModel.SaveSettingsCommand.Execute(null);
+		}
+
+		private void ViewCell_Tapped(object sender, EventArgs e)
+		{
+			minutePicker.Focus();
+		}
+
+		private async void GoToFVButton_Clicked(object sender, EventArgs e)
+		{
+			await Browser.OpenAsync("https://futbalville.sk/", BrowserLaunchMode.SystemPreferred);
+		}
 	}
 }

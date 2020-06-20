@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using FutbalnetApp.Models;
 using System.Linq;
 using System.Threading.Tasks;
+using FutbalnetApp.ViewModels;
 
 namespace FutbalnetApp
 {
@@ -17,9 +18,9 @@ namespace FutbalnetApp
 		//To debug on Android emulators run the web backend against .NET Core not IIS
 		//If using other emulators besides stock Google images you may need to adjust the IP address
 		public static IEnumerable<Season> Seasons { get; set; }
-		public static string AzureBackendUrl =
-			DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5000" : "http://localhost:5000";
+
 		public static string SportnetApiUrl = "https://futbalnet.sportnet.online/api";
+		public static string FutbalVilleApiUrl = "https://futbalvilleblazor.azurewebsites.net/api";
 		bool IsConnected => Connectivity.NetworkAccess == NetworkAccess.Internet;
 
 		//roadmap
@@ -35,8 +36,12 @@ namespace FutbalnetApp
 			InitializeComponent();
 
 			DependencyService.Register<SportnetDataStore>();
+			DependencyService.Register<DatabaseStore>();
 			DependencyService.Register<LocalDataStore>();
-			MainPage = new AppShell();
+			if (Device.RuntimePlatform == Device.iOS)
+			{
+				MainPage = new AppShell();
+			}
 		}
 
 		protected override async void OnStart()
@@ -52,6 +57,9 @@ namespace FutbalnetApp
 
 			ISportnetDataStore SportnetStore = DependencyService.Get<ISportnetDataStore>();
 			Seasons = SportnetStore.GetSeasons();
+
+			SetNotifications();
+			MessagingCenter.Subscribe<SettingsViewModel>(this, "SettinsUpdated", (sender) => SetNotifications());
 		}
 
 		protected override void OnSleep()
@@ -70,6 +78,27 @@ namespace FutbalnetApp
 			await CheckConnectionAsync();
 		}
 
+		void SetNotifications()
+		{
+			ILocalDataStore LocalDataStore = DependencyService.Get<ILocalDataStore>();
+
+			if (!LocalDataStore.GetNotificationsSettings())
+				return;
+
+			var minutesAhead = LocalDataStore.GetNotificationsMinutes();
+			var message = minutesAhead > 0 ? $"Začiatok zápasu o {minutesAhead} min." : "Začiatok zápasu.";
+			var notifications = LocalDataStore.GetNotificationMatches();
+
+			foreach (var not in notifications)
+			{
+				Plugin.LocalNotifications.CrossLocalNotifications.Current.Cancel(not.MatchId);
+			}
+			foreach (var not in notifications)
+			{
+				if (not.DateTime.HasValue)
+					Plugin.LocalNotifications.CrossLocalNotifications.Current.Show(not.MatchName, message, not.MatchId, not.DateTime.Value.AddMinutes(-minutesAhead));
+			}
+		}
 		async Task CheckConnectionAsync()
 		{
 			if (!IsConnected)

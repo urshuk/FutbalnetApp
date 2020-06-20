@@ -110,9 +110,9 @@ namespace FutbalnetApp.ViewModels
 				Debug.WriteLine(ex);
 				var log = new ErrorLog()
 				{
-					Exception = ex,
-					Object = null,
-					ObjectId = 0,
+					ExceptionType = ex.GetType().ToString(),
+					Status = ErrorLog.LogStatus.Unread,
+					Message = ex.Message,
 					Action = "Loading competitions",
 					Datetime = DateTime.Now,
 				};

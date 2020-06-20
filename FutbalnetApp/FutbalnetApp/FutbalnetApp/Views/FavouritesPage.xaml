@@ -27,14 +27,51 @@
                             <Setter Property="Grid.RowSpan" Value="3" />
                         </DataTrigger>
                     </Label.Triggers>
+                    <Label.Padding>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0,-10,0,-10"/>
+                            <On Platform="iOS" Value="0"/>
+                        </OnPlatform>
+                    </Label.Padding>
+                    <Label.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0,-10,0,-10"/>
+                            <On Platform="iOS" Value="0"/>
+                        </OnPlatform>
+                    </Label.Margin>
                 </Label>
-                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Padding="0" Grid.Column="1" Grid.Row="1" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Age}"/>
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Padding="0" Grid.Column="1" Grid.Row="1" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Age}">
+                    <Label.Padding>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0,-10,0,-10"/>
+                            <On Platform="iOS" Value="0"/>
+                        </OnPlatform>
+                    </Label.Padding>
+                    <Label.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0,-10,0,-10"/>
+                            <On Platform="iOS" Value="0"/>
+                        </OnPlatform>
+                    </Label.Margin>
+                </Label>
                 <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Padding="0" Grid.Column="1" Grid.Row="2" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Sex}">
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding Age, FallbackValue=none}" Value="none">
                             <Setter Property="IsVisible" Value="False" />
                         </DataTrigger>
                     </Label.Triggers>
+                    <Label.Padding>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0,-10,0,-10"/>
+                            <On Platform="iOS" Value="0"/>
+                        </OnPlatform>
+                    </Label.Padding>
+                    <Label.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0,-10,0,-10"/>
+                            <On Platform="iOS" Value="0"/>
+                        </OnPlatform>
+                    </Label.Margin>
                 </Label>
                 <Label Grid.Column="2" Grid.RowSpan="3" TextColor="{DynamicResource TextColor}" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
             </Grid>
@@ -71,7 +108,7 @@
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
                 </CollectionView.ItemsLayout>
             </CollectionView>
-            <views:AdBanner Size="SmartBannerPortrait" VerticalOptions="End"/>
+            <views:AdBanner Size="SmartBannerPortrait" HeightRequest="50" MinimumWidthRequest="500" VerticalOptions="End"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -79,9 +79,10 @@ namespace FutbalnetApp.ViewModels
 				Debug.WriteLine(ex);
 				var log = new ErrorLog()
 				{
-					Exception = ex,
-					Object = term,
-					ObjectId = 0,
+					ExceptionType = ex.GetType().ToString(),
+					Status = ErrorLog.LogStatus.Unread,
+					Message = ex.Message,
+					ObjectId = term,
 					Action = "Searching",
 					Datetime = DateTime.Now,
 				};

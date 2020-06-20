@@ -80,14 +80,26 @@ namespace FutbalnetApp.ViewModels
 				}
 			}
 
-			Lineups = new List<LineupGroup>
+			if (Device.RuntimePlatform == Device.iOS)
 			{
-				new LineupGroup("BugFix", new List<LineupViewModel>()),
-				new LineupGroup("Základná zostava", starters),
-				new LineupGroup("Náhradníci", subs),
-			};
+				Lineups = new List<LineupGroup>
+				{
+					new LineupGroup("BugFix", new List<LineupViewModel>()),
+					new LineupGroup("Základná zostava", starters),
+					new LineupGroup("Náhradníci", subs),
+				};
+			}
+			else
+			{
+				Lineups = new List<LineupGroup>
+				{
+					new LineupGroup("Základná zostava", starters),
+					new LineupGroup("Náhradníci", subs),
+				};
+			}
 
-			LineupsHeight = ((Lineups.ElementAt(1).Count + Lineups.Last().Count) * 25) + 67;
+
+			LineupsHeight = ((starters.Count + subs.Count) * 25) + 67;
 
 			foreach (var item in Match.CoachingStaff)
 			{
@@ -144,6 +156,23 @@ namespace FutbalnetApp.ViewModels
 					SubIndex = item.SubIndex,
 					SubPlayerNumber = item.SubPlayerNumber,
 				};
+				switch (item.GoalType)
+				{
+					case "GAME":
+						matchEvent.GoalType = "Gól z hry";
+						break;
+					case "PENALTY":
+						matchEvent.GoalType = "Gól z penalty";
+						break;
+					case "OWN":
+						matchEvent.GoalType = "Vlastný gól";
+						break;
+					case "STANDARD":
+						matchEvent.GoalType = "Gól zo štandardnej situácie";
+						break;
+					default:
+						break;
+				}
 				foreach (var starter in Match.Players.ElementAt(item.ClubIndex).Starters)
 				{
 					if (starter.Number == item.PlayerNumber)
@@ -159,6 +188,10 @@ namespace FutbalnetApp.ViewModels
 
 					if (sub.Number == item.SubPlayerNumber)
 						matchEvent.SubPlayer = sub.Person;
+				}
+				if (item.Type == "SUBST")
+				{
+					matchEvent.SubbedPlayerName = matchEvent.Player.Fullname;
 				}
 				matchEvents.Add(matchEvent);
 			}
@@ -196,9 +229,10 @@ namespace FutbalnetApp.ViewModels
 				Debug.WriteLine(ex);
 				var log = new ErrorLog()
 				{
-					Exception = ex,
-					Object = Match,
-					ObjectId = MatchId,
+					ExceptionType = ex.GetType().ToString(),
+					Status = ErrorLog.LogStatus.Unread,
+					Message = ex.Message,
+					ObjectId = MatchId.ToString(),
 					Action = "Loading Match",
 					Datetime = DateTime.Now,
 				};

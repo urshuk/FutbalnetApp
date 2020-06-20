@@ -180,5 +180,61 @@ namespace FutbalnetApp.Services
 
 		public bool GetAdsSettings() => Preferences.Get("adsSet", false);
 		public void SetAdsSettings(bool value) => Preferences.Set("adsSet", value);
+
+		public NotificationMatch GetNotification(int matchId)
+		{
+			var nots = GetNotificationMatches();
+			var not = nots.FirstOrDefault(x => x.MatchId == matchId);
+			return not;
+		}
+		public void DeleteNotification(int matchId)
+		{
+			var nots = GetNotificationMatches();
+			nots.RemoveAll(x => x.MatchId == matchId);
+			var xs = new XmlSerializer(typeof(List<NotificationMatch>));
+			string xml;
+			using (var textWriter = new StringWriter())
+			{
+				xs.Serialize(textWriter, nots);
+				xml = textWriter.ToString();
+			}
+			Preferences.Set("notificationList", xml);
+		}
+		public List<NotificationMatch> GetNotificationMatches()
+		{
+			var xml = Preferences.Get("notificationList", null);
+			var nots = new List<NotificationMatch>();
+			if (xml != null)
+			{
+				var xs = new XmlSerializer(typeof(List<NotificationMatch>));
+				using (var reader = new StringReader(xml))
+				{
+					nots = xs.Deserialize(reader) as List<NotificationMatch>;
+				}
+			}
+			return nots;
+		}
+		public void SaveNotificationMatch(NotificationMatch match)
+		{
+			if (NotificationExists(match.MatchId))
+				DeleteNotification(match.MatchId);
+
+			var nots = GetNotificationMatches();
+			nots.Add(match);
+			var xs = new XmlSerializer(typeof(List<NotificationMatch>));
+			string xml;
+			using (var textWriter = new StringWriter())
+			{
+				xs.Serialize(textWriter, nots);
+				xml = textWriter.ToString();
+			}
+			Preferences.Set("notificationList", xml);
+		}
+		public bool NotificationExists(int matchId)
+		{
+			var nots = GetNotificationMatches();
+			var not = nots.FirstOrDefault(x => x.MatchId == matchId);
+			return not != null ? true : false;
+		}
 	}
 }

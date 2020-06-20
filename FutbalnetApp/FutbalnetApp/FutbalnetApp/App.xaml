@@ -26,6 +26,8 @@
         <Color x:Key="DarkAlternativeColorDark">#888888</Color>
         <Color x:Key="TextColorDark">#F8F8F8</Color>
 
+        <x:Boolean x:Key="bla">True</x:Boolean>
+
         <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
             <On Platform="Android" Value="Montserrat-Medium.ttf#Montserrat" />
             <On Platform="UWP" Value="/Assets/Montserrat-Medium.ttf#Montserrat" />
@@ -62,13 +64,25 @@
                 <Label Grid.Column="1" TextColor="{DynamicResource TextColor}" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
             </Grid>
         </DataTemplate>
+        <DataTemplate x:Key="ListItemSecondary2">
+            <ViewCell>
+                <Grid Padding="10" Margin="0,3,0,0" HeightRequest="40" BackgroundColor="{DynamicResource AlternativeColor}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                    <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Grid.Column="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}"/>
+                    <Label Grid.Column="1" TextColor="{DynamicResource TextColor}" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
+                </Grid>
+            </ViewCell>
+        </DataTemplate>
         <DataTemplate x:Key="NoResultsTemplate">
             <Label FontSize="15" FontFamily="{StaticResource NormalFont}" HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalTextAlignment="Center" Text="{Binding}"/>
         </DataTemplate>
         <DataTemplate x:Key="BlankFooter">
-            <Label/>
+            <Label HeightRequest="0"/>
         </DataTemplate>
-        
+
         <controls:ListDataTemplateSelector x:Key="ListTemplateSelector" First="{StaticResource ListItem}" Alternative="{StaticResource ListItemAlternative}"/>
 
         <Style TargetType="NavigationPage">
@@ -83,15 +97,33 @@
             <Setter Property="HeightRequest" Value="33" />
         </Style>
         <Style x:Key="FavouriteToggle" TargetType="ImageButton">
-            <Setter Property="Source" Value="FavouriteNoFillIcon.pdf" />
+            <Setter Property="Source">
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="ic_favorite_nofill.xml"/>
+                    <On Platform="iOS" Value="FavouriteNoFillIcon.pdf"/>
+                </OnPlatform>
+            </Setter>
             <Setter Property="HeightRequest" Value="30" />
             <Setter Property="WidthRequest" Value="30" />
-            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center"/>
             <Setter Property="HorizontalOptions" Value="Center" />
             <Setter Property="Command" Value="{Binding ToggleFavouriteCommand}" />
             <Style.Triggers>
                 <DataTrigger TargetType="ImageButton" Binding="{Binding IsFavourite}" Value="True">
-                    <Setter Property="Source" Value="FavouriteIcon.pdf" />
+                    <Setter Property="Source">
+                        <OnPlatform x:TypeArguments="FileImageSource">
+                            <On Platform="Android" Value="ic_favorite_fill.xml"/>
+                            <On Platform="iOS" Value="FavouriteIcon.pdf"/>
+                        </OnPlatform>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger TargetType="ImageButton" Binding="{Binding IsFavourite}" Value="False">
+                    <Setter Property="Source">
+                        <OnPlatform x:TypeArguments="FileImageSource">
+                            <On Platform="Android" Value="ic_favorite_nofill.xml"/>
+                            <On Platform="iOS" Value="FavouriteNoFillIcon.pdf"/>
+                        </OnPlatform>
+                    </Setter>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -131,6 +163,14 @@
             <Setter Property="VerticalScrollBarVisibility" Value="Never" />
             <Setter Property="VerticalOptions" Value="FillAndExpand" />
             <Setter Property="EmptyViewTemplate" Value="{StaticResource NoResultsTemplate}" />
+        </Style>
+        <Style x:Key="BaseListView" TargetType="ListView">
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="SelectionMode" Value="Single" />
+            <Setter Property="HasUnevenRows" Value="True" />
+            <Setter Property="SeparatorVisibility" Value="None"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Never" />
+            <Setter Property="VerticalOptions" Value="FillAndExpand" />
         </Style>
     </Application.Resources>
 </Application>

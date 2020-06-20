@@ -19,6 +19,18 @@ namespace FutbalnetApp.ViewModels
 			get => person;
 			set => SetProperty(ref person, value);
 		}
+		public string photo;
+		public string Photo
+		{
+			get => photo;
+			set => SetProperty(ref photo, value);
+		}
+		public string sex;
+		public string Sex
+		{
+			get => sex;
+			set => SetProperty(ref sex, value);
+		}
 		public int SelectedTabIndex { get; set; }
 		public Command LoadPersonCommand { get; set; }
 		int statsOrderIndex = 0;
@@ -112,6 +124,24 @@ namespace FutbalnetApp.ViewModels
 			try
 			{
 				Person = await SportnetStore.GetPersonAsync(PersonId);
+
+				switch (Person.PhotoUrl)
+				{
+					case null when Device.RuntimePlatform == Device.iOS:
+						Photo = "DefaultPersonLogo.pdf";
+						break;
+					case null when Device.RuntimePlatform == Device.Android:
+						Photo = "ic_avatar.xml";
+						break;
+					default:
+						Photo = $"https://futbalnet.sportnet.online/api/images/{Person.PhotoId}";
+						break;
+				}
+				if (Person.Sex == "F")
+					Sex = "Žena";
+				else
+					Sex = "Muž";
+
 				Title = Person.Fullname;
 				PlayerStatsSummary = new PlayerStatsSeason
 				{
@@ -145,9 +175,10 @@ namespace FutbalnetApp.ViewModels
 				Debug.WriteLine(ex);
 				var log = new ErrorLog()
 				{
-					Exception = ex,
-					Object = Person,
-					ObjectId = PersonId,
+					ExceptionType = ex.GetType().ToString(),
+					Status = ErrorLog.LogStatus.Unread,
+					Message = ex.Message,
+					ObjectId = PersonId.ToString(),
 					Action = "Loading Person",
 					Datetime = DateTime.Now,
 				};

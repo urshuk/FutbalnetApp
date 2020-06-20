@@ -2,6 +2,7 @@
 using FutbalnetApp.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using Xamarin.Forms.Xaml;
 namespace FutbalnetApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
+	[QueryProperty("UnionId", "unionId")]
 	public partial class CompetitionSelectionPage : ContentPage
 	{
 		CompetitionSelectionViewModel viewModel;
@@ -21,20 +23,73 @@ namespace FutbalnetApp.Views
 			BindingContext = viewModel = new CompetitionSelectionViewModel();
 		}
 
-		private void UnionList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		public string UnionId
 		{
-			if (!(e.CurrentSelection.FirstOrDefault() is UnionPreview union))
-				return;
-
-			viewModel.Union = union;
-			viewModel.ReloadListsCommand.Execute(null);
-			//viewModel.ParentUnionId = union.Id;
-			UnionList.SelectedItem = null;
+			set
+			{
+				int.TryParse(Uri.UnescapeDataString(value), out int unionId);
+				foreach (var union in viewModel.AllUnions)
+				{
+					if (union.Id == unionId)
+					{
+						viewModel.Union = union;
+						break;
+					}
+					if (union.SubUnions != null)
+					{
+						foreach (var subUnion in union.SubUnions)
+						{
+							if (subUnion.Id == unionId)
+							{
+								viewModel.Union = subUnion;
+								break;
+							}
+							if (subUnion.SubUnions != null)
+							{
+								foreach (var lastSubUnion in subUnion.SubUnions)
+								{
+									if (lastSubUnion.Id == unionId)
+									{
+										viewModel.Union = lastSubUnion;
+										break;
+									}
+								}
+							}
+						}
+					}
+				}
+				viewModel.ReloadListsCommand.Execute(null);
+			}
 		}
 
-		async void OnCompetitionSelected(object sender, SelectionChangedEventArgs e)
+		private void UnionList_SelectionChanged(object sender, SelectedItemChangedEventArgs e)
 		{
-			if (!(e.CurrentSelection.FirstOrDefault() is CompetitionPreview comp))
+			try
+			{
+				//if (!(e.CurrentSelection.FirstOrDefault() is UnionPreview union))
+				//	return;
+
+				if (!(e.SelectedItem is UnionPreview union))
+					return;
+
+				viewModel.Union = union;
+				viewModel.ReloadListsCommand.Execute(null);
+				//viewModel.ParentUnionId = union.Id;
+				UnionList.SelectedItem = null;
+			}
+			catch (Exception err)
+			{
+				Debug.WriteLine(err);
+				throw;
+			}
+		}
+
+		async void OnCompetitionSelected(object sender, SelectedItemChangedEventArgs e)
+		{
+			//if (!(e.CurrentSelection.FirstOrDefault() is CompetitionPreview comp))
+			//	return;
+
+			if (!(e.SelectedItem is CompetitionPreview comp))
 				return;
 
 			await Navigation.PushAsync(new CompetitionDetailPage(comp.Id));

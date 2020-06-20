@@ -8,20 +8,11 @@ namespace FutbalnetApp.ViewModels
 {
 	public class SettingsViewModel : BaseViewModel
 	{
-		private int notificationMinutesAhead;
-
 		public bool NotificationsSet { get; set; }
 		public bool AdsSet { get; set; }
 		public string AppVersion => VersionTracking.CurrentVersion;
-		public int NotificationMinutesAhead
-		{
-			get => notificationMinutesAhead;
-			set
-			{
-				notificationMinutesAhead = value;
-				ExecuteSaveSettingsCommand();
-			}
-		}
+		public int NotificationMinutesAhead { get; set; }
+		public List<int> MinuteOptions { get; set; }
 		public Command SaveSettingsCommand { get; set; }
 		public Command LoadSettingsCommand { get; set; }
 
@@ -30,6 +21,18 @@ namespace FutbalnetApp.ViewModels
 			ExecuteLoadSettingsCommand();
 			SaveSettingsCommand = new Command(() => ExecuteSaveSettingsCommand());
 			LoadSettingsCommand = new Command(() => ExecuteLoadSettingsCommand());
+			PopulateMinutesList();
+		}
+
+		void PopulateMinutesList()
+		{
+			MinuteOptions = new List<int>();
+			int i = 0;
+			while (i <= 120)
+			{
+				MinuteOptions.Add(i);
+				i += 5;
+			}
 		}
 
 		void ExecuteSaveSettingsCommand()
@@ -37,6 +40,8 @@ namespace FutbalnetApp.ViewModels
 			LocalDataStore.SetNotificationsMinutes(NotificationMinutesAhead);
 			LocalDataStore.SetNotificationsSettings(NotificationsSet);
 			LocalDataStore.SetAdsSettings(AdsSet);
+			MessagingCenter.Send(this, "SettinsUpdated");
+
 		}
 		void ExecuteLoadSettingsCommand()
 		{

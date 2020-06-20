@@ -15,8 +15,10 @@ namespace FutbalnetApp.Services
 
 		public SportnetDataStore()
 		{
-			client = new HttpClient();
-			client.BaseAddress = new Uri($"{App.SportnetApiUrl}/");
+			client = new HttpClient
+			{
+				BaseAddress = new Uri($"{App.SportnetApiUrl}/")
+			};
 		}
 
 		bool IsConnected => Connectivity.NetworkAccess == NetworkAccess.Internet;

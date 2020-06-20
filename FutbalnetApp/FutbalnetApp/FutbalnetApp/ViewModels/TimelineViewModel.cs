@@ -24,18 +24,19 @@ namespace FutbalnetApp.ViewModels
 		public TimelineViewModel()
 		{
 			LoadTimelineCommand = new Command(async () => await ExecuteLoadTimelineCommandAsync());
+			MessagingCenter.Subscribe<TeamDetailViewModel>(this, "FavouritesUpdated", (sender) => IsLoaded = false);
+
 		}
 
-		private void SetMatchNotification(MatchPreview match)
+		private void AddMatchNotification(MatchPreview match)
 		{
-			if (!LocalDataStore.GetNotificationsSettings())
-				return;
-
-			var minutesAhead = LocalDataStore.GetNotificationsMinutes();
-			var message = minutesAhead > 0 ? $"Začiatok zápasu o {minutesAhead} min." : "Začiatok zápasu.";
-			if (match.Datetime.HasValue)
-				CrossLocalNotifications.Current.Show(match.ToString(), message, match.Id, match.Datetime.Value.AddMinutes(-minutesAhead));
-
+			var not = new NotificationMatch
+			{
+				MatchId = match.Id,
+				MatchName = match.ToString(),
+				DateTime = match.Datetime
+			};
+			LocalDataStore.SaveNotificationMatch(not);
 		}
 		private async Task<IEnumerable<MatchPreview>> GetTeamMatchesAsync(Team team, IEnumerable<CompetitionPreview> comps = null)
 		{
@@ -52,14 +53,30 @@ namespace FutbalnetApp.ViewModels
 					var competition = await SportnetStore.GetCompetitionAsync(comp.Id);
 					foreach (var part in competition.Parts)
 					{
-						foreach (var round in part.Rounds.Where(x => (x.Datetime - DateTime.Today).Days < 15 && (x.Datetime.Date >= DateTime.Today)))
+						//for matches from other rounds i guess
+						/*foreach (var round in part.Rounds.Where(x => (x.Datetime - DateTime.Today).Days < 15 && (x.Datetime.Date >= DateTime.Today)))
+						{
+							roundcouunt++;
+							var fullRound = await SportnetStore.GetCompetitionRoundAsync(competition.Id, part.Id, round.Id);
+							var match = fullRound.Matches.FirstOrDefault(x => x.Teams != null && x.Teams.FirstOrDefault(y => y.Id == team.Id) != null); ;
+							if (match != null && match.Status == "VYGENEROVANY" && match.Datetime != null)
+							{
+								matches.Add(match);
+								AddMatchNotification(match);
+							}
+						}*/
+						var currentRoundNumber = part.Rounds.FirstOrDefault(x => (x.Datetime.Date >= DateTime.Today.AddDays(-1)))?.Number;
+						foreach (var round in part.Rounds.Where(x => ((x.Datetime - DateTime.Today).Days < 17 && (x.Datetime.DayOfYear >= DateTime.Today.DayOfYear)) || (x.Number >= currentRoundNumber.GetValueOrDefault() - 1 && x.Number < currentRoundNumber.GetValueOrDefault() + 1)))
 						{
 							var fullRound = await SportnetStore.GetCompetitionRoundAsync(competition.Id, part.Id, round.Id);
 							var match = fullRound.Matches.FirstOrDefault(x => x.Teams != null && x.Teams.FirstOrDefault(y => y.Id == team.Id) != null); ;
-							if (match != null && match.Status == "VYGENEROVANY")
+							if (match != null && match.Status == "VYGENEROVANY" && match.Datetime != null)
 							{
-								matches.Add(match);
-								SetMatchNotification(match);
+								if ((match.Datetime.Value.Date - DateTime.Today).Days < 15 && (match.Datetime.Value.DayOfYear >= DateTime.Today.DayOfYear))
+								{
+									matches.Add(match);
+									AddMatchNotification(match);
+								}
 							}
 						}
 					}
@@ -98,8 +115,7 @@ namespace FutbalnetApp.ViewModels
 						matches.AddRange(await GetTeamMatchesAsync(team, comps));
 					}
 				}*/
-
-				MatchGroups = matches.GroupBy(x => x.Datetime.GetValueOrDefault().Date).ToList();
+				MatchGroups = matches.OrderBy(x => x.Datetime).GroupBy(x => x.Datetime.GetValueOrDefault().Date).ToList();
 				IsLoaded = true;
 			}
 			catch (Exception ex)
@@ -107,9 +123,9 @@ namespace FutbalnetApp.ViewModels
 				Debug.WriteLine(ex);
 				var log = new ErrorLog()
 				{
-					Exception = ex,
-					Object = null,
-					ObjectId = 0,
+					ExceptionType = ex.GetType().ToString(),
+					Status = ErrorLog.LogStatus.Unread,
+					Message = ex.Message,
 					Action = "Loading timeline",
 					Datetime = DateTime.Now,
 				};

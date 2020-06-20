@@ -30,19 +30,49 @@
 
     <!-- Your Pages -->
     <TabBar>
-        <Tab Title="Súťaže" Icon="CompetitionIcon.pdf">
+        <Tab Title="Súťaže" Route="Competitions">
+            <Tab.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="ic_tab_competitions.xml"/>
+                    <On Platform="iOS" Value="CompetitionIcon.pdf"/>
+                </OnPlatform>
+            </Tab.Icon>
             <ShellContent ContentTemplate="{DataTemplate local:CompetitionSelectionPage}" />
         </Tab>
-        <Tab Title="Obľúbené" Icon="FavouriteIcon.pdf">
+        <Tab Title="Obľúbené">
+            <Tab.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="ic_tab_favorites.xml"/>
+                    <On Platform="iOS" Value="FavouriteIcon.pdf"/>
+                </OnPlatform>
+            </Tab.Icon>
             <ShellContent ContentTemplate="{DataTemplate local:FavouritesPage}" />
         </Tab>
-        <Tab Title="Časová os" Icon="TimelineIcon.pdf">
+        <Tab Title="Časová os">
+            <Tab.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="ic_tab_timeline.xml"/>
+                    <On Platform="iOS" Value="TimelineIcon.pdf"/>
+                </OnPlatform>
+            </Tab.Icon>
             <ShellContent ContentTemplate="{DataTemplate local:TimelinePage}" />
         </Tab>
-        <Tab Title="Hľadať" Icon="SearchIcon.pdf">
+        <Tab Title="Hľadať">
+            <Tab.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="ic_tab_search.xml"/>
+                    <On Platform="iOS" Value="SearchIcon.pdf"/>
+                </OnPlatform>
+            </Tab.Icon>
             <ShellContent ContentTemplate="{DataTemplate local:SearchPage}" />
         </Tab>
-        <Tab Title="Nastavenia" Icon="SettingsIcon.pdf">
+        <Tab Title="Nastavenia">
+            <Tab.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="ic_tab_settings.xml"/>
+                    <On Platform="iOS" Value="SettingsIcon.pdf"/>
+                </OnPlatform>
+            </Tab.Icon>
             <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" />
         </Tab>
     </TabBar>

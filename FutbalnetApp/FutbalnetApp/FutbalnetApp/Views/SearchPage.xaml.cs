@@ -56,8 +56,7 @@ namespace FutbalnetApp.Views
 		{
 			if (!(e.CurrentSelection.FirstOrDefault() is SearchResult item))
 				return;
-
-			//await Navigation.PushAsync(new UnionDetailPage(item.Id));
+			await Shell.Current.GoToAsync($"//Competitions?unionId={item.Id}");
 			UnionsList.SelectedItem = null;
 		}
 

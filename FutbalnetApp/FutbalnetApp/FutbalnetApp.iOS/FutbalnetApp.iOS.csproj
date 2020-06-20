@@ -14,6 +14,7 @@
     <AssemblyName>FutbalnetApp.iOS</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <ProvisioningType>manual</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,11 +29,13 @@
     <MtouchDebug>true</MtouchDebug>
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
     <MtouchProfiling>false</MtouchProfiling>
-    <CodesignKey>iPhone Developer: vitvasak@outlook.com (5P8KYHJ76M)</CodesignKey>
-    <CodesignProvision>iOS Team Provisioning Profile: com.companyname.FutbalnetApp</CodesignProvision>
+    <CodesignKey>Apple Distribution: Vit Vasak (USSK54STU9)</CodesignKey>
+    <CodesignProvision>iOS Team Store Provisioning Profile: com.vitvasak.FutbalVille</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
     <CodesignEntitlements />
+    <MtouchFastDev>true</MtouchFastDev>
+    <OptimizePNGs>true</OptimizePNGs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -82,6 +85,7 @@
     <CodesignProvision>iOS Team Provisioning Profile: com.vitvasak.FutbalVille</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
+    <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
@@ -341,7 +345,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver">
-      <Version>2.10.2</Version>
+      <Version>2.10.4</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Notifier">
       <Version>3.0.1</Version>
@@ -361,9 +365,9 @@
     <PackageReference Include="Xamarin.Firebase.iOS.InstanceID">
       <Version>4.3.0</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.968" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Xamarin.Google.iOS.MobileAds">
       <Version>7.53.1</Version>
     </PackageReference>

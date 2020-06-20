@@ -110,7 +110,18 @@
                     <ColumnDefinition Width="18"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Style="{StaticResource DefaultLabel}" Text="{Binding Order}"/>
-                <Image Grid.Column="1" Aspect="AspectFit" HeightRequest="20" Margin="0,5" VerticalOptions="Start" Source="{Binding Club.Logo}"/>
+                <Image Grid.Column="1" Aspect="AspectFit" HeightRequest="20" Margin="0,5" VerticalOptions="Start" Source="{Binding Club.Logo}">
+                    <Image.Triggers>
+                        <DataTrigger TargetType="Image" Binding="{Binding Club.Logo}" Value="none">
+                            <Setter Property="Source">
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="ic_club.xml"/>
+                                    <On Platform="iOS" Value="DefaultClubLogo.pdf"/>
+                                </OnPlatform>
+                            </Setter>
+                        </DataTrigger>
+                    </Image.Triggers>
+                </Image>
                 <Label Grid.Column="2" Style="{StaticResource DefaultLabel}" VerticalOptions="StartAndExpand" HorizontalTextAlignment="Start" Text="{Binding Club.Name}"/>
                 <Label Grid.Column="3" Style="{StaticResource DefaultLabel}" Text="{Binding MP}"/>
                 <Label Grid.Column="4" Style="{StaticResource DefaultLabel}" Text="{Binding W}"/>
@@ -137,7 +148,18 @@
                     <ColumnDefinition Width="18"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Style="{StaticResource DefaultLabel}" Text="{Binding Order}"/>
-                <Image Grid.Column="1" Aspect="AspectFit" HeightRequest="20" Margin="0,5" VerticalOptions="Start" Source="{Binding Club.Logo}"/>
+                <Image Grid.Column="1" Aspect="AspectFit" HeightRequest="20" Margin="0,5" VerticalOptions="Start" Source="{Binding Club.Logo}">
+                    <Image.Triggers>
+                        <DataTrigger TargetType="Image" Binding="{Binding Club.Logo}" Value="none">
+                            <Setter Property="Source">
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="ic_club.xml"/>
+                                    <On Platform="iOS" Value="DefaultClubLogo.pdf"/>
+                                </OnPlatform>
+                            </Setter>
+                        </DataTrigger>
+                    </Image.Triggers>
+                </Image>
                 <Label Grid.Column="2" Style="{StaticResource DefaultLabel}" VerticalOptions="StartAndExpand" HorizontalTextAlignment="Start" Text="{Binding Club.Name}"/>
                 <Label Grid.Column="3" Style="{StaticResource DefaultLabel}" Text="{Binding MP}"/>
                 <Label Grid.Column="4" Style="{StaticResource DefaultLabel}" Text="{Binding W}"/>
