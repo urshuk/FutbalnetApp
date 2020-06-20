@@ -165,6 +165,7 @@
             <Setter Property="EmptyViewTemplate" Value="{StaticResource NoResultsTemplate}" />
         </Style>
         <Style x:Key="BaseListView" TargetType="ListView">
+            <Setter Property="BackgroundColor" Value="Transparent"/>
             <Setter Property="SelectionMode" Value="Single" />
             <Setter Property="HasUnevenRows" Value="True" />
             <Setter Property="SeparatorVisibility" Value="None"/>
