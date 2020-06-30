@@ -245,8 +245,8 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Vek" FontFamily="{StaticResource BoldFont}" BackgroundColor="{DynamicResource AlternativeColor}"/>
                         <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.Age}" BackgroundColor="{DynamicResource AlternativeColor}"/>
-                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Dátum narodenia" FontFamily="{StaticResource BoldFont}"/>
-                        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.Birthdate, StringFormat='{0:dd.MM.yyyy}'}"/>
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Rok narodenia" FontFamily="{StaticResource BoldFont}"/>
+                        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Person.Birthdate, StringFormat='{0:yyyy}'}"/>
                         <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Pohlavie" FontFamily="{StaticResource BoldFont}" BackgroundColor="{DynamicResource AlternativeColor}"/>
                         <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource InfoLabel}" Text="{Binding Sex}" BackgroundColor="{DynamicResource AlternativeColor}"/>
                         <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource InfoLabel}" Text="Národnosť" FontFamily="{StaticResource BoldFont}"/>
