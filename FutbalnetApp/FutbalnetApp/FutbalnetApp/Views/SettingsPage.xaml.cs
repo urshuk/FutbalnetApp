@@ -1,4 +1,5 @@
-﻿using FutbalnetApp.ViewModels;
+﻿using FutbalnetApp.Services;
+using FutbalnetApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -103,7 +104,19 @@ namespace FutbalnetApp.Views
 		}
 		private void SwitchCell_OnChanged(object sender, ToggledEventArgs e)
 		{
-			viewModel.SaveSettingsCommand.Execute(null);
+			if (e.Value)
+			{
+				bool isNotificationEnabled = DependencyService.Get<IDeviceService>().GetApplicationNotificationSettings();
+				if (!isNotificationEnabled)
+				{
+					DependencyService.Get<IAppSettingsService>().OpenAppSettings();
+					AllowNotificationsSwitch.IsToggled = false;
+				}
+				else
+					viewModel.SaveSettingsCommand.Execute(null);
+			}
+			else
+				viewModel.SaveSettingsCommand.Execute(null);
 		}
 
 		private void ViewCell_Tapped(object sender, EventArgs e)
@@ -114,6 +127,22 @@ namespace FutbalnetApp.Views
 		private async void GoToFVButton_Clicked(object sender, EventArgs e)
 		{
 			await Browser.OpenAsync("https://futbalville.sk/", BrowserLaunchMode.SystemPreferred);
+		}
+
+		private async void Switch_Toggled(object sender, ToggledEventArgs e)
+		{
+			if (Device.RuntimePlatform == Device.iOS)
+			{
+				if (DeviceInfo.Version.Major < 13 && viewModel.DarkMode && !viewModel.IsDarkModeInitial)
+				{
+					bool setDarkMode = await DisplayAlert("Neúplná podpora", "Verzia operačného systému je staršia ako 13, preto sa niektoré prvky môžu zobrazovať nesprávne", "OK", "Zrušiť");
+					if (!setDarkMode)
+					{
+						viewModel.DarkMode = false;
+					}
+				}
+			}
+
 		}
 	}
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace FutbalnetApp.Services
 {
@@ -38,5 +39,8 @@ namespace FutbalnetApp.Services
 
 		bool GetAdsSettings();
 		void SetAdsSettings(bool value);
+
+		OSAppTheme GetDarkModeSettings();
+		void SetDarkModeSettings(OSAppTheme value);
 	}
 }

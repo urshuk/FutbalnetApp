@@ -6,21 +6,22 @@
              mc:Ignorable="d"
              xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
              xmlns:views="clr-namespace:FutbalnetApp.Views"
+             views:StatusBar.StatusBarStyle="{AppThemeBinding Light='DarkText', Dark='WhiteText'}"
              Title="Súťaž"
              x:Class="FutbalnetApp.Views.CompetitionDetailPage">
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout Style="{StaticResource MainLayout}">
                 <StackLayout Orientation="Horizontal" Margin="0,0,0,10" HorizontalOptions="CenterAndExpand" Spacing="5">
-                    <Label Text="{Binding Competition.Name}" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" LineBreakMode="TailTruncation" FontSize="18" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    <Label Text="{Binding Competition.Name}" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontFamily="{StaticResource NormalFont}" LineBreakMode="TailTruncation" FontSize="18" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                     <ImageButton HeightRequest="20" WidthRequest="20" Style="{StaticResource FavouriteToggle}"/>
                 </StackLayout>
-                <Picker x:Name="PartPicker" Margin="0,0,0,10" HeightRequest="20" FontSize="14" BackgroundColor="{DynamicResource AlternativeColor}" ItemsSource="{Binding Competition.Parts}" SelectedItem="{Binding Part, Mode=TwoWay}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Focused="PartPicker_Focused" Unfocused="OnPartChanged">
+                <Picker x:Name="PartPicker" Margin="0,0,0,10" HeightRequest="20" FontSize="14" BackgroundColor="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}" ItemsSource="{Binding Competition.Parts}" SelectedItem="{Binding Part, Mode=TwoWay}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" Focused="PartPicker_Focused" Unfocused="OnPartChanged">
 
                 </Picker>
                 <StackLayout Spacing="5" Margin="0,0,0,5" Orientation="Horizontal">
-                    <Label Text="Sezóna" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="18" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
-                    <Picker x:Name="SeasonPicker" FontSize="14" BackgroundColor="{DynamicResource AlternativeColor}" HeightRequest="20" ItemsSource="{Binding PastSeasons}" SelectedItem="{Binding CurrentSeason, Mode=TwoWay}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Unfocused="OnSeasonChanged"/>
+                    <Label Text="Sezóna" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontFamily="{StaticResource NormalFont}" FontSize="18" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
+                    <Picker x:Name="SeasonPicker" FontSize="14" BackgroundColor="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}" HeightRequest="20" ItemsSource="{Binding PastSeasons}" SelectedItem="{Binding CurrentSeason, Mode=TwoWay}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" Unfocused="OnSeasonChanged"/>
                 </StackLayout>
                 <tabs:TabHostView x:Name="Tabs" 
                                   Style="{StaticResource TabsContainer}" 

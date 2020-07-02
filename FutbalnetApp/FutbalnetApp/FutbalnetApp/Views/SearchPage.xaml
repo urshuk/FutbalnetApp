@@ -5,12 +5,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
              xmlns:views="clr-namespace:FutbalnetApp.Views"
+             views:StatusBar.StatusBarStyle="{AppThemeBinding Light='DarkText', Dark='WhiteText'}"
              mc:Ignorable="d"
              Title="Hľadať"
              x:Class="FutbalnetApp.Views.SearchPage">
     <ContentPage.Content>
         <StackLayout Style="{StaticResource MainLayout}">
-            <SearchBar x:Name="SearchBar" Keyboard="Plain" FontFamily="{StaticResource NormalFont}" TextChanged="SearchBar_TextChanged" CancelButtonColor="{DynamicResource TextColor}" Placeholder="Hľadajte ľudí, kluby, súťaže, zväzy" Text="{Binding SearchTerm, Mode=TwoWay}" BackgroundColor="{DynamicResource BackgroundColor}" TextColor="{DynamicResource TextColor}"/>
+            <SearchBar x:Name="SearchBar" 
+                       Keyboard="Plain" 
+                       FontFamily="{StaticResource NormalFont}"
+                       TextChanged="SearchBar_TextChanged" 
+                       CancelButtonColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" 
+                       Placeholder="Hľadajte ľudí, kluby, súťaže, zväzy" 
+                       Text="{Binding SearchTerm, Mode=TwoWay}" 
+                       BackgroundColor="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}"
+                       PlaceholderColor="{AppThemeBinding Light={StaticResource LightDarkerAlternativeColor}, Dark={StaticResource DarkDarkerAlternativeColor}}"
+                       TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}"/>
 
             <tabs:TabHostView x:Name="Competitions"
                               Style="{StaticResource TabsContainer}"

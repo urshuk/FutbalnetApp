@@ -9,6 +9,7 @@ using FutbalnetApp.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using FutbalnetApp.ViewModels;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace FutbalnetApp
 {
@@ -48,18 +49,17 @@ namespace FutbalnetApp
 		{
 			base.OnStart();
 
-			Theme theme = DependencyService.Get<IEnvironment>().GetOperatingSystemTheme();
-			SetTheme(theme);
-
 			await CheckConnectionAsync();
 
 			MainPage = new AppShell();
+
+			SetDarkMode();
 
 			ISportnetDataStore SportnetStore = DependencyService.Get<ISportnetDataStore>();
 			Seasons = SportnetStore.GetSeasons();
 
 			SetNotifications();
-			MessagingCenter.Subscribe<SettingsViewModel>(this, "SettinsUpdated", (sender) => SetNotifications());
+			MessagingCenter.Subscribe<SettingsViewModel>(this, "SettingsUpdated", (sender) => SetNotifications());
 		}
 
 		protected override void OnSleep()
@@ -70,11 +70,7 @@ namespace FutbalnetApp
 		protected override async void OnResume()
 		{
 			base.OnResume();
-
-			Theme theme = DependencyService.Get<IEnvironment>().GetOperatingSystemTheme();
-
-			SetTheme(theme);
-
+			SetDarkMode();
 			await CheckConnectionAsync();
 		}
 
@@ -107,21 +103,23 @@ namespace FutbalnetApp
 				await CheckConnectionAsync();
 			}
 		}
-		void SetTheme(Theme theme)
+		void SetDarkMode()
 		{
-			if (theme == Theme.Dark)
+			ILocalDataStore LocalStore = DependencyService.Get<ILocalDataStore>();
+			OSAppTheme theme = LocalStore.GetDarkModeSettings();
+			switch (theme)
 			{
-				Application.Current.Resources["BackgroundColor"] = Application.Current.Resources["BackgroundColorDark"];
-				Application.Current.Resources["AlternativeColor"] = Application.Current.Resources["AlternativeColorDark"];
-				//Application.Current.Resources["DarkAlternativeColor"] = Application.Current.Resources["DarkAlternativeColorDark"];
-				Application.Current.Resources["TextColor"] = Application.Current.Resources["TextColorDark"];
-			}
-			else
-			{
-				Application.Current.Resources["BackgroundColor"] = Application.Current.Resources["BackgroundColorLight"];
-				Application.Current.Resources["AlternativeColor"] = Application.Current.Resources["AlternativeColorLight"];
-				//Application.Current.Resources["DarkAlternativeColor"] = Application.Current.Resources["DarkAlternativeColorLight"];
-				Application.Current.Resources["TextColor"] = Application.Current.Resources["TextColorLight"];
+				case OSAppTheme.Unspecified:
+					Application.Current.UserAppTheme = OSAppTheme.Unspecified;
+					break;
+				case OSAppTheme.Light:
+					Application.Current.UserAppTheme = OSAppTheme.Light;
+					break;
+				case OSAppTheme.Dark:
+					Application.Current.UserAppTheme = OSAppTheme.Dark;
+					break;
+				default:
+					break;
 			}
 		}
 	}

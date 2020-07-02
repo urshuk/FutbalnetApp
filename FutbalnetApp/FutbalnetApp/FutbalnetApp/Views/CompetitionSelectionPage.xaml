@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
              xmlns:views="clr-namespace:FutbalnetApp.Views"
+             views:StatusBar.StatusBarStyle="{AppThemeBinding Light='DarkText', Dark='WhiteText'}"
              mc:Ignorable="d"
              Title="Súťaže"
              x:Class="FutbalnetApp.Views.CompetitionSelectionPage">
@@ -33,7 +34,7 @@
                             <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}" Label="Mládež"/>
                         </tabs:TabHostView.Tabs>
                     </tabs:TabHostView>
-                    <Label Text="{Binding Union.FullName}" FontFamily="{StaticResource BoldFont}" Margin="0,10,0,0" FontSize="15" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="{DynamicResource TextColor}"/>
+                    <Label Text="{Binding Union.FullName}" FontFamily="{StaticResource BoldFont}" Margin="0,10,0,0" FontSize="15" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}"/>
                     <tabs:ViewSwitcher x:Name="CategorySwitcher"
                                        Style="{StaticResource TabsContent}"
                                        Animate="True"

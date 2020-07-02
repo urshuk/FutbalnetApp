@@ -9,6 +9,7 @@ using Newtonsoft.Json.Serialization;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.IO;
+using Xamarin.Forms;
 
 namespace FutbalnetApp.Services
 {
@@ -236,5 +237,9 @@ namespace FutbalnetApp.Services
 			var not = nots.FirstOrDefault(x => x.MatchId == matchId);
 			return not != null ? true : false;
 		}
+
+		public OSAppTheme GetDarkModeSettings() => (OSAppTheme)Preferences.Get("darkMode", (int)OSAppTheme.Unspecified);
+
+		public void SetDarkModeSettings(OSAppTheme value) => Preferences.Set("darkMode", (int)value);
 	}
 }

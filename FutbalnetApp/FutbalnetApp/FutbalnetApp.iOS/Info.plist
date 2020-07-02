@@ -37,10 +37,14 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.6</string>
+	<string>1.1.0</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-7533314111096448~4242448797</string>
 	<key>CFBundleVersion</key>
-	<string>1061</string>
+	<string>1101</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDefault</string>
 </dict>
 </plist>

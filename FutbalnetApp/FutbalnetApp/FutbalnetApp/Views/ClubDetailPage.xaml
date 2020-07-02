@@ -4,12 +4,13 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:FutbalnetApp.Views"
+             views:StatusBar.StatusBarStyle="{AppThemeBinding Light='DarkText', Dark='WhiteText'}"
              mc:Ignorable="d"
              Title="{Binding Title}"
              x:Class="FutbalnetApp.Views.ClubDetailPage">
     <ContentPage.Resources>
         <DataTemplate x:Key="TeamItem">
-            <Grid Padding="10" HeightRequest="40" BackgroundColor="{DynamicResource AlternativeColor}">
+            <Grid Padding="10" HeightRequest="40" BackgroundColor="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="20"/>
@@ -19,7 +20,7 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" LineBreakMode="TailTruncation" Grid.Column="0" Grid.Row="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}">
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" LineBreakMode="TailTruncation" Grid.Column="0" Grid.Row="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}">
                     <Label.Padding>
                         <OnPlatform x:TypeArguments="Thickness">
                             <On Platform="Android" Value="0,-10,0,-10"/>
@@ -33,7 +34,7 @@
                         </OnPlatform>
                     </Label.Margin>
                 </Label>
-                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Grid.Column="0" Grid.Row="1" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Age}">
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" Grid.Column="0" Grid.Row="1" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Age}">
                     <Label.Padding>
                         <OnPlatform x:TypeArguments="Thickness">
                             <On Platform="Android" Value="0,-10,0,-10"/>
@@ -47,7 +48,7 @@
                         </OnPlatform>
                     </Label.Margin>
                 </Label>
-                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Grid.Column="0" Grid.Row="2" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Sex}">
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" Grid.Column="0" Grid.Row="2" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Sex}">
                     <Label.Padding>
                         <OnPlatform x:TypeArguments="Thickness">
                             <On Platform="Android" Value="0,-10,0,-10"/>
@@ -61,7 +62,7 @@
                         </OnPlatform>
                     </Label.Margin>
                 </Label>
-                <Label Grid.Column="1" Grid.RowSpan="3" TextColor="{DynamicResource TextColor}" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
+                <Label Grid.Column="1" Grid.RowSpan="3" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
             </Grid>
         </DataTemplate>
     </ContentPage.Resources>
@@ -90,8 +91,8 @@
                             </DataTrigger>
                         </Image.Triggers>
                     </Image>
-                    <Label Grid.Column="1" Grid.Row="0" Margin="5,0,0,0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15" VerticalTextAlignment="End" Text="{Binding Club.Name}"/>
-                    <Button Grid.Column="1" Grid.Row="1" TextColor="{DynamicResource HighlightColor}" Padding="0" FontFamily="{StaticResource NormalFont}" FontSize="13" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="{DynamicResource AlternativeColor}" Text="Kontakt info" HeightRequest="30" Clicked="Button_Clicked">
+                    <Label Grid.Column="1" Grid.Row="0" Margin="5,0,0,0" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontFamily="{StaticResource BoldFont}" FontSize="15" VerticalTextAlignment="End" Text="{Binding Club.Name}"/>
+                    <Button Grid.Column="1" Grid.Row="1" TextColor="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}" Padding="0" FontFamily="{StaticResource NormalFont}" FontSize="13" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}" Text="Kontakt info" HeightRequest="30" Clicked="Button_Clicked">
                         <Button.WidthRequest>
                             <OnPlatform x:TypeArguments="x:Double">
                                 <On Platform="Android" Value="120"/>

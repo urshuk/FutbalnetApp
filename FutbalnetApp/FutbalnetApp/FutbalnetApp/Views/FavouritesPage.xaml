@@ -4,12 +4,13 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:FutbalnetApp.Views"
+             views:StatusBar.StatusBarStyle="{AppThemeBinding Light='DarkText', Dark='WhiteText'}"
              mc:Ignorable="d"
              Title="Obľúbené"
              x:Class="FutbalnetApp.Views.FavouritesPage">
     <ContentPage.Resources>
         <DataTemplate x:Key="FavouriteItem">
-            <Grid Padding="10" HeightRequest="40" BackgroundColor="{DynamicResource AlternativeColor}">
+            <Grid Padding="10" HeightRequest="40" BackgroundColor="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30"/>
                     <ColumnDefinition Width="*"/>
@@ -21,7 +22,7 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding Logo}"/>
-                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Padding="0" Grid.Column="1" Grid.Row="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}">
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" Padding="0" Grid.Column="1" Grid.Row="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}">
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding Age, FallbackValue=none}" Value="none">
                             <Setter Property="Grid.RowSpan" Value="3" />
@@ -40,7 +41,7 @@
                         </OnPlatform>
                     </Label.Margin>
                 </Label>
-                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Padding="0" Grid.Column="1" Grid.Row="1" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Age}">
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" Padding="0" Grid.Column="1" Grid.Row="1" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Age}">
                     <Label.Padding>
                         <OnPlatform x:TypeArguments="Thickness">
                             <On Platform="Android" Value="0,-10,0,-10"/>
@@ -54,7 +55,7 @@
                         </OnPlatform>
                     </Label.Margin>
                 </Label>
-                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Padding="0" Grid.Column="1" Grid.Row="2" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Sex}">
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" Padding="0" Grid.Column="1" Grid.Row="2" FontSize="10" VerticalTextAlignment="Center" Text="{Binding Sex}">
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding Age, FallbackValue=none}" Value="none">
                             <Setter Property="IsVisible" Value="False" />
@@ -73,7 +74,7 @@
                         </OnPlatform>
                     </Label.Margin>
                 </Label>
-                <Label Grid.Column="2" Grid.RowSpan="3" TextColor="{DynamicResource TextColor}" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
+                <Label Grid.Column="2" Grid.RowSpan="3" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="GroupHeader">
@@ -87,15 +88,15 @@
                        HorizontalOptions="CenterAndExpand"
                        VerticalOptions="StartAndExpand"
                        FontFamily="{StaticResource BoldFont}"
-                       TextColor="{DynamicResource TextColor}"
+                       TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}"
                        VerticalTextAlignment="Center"/>
-                <BoxView Margin="0,0,0,4" BackgroundColor="{DynamicResource HighlightColor}" HeightRequest="2" VerticalOptions="Start" HorizontalOptions="FillAndExpand" />
+                <BoxView Margin="0,0,0,4" BackgroundColor="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}" HeightRequest="2" VerticalOptions="Start" HorizontalOptions="FillAndExpand" />
             </StackLayout>
         </DataTemplate>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Style="{StaticResource MainLayout}">
-            <Label FontSize="15" FontFamily="{StaticResource NormalFont}" IsVisible="{Binding IsEmpty}" Margin="0,20" HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalTextAlignment="Center" Text="Pridaj si ligy, kluby a tímy do obľúbených a nestrať prehľad"/>
+            <Label FontSize="15" FontFamily="{StaticResource NormalFont}" IsVisible="{Binding IsEmpty}" Margin="0,20" HorizontalOptions="CenterAndExpand" TextColor="{AppThemeBinding Light={StaticResource LightDarkerAlternativeColor}, Dark={StaticResource DarkDarkerAlternativeColor}}" HorizontalTextAlignment="Center" Text="Pridaj si ligy, kluby a tímy do obľúbených a nestrať prehľad"/>
             <CollectionView x:Name="FavouritesList"
                             IsGrouped="True"
                             Style="{StaticResource BaseCollectionView}"

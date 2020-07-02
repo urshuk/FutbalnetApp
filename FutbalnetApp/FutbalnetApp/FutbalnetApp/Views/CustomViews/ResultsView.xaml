@@ -45,10 +45,10 @@
                         </DataTrigger>
                     </Image.Triggers>
                 </Image>
-                <Label Grid.Column="1" Grid.Row="0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Teams[0].Name}"/>
-                <Label Grid.Column="1" Grid.Row="1" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" FontSize="12" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Teams[1].Name}"/>
-                <Label Grid.Column="2" Grid.Row="0" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Score[0]}" TextColor="{DynamicResource HighlightColor}"/>
-                <Label Grid.Column="2" Grid.Row="1" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Score[1]}" TextColor="{DynamicResource HighlightColor}"/>
+                <Label Grid.Column="1" Grid.Row="0" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontFamily="{StaticResource NormalFont}" FontSize="12" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Teams[0].Name}"/>
+                <Label Grid.Column="1" Grid.Row="1" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontFamily="{StaticResource NormalFont}" FontSize="12" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Teams[1].Name}"/>
+                <Label Grid.Column="2" Grid.Row="0" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Score[0]}" TextColor="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}"/>
+                <Label Grid.Column="2" Grid.Row="1" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Score[1]}" TextColor="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}"/>
                 <Frame Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" HeightRequest="12" WidthRequest="12" Padding="0" HasShadow="False" IsVisible="False" VerticalOptions="Center" CornerRadius="6" BackgroundColor="Red">
                     <Frame.Triggers>
                         <DataTrigger TargetType="Frame" Binding="{Binding IsPlaying}" Value="True">
@@ -56,11 +56,11 @@
                         </DataTrigger>
                     </Frame.Triggers>
                 </Frame>
-                <Label Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Datetime, StringFormat='{0:dd.MMM HH:mm}', TargetNullValue='Odložený'}"/>
+                <Label Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" TextColor="{AppThemeBinding Light={StaticResource LightDarkerAlternativeColor}, Dark={StaticResource DarkDarkerAlternativeColor}}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Datetime, StringFormat='{0:dd.MMM HH:mm}', TargetNullValue='Odložený'}"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="ResultItemAlternative">
-            <Grid BackgroundColor="{DynamicResource AlternativeColor}">
+            <Grid BackgroundColor="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="25"/>
                     <ColumnDefinition Width="*"/>
@@ -96,10 +96,10 @@
                         </DataTrigger>
                     </Image.Triggers>
                 </Image>
-                <Label Grid.Column="1" Grid.Row="0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" LineBreakMode="TailTruncation" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Teams[0].Name}"/>
-                <Label Grid.Column="1" Grid.Row="1" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource NormalFont}" LineBreakMode="TailTruncation" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Teams[1].Name}"/>
-                <Label Grid.Column="2" Grid.Row="0" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Score[0]}" TextColor="{DynamicResource HighlightColor}"/>
-                <Label Grid.Column="2" Grid.Row="1" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Score[1]}" TextColor="{DynamicResource HighlightColor}"/>
+                <Label Grid.Column="1" Grid.Row="0" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontFamily="{StaticResource NormalFont}" LineBreakMode="TailTruncation" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Teams[0].Name}"/>
+                <Label Grid.Column="1" Grid.Row="1" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontFamily="{StaticResource NormalFont}" LineBreakMode="TailTruncation" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Teams[1].Name}"/>
+                <Label Grid.Column="2" Grid.Row="0" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Score[0]}" TextColor="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}"/>
+                <Label Grid.Column="2" Grid.Row="1" FontFamily="{StaticResource NormalFont}" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Score[1]}" TextColor="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}"/>
                 <Frame Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" HeightRequest="12" WidthRequest="12" Padding="0" HasShadow="False" IsVisible="False" VerticalOptions="Center" CornerRadius="6" BackgroundColor="Red">
                     <Frame.Triggers>
                         <DataTrigger TargetType="Frame" Binding="{Binding IsPlaying}" Value="True">
@@ -107,7 +107,7 @@
                         </DataTrigger>
                     </Frame.Triggers>
                 </Frame>
-                <Label Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" TextColor="{DynamicResource DarkAlternativeColor}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Datetime, StringFormat='{0:dd.MMM HH:mm}', TargetNullValue='Odložený'}"/>
+                <Label Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" TextColor="{AppThemeBinding Light={StaticResource LightDarkerAlternativeColor}, Dark={StaticResource DarkDarkerAlternativeColor}}" FontFamily="{StaticResource NormalFont}" FontSize="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Datetime, StringFormat='{0:dd.MMM HH:mm}', TargetNullValue='Odložený'}"/>
             </Grid>
         </DataTemplate>
         <controls:ListDataTemplateSelector x:Key="TemplateSelector" First="{StaticResource ResultItem}" Alternative="{StaticResource ResultItemAlternative}"/>
@@ -115,9 +115,9 @@
     <ContentView.Content>
         <StackLayout Spacing="0">
             <StackLayout Orientation="Horizontal">
-                <Label TextColor="{DynamicResource TextColor}" Text="Kolo" VerticalTextAlignment="Center" HorizontalOptions="Start"/>
-                <Picker x:Name="RoundPicker" BackgroundColor="{DynamicResource AlternativeColor}" FontSize="14" HorizontalOptions="Center" HeightRequest="20" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" ItemsSource="{Binding Part.Rounds, Source={Reference Results}}" SelectedItem="{Binding Round, Source={Reference Results}, Mode=TwoWay}" Focused="RoundPicker_Focused" Unfocused="OnRoundChanged"/>
-                <Label TextColor="{DynamicResource TextColor}" Text="{Binding Round.Datetime, Source={Reference Results}, StringFormat='{0:dd.MM.yyyy}'}" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand"/>
+                <Label TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" Text="Kolo" VerticalTextAlignment="Center" HorizontalOptions="Start"/>
+                <Picker x:Name="RoundPicker" BackgroundColor="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}" FontSize="14" HorizontalOptions="Center" HeightRequest="20" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" VerticalOptions="Center" ItemsSource="{Binding Part.Rounds, Source={Reference Results}}" SelectedItem="{Binding Round, Source={Reference Results}, Mode=TwoWay}" Focused="RoundPicker_Focused" Unfocused="OnRoundChanged"/>
+                <Label TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" Text="{Binding Round.Datetime, Source={Reference Results}, StringFormat='{0:dd.MM.yyyy}'}" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
             <CollectionView x:Name="MatchList"
                             Margin="0,10,0,0"

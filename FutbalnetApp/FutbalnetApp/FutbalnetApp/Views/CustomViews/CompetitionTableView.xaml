@@ -10,14 +10,14 @@
     <ContentView.Resources>
         <Style x:Key="DefaultLabel" TargetType="Label">
             <Setter Property="FontFamily" Value="{StaticResource NormalFont}"/>
-            <Setter Property="TextColor" Value="{DynamicResource TextColor}"/>
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}"/>
             <Setter Property="VerticalTextAlignment" Value="Start"/>
             <Setter Property="HorizontalTextAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="Padding" Value="0,5"/>
         </Style>
         <DataTemplate x:Key="TableHeader">
-            <Grid BackgroundColor="{DynamicResource BackgroundColor}">
+            <Grid BackgroundColor="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
@@ -30,71 +30,71 @@
                     <ColumnDefinition Width="45"/>
                     <ColumnDefinition Width="18"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="Klub" HorizontalTextAlignment="Start"/>
-                <Label Grid.Column="1" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="Z" HorizontalTextAlignment="Center">
+                <Label Grid.Column="0" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="Klub" HorizontalTextAlignment="Start"/>
+                <Label Grid.Column="1" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="Z" HorizontalTextAlignment="Center">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Command, Source={Reference CompetitionTable}}" CommandParameter="Matches"/>
                     </Label.GestureRecognizers>
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding OrderIndex,Source={Reference CompetitionTable}}" Value="0">
-                            <Setter Property="TextColor" Value="{DynamicResource HighlightColor}"/>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}"/>
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
-                <Label Grid.Column="2" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="V" HorizontalTextAlignment="Center">
+                <Label Grid.Column="2" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="V" HorizontalTextAlignment="Center">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Command, Source={Reference CompetitionTable}}" CommandParameter="Wins"/>
                     </Label.GestureRecognizers>
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding OrderIndex,Source={Reference CompetitionTable}}" Value="1">
-                            <Setter Property="TextColor" Value="{DynamicResource HighlightColor}"/>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}"/>
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
-                <Label Grid.Column="3" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="R" HorizontalTextAlignment="Center">
+                <Label Grid.Column="3" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="R" HorizontalTextAlignment="Center">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Command, Source={Reference CompetitionTable}}" CommandParameter="Draws"/>
                     </Label.GestureRecognizers>
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding OrderIndex,Source={Reference CompetitionTable}}" Value="2">
-                            <Setter Property="TextColor" Value="{DynamicResource HighlightColor}"/>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}"/>
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
-                <Label Grid.Column="4" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="P" HorizontalTextAlignment="Center">
+                <Label Grid.Column="4" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="P" HorizontalTextAlignment="Center">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Command, Source={Reference CompetitionTable}}" CommandParameter="Losses"/>
                     </Label.GestureRecognizers>
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding OrderIndex,Source={Reference CompetitionTable}}" Value="3">
-                            <Setter Property="TextColor" Value="{DynamicResource HighlightColor}"/>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}"/>
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
-                <Label Grid.Column="5" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="Skóre" HorizontalTextAlignment="Center">
+                <Label Grid.Column="5" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="Skóre" HorizontalTextAlignment="Center">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Command, Source={Reference CompetitionTable}}" CommandParameter="Score"/>
                     </Label.GestureRecognizers>
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding OrderIndex,Source={Reference CompetitionTable}}" Value="4">
-                            <Setter Property="TextColor" Value="{DynamicResource HighlightColor}"/>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}"/>
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
-                <Label Grid.Column="6" TextColor="{DynamicResource TextColor}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="B" HorizontalTextAlignment="Center">
+                <Label Grid.Column="6" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontFamily="{StaticResource BoldFont}" FontSize="15" Text="B" HorizontalTextAlignment="Center">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Command, Source={Reference CompetitionTable}}" CommandParameter="Points"/>
                     </Label.GestureRecognizers>
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding OrderIndex,Source={Reference CompetitionTable}}" Value="5">
-                            <Setter Property="TextColor" Value="{DynamicResource HighlightColor}"/>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}"/>
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="TableItem">
-            <Grid BackgroundColor="{DynamicResource BackgroundColor}">
+            <Grid BackgroundColor="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
@@ -132,7 +132,7 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="TableItemAlternative">
-            <Grid BackgroundColor="{DynamicResource AlternativeColor}">
+            <Grid BackgroundColor="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>

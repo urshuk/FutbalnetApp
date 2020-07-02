@@ -84,8 +84,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdBanner_Droid.cs" />
+    <Compile Include="AppSettingsService.cs" />
     <Compile Include="CustomImageButtonRenderer.cs" />
-    <Compile Include="Environment_Android.cs" />
+    <Compile Include="DeviceService.cs" />
     <Compile Include="LabelScrollRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="CustomPickerRenderer.cs" />

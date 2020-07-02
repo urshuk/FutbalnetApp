@@ -21,7 +21,7 @@ namespace FutbalnetApp.Droid
 
             base.OnCreate(savedInstanceState);
 
-            global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
+            global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental", "AppTheme_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 			SharpnadoInitializer.Initialize();

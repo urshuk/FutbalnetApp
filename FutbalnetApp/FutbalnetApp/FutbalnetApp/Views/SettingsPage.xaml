@@ -3,13 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Converters="clr-namespace:FutbalnetApp.Converters"
+             xmlns:views="clr-namespace:FutbalnetApp.Views"
+             views:StatusBar.StatusBarStyle="{AppThemeBinding Light='DarkText', Dark='WhiteText'}"
              mc:Ignorable="d"
              Title="Nastavenia"
              x:Class="FutbalnetApp.Views.SettingsPage">
     <ContentPage.Resources>
+        <Converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
         <Style TargetType="Label" x:Key="BaseLabel">
             <Setter Property="FontFamily" Value="{StaticResource NormalFont}" />
-            <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" />
             <Setter Property="HorizontalOptions" Value="StartAndExpand" />
             <Setter Property="HeightRequest" Value="30" />
             <Setter Property="VerticalOptions" Value="Center" />
@@ -17,16 +21,44 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <TableView Intent="Settings" HasUnevenRows="True" BackgroundColor="{DynamicResource BackgroundColor}">
+        <StackLayout BackgroundColor="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}">
+            <TableView Intent="Settings" HasUnevenRows="True" BackgroundColor="Transparent">
                 <TableRoot>
                     <TableSection Title="Notifikácie">
-                        <SwitchCell Text="Povoliť notifikácie" OnColor="{DynamicResource HighlightColor}" OnChanged="SwitchCell_OnChanged" On="{Binding NotificationsSet, Mode=TwoWay}"/>
+                        <ViewCell Height="50">
+                            <StackLayout Orientation="Horizontal" Padding="15,0">
+                                <Label Text="Povoliť notifikácie" Style="{StaticResource BaseLabel}"/>
+                                <Switch x:Name="AllowNotificationsSwitch" VerticalOptions="Center" OnColor="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}" Toggled="SwitchCell_OnChanged" IsToggled="{Binding NotificationsSet, Mode=TwoWay}"/>
+                            </StackLayout>
+                        </ViewCell>
                         <ViewCell Height="50" Tapped="ViewCell_Tapped">
                             <StackLayout Orientation="Horizontal" Padding="15,0">
                                 <Label Text="Upozornenie pred zápasom" Style="{StaticResource BaseLabel}"/>
-                                <Picker x:Name="minutePicker" BackgroundColor="{DynamicResource AlternativeColor}" FontSize="14" HorizontalOptions="Center" HeightRequest="20" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" ItemsSource="{Binding MinuteOptions}" SelectedItem="{Binding NotificationMinutesAhead, Mode=TwoWay}" Unfocused="minutePicker_Unfocused"/>
+                                <Picker x:Name="minutePicker" BackgroundColor="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}" FontSize="14" HorizontalOptions="Center" HeightRequest="20" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" VerticalOptions="Center" ItemsSource="{Binding MinuteOptions}" SelectedItem="{Binding NotificationMinutesAhead, Mode=TwoWay}" Unfocused="minutePicker_Unfocused"/>
                                 <Label Text="min" Style="{StaticResource BaseLabel}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection Title="Tmavý režim">
+                        <ViewCell Height="50">
+                            <StackLayout Orientation="Horizontal" Padding="15,0">
+                                <Label Text="Použiť systémové nastavenia" Style="{StaticResource BaseLabel}"/>
+                                <Switch VerticalOptions="Center" IsToggled="{Binding DarkModeAuto, Mode=TwoWay}" OnColor="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}"></Switch>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell Height="50">
+                            <StackLayout Orientation="Horizontal" Padding="15,0">
+                                <Label Text="Zapnúť tmavý režim" Style="{StaticResource BaseLabel}">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding DarkModeAuto}" Value="True">
+                                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightDarkerAlternativeColor}, Dark={StaticResource DarkDarkerAlternativeColor}}"/>
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Label" Binding="{Binding DarkModeAuto}" Value="False">
+                                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Switch VerticalOptions="Center" IsEnabled="{Binding DarkModeAuto, Converter={StaticResource InverseBoolConverter}}" Toggled="Switch_Toggled" IsToggled="{Binding DarkMode, Mode=TwoWay}" OnColor="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}"></Switch>
                             </StackLayout>
                         </ViewCell>
                     </TableSection>
@@ -34,20 +66,20 @@
                         <ViewCell>
                             <StackLayout Padding="15,0,15,5" Spacing="0">
                                 <Label Text="Obľúbené" Style="{StaticResource BaseLabel}"/>
-                                <Label Text="Pridaj si ligy, kluby a tímy do zoznamu obľúbených a urýchliš si tým cestu k výsledkom" VerticalTextAlignment="Start" HeightRequest="-1" TextColor="{DynamicResource DarkAlternativeColor}" Style="{StaticResource BaseLabel}"/>
+                                <Label Text="Pridaj si ligy, kluby a tímy do zoznamu obľúbených a urýchliš si tým cestu k výsledkom" VerticalTextAlignment="Start" HeightRequest="-1" TextColor="{AppThemeBinding Light={StaticResource LightDarkerAlternativeColor}, Dark={StaticResource DarkDarkerAlternativeColor}}" Style="{StaticResource BaseLabel}"/>
                             </StackLayout>
                         </ViewCell>
                         <ViewCell>
                             <StackLayout Padding="15,0,15,5" Spacing="0">
                                 <Label Text="Časová os" Style="{StaticResource BaseLabel}"/>
-                                <Label Text="Na časovej osi sa ti zobrazia najbližšie zápasy tvojich obľúbených tímov a notifikácia ťa upozorní na ich začiatok" VerticalTextAlignment="Start" HeightRequest="-1" TextColor="{DynamicResource DarkAlternativeColor}" Style="{StaticResource BaseLabel}"/>
+                                <Label Text="Na časovej osi sa ti zobrazia najbližšie zápasy tvojich obľúbených tímov a notifikácia ťa upozorní na ich začiatok" VerticalTextAlignment="Start" HeightRequest="-1" TextColor="{AppThemeBinding Light={StaticResource LightDarkerAlternativeColor}, Dark={StaticResource DarkDarkerAlternativeColor}}" Style="{StaticResource BaseLabel}"/>
                             </StackLayout>
                         </ViewCell>
                         <ViewCell>
                             <Button x:Name="GoToFVButton" 
                                     Text="Viac na webe FV" 
-                                    BackgroundColor="{DynamicResource AlternativeColor}"
-                                    TextColor="{DynamicResource HighlightColor}"
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}"
+                                    TextColor="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}"
                                     Padding="10, 0" 
                                     Margin="0,5" 
                                     HeightRequest="25" 
@@ -60,7 +92,7 @@
                         <ViewCell>
                             <StackLayout Padding="15,0">
                                 <Label Text="Nahlás problém" Padding="0" Style="{StaticResource BaseLabel}"/>
-                                <Editor x:Name="BugEditor" Keyboard="Text" FontSize="14" AutoSize="Disabled" TextChanged="BugEditor_TextChanged" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Opíš čo najpodrobnejšie problém...">
+                                <Editor x:Name="BugEditor" Keyboard="Text" FontSize="14" AutoSize="Disabled" TextChanged="BugEditor_TextChanged" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" BackgroundColor="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" PlaceholderColor="{AppThemeBinding Light={StaticResource LightDarkerAlternativeColor}, Dark={StaticResource DarkDarkerAlternativeColor}}" Placeholder="Opíš čo najpodrobnejšie problém...">
                                     <Editor.HeightRequest>
                                         <OnPlatform x:TypeArguments="x:Double">
                                             <On Platform="Android" Value="100"/>
@@ -68,10 +100,10 @@
                                         </OnPlatform>
                                     </Editor.HeightRequest>
                                 </Editor>
-                                <Button x:Name="BugSendButton" Text="Odoslať" BackgroundColor="{DynamicResource AlternativeColor}" Padding="0" IsEnabled="False" Margin="0,0,0,5" HeightRequest="25" WidthRequest="100" HorizontalOptions="Center" Clicked="BugSendClicked" FontSize="15">
+                                <Button x:Name="BugSendButton" Text="Odoslať" BackgroundColor="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}" Padding="0" IsEnabled="False" Margin="0,0,0,5" HeightRequest="25" WidthRequest="100" HorizontalOptions="Center" Clicked="BugSendClicked" FontSize="15">
                                     <Button.Triggers>
                                         <Trigger TargetType="Button" Property="IsEnabled" Value="True">
-                                            <Setter Property="TextColor" Value="{DynamicResource HighlightColor}"/>
+                                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}"/>
                                         </Trigger>
                                     </Button.Triggers>
                                 </Button>
@@ -80,7 +112,7 @@
                         <ViewCell>
                             <StackLayout Padding="15,0">
                                 <Label Text="Máš nápad?" Padding="0" Style="{StaticResource BaseLabel}"/>
-                                <Editor x:Name="FeedbackEditor" Keyboard="Text" FontSize="14" AutoSize="Disabled" TextChanged="FeedbackEditor_TextChanged" TextColor="{DynamicResource TextColor}" BackgroundColor="{DynamicResource BackgroundColor}" PlaceholderColor="{DynamicResource DarkAlternativeColor}" Placeholder="Daj nám vedieť čo by si zlepšil a ako...">
+                                <Editor x:Name="FeedbackEditor" Keyboard="Text" FontSize="14" AutoSize="Disabled" TextChanged="FeedbackEditor_TextChanged" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" BackgroundColor="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" PlaceholderColor="{AppThemeBinding Light={StaticResource LightDarkerAlternativeColor}, Dark={StaticResource DarkDarkerAlternativeColor}}" Placeholder="Daj nám vedieť čo by si zlepšil a ako...">
                                     <Editor.HeightRequest>
                                         <OnPlatform x:TypeArguments="x:Double">
                                             <On Platform="Android" Value="100"/>
@@ -88,10 +120,10 @@
                                         </OnPlatform>
                                     </Editor.HeightRequest>
                                 </Editor>
-                                <Button x:Name="FeedbackSendButton" Text="Odoslať" BackgroundColor="{DynamicResource AlternativeColor}" Padding="0" IsEnabled="False" Margin="0,0,0,5" HeightRequest="25" WidthRequest="100" HorizontalOptions="Center" Clicked="FeedbackSendClicked" FontSize="15">
+                                <Button x:Name="FeedbackSendButton" Text="Odoslať" BackgroundColor="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}" Padding="0" IsEnabled="False" Margin="0,0,0,5" HeightRequest="25" WidthRequest="100" HorizontalOptions="Center" Clicked="FeedbackSendClicked" FontSize="15">
                                     <Button.Triggers>
                                         <Trigger TargetType="Button" Property="IsEnabled" Value="True">
-                                            <Setter Property="TextColor" Value="{DynamicResource HighlightColor}"/>
+                                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}"/>
                                         </Trigger>
                                     </Button.Triggers>
                                 </Button>
@@ -103,29 +135,29 @@
                         <ViewCell>
                             <StackLayout Padding="15,0,15,5" Spacing="0">
                                 <Label Text="O reklamách" Style="{StaticResource BaseLabel}"/>
-                                <Label Text="Povoľ reklamy a podpor tak ďalší vývoj aplikácie a opravy chýb. Reklamy sú malé a navrhnuté tak, aby vá" VerticalTextAlignment="Start" HeightRequest="-1" TextColor="{DynamicResource DarkAlternativeColor}" Style="{StaticResource BaseLabel}"/>
+                                <Label Text="Povoľ reklamy a podpor tak ďalší vývoj aplikácie a opravy chýb. Reklamy sú malé a navrhnuté tak, aby vá" VerticalTextAlignment="Start" HeightRequest="-1" TextColor="{AppThemeBinding Light={StaticResource LightDarkerAlternativeColor}, Dark={StaticResource DarkDarkerAlternativeColor}}" Style="{StaticResource BaseLabel}"/>
                             </StackLayout>
                         </ViewCell>
-                        <SwitchCell Text="Povoliť reklamy" OnColor="{DynamicResource HighlightColor}" OnChanged="SwitchCell_OnChanged" On="{Binding AdsSet, Mode=TwoWay}"/>
+                        <SwitchCell Text="Povoliť reklamy" OnColor="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}" OnChanged="SwitchCell_OnChanged" On="{Binding AdsSet, Mode=TwoWay}"/>
                     </TableSection>
                     -->
                     <TableSection Title="O aplikácii">
                         <ViewCell Height="30">
                             <StackLayout Orientation="Horizontal" Padding="15,0">
                                 <Label Text="Autor" Style="{StaticResource BaseLabel}"/>
-                                <Label Text="Vít Vašák" Style="{StaticResource BaseLabel}" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                <Label Text="Vít Vašák" Style="{StaticResource BaseLabel}" TextColor="{AppThemeBinding Light={StaticResource LightDarkerAlternativeColor}, Dark={StaticResource DarkDarkerAlternativeColor}}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
                             </StackLayout>
                         </ViewCell>
                         <ViewCell Height="30">
                             <StackLayout Orientation="Horizontal" Padding="15,0">
                                 <Label Text="Dizajn" Style="{StaticResource BaseLabel}"/>
-                                <Label Text="Libi Bujňáková" Style="{StaticResource BaseLabel}" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                <Label Text="Libi Bujňáková" Style="{StaticResource BaseLabel}" TextColor="{AppThemeBinding Light={StaticResource LightDarkerAlternativeColor}, Dark={StaticResource DarkDarkerAlternativeColor}}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
                             </StackLayout>
                         </ViewCell>
                         <ViewCell Height="30">
                             <StackLayout Orientation="Horizontal" Padding="15,0">
                                 <Label Text="Verzia" Style="{StaticResource BaseLabel}"/>
-                                <Label Text="{Binding AppVersion}" Style="{StaticResource BaseLabel}" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding AppVersion}" Style="{StaticResource BaseLabel}" TextColor="{AppThemeBinding Light={StaticResource LightDarkerAlternativeColor}, Dark={StaticResource DarkDarkerAlternativeColor}}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
                             </StackLayout>
                         </ViewCell>
                     </TableSection>

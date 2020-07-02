@@ -55,11 +55,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Development: vitvasak@outlook.com (5P8KYHJ76M)</CodesignKey>
+    <CodesignKey>Apple Development: Vit Vasak (5P8KYHJ76M)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>
     </CodesignEntitlements>
-    <CodesignProvision>iOS Team Provisioning Profile: com.vitvasak.FutbalVille</CodesignProvision>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
     <MtouchLink>None</MtouchLink>
@@ -92,9 +92,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AdBanner_iOS.cs" />
-    <Compile Include="Environment_iOS.cs" />
+    <Compile Include="AppSettingsService.cs" />
+    <Compile Include="DeviceService.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="StatusBarRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />

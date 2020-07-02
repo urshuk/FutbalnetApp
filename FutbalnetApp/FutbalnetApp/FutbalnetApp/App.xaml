@@ -8,25 +8,17 @@
              mc:Ignorable="d"
              x:Class="FutbalnetApp.App">
     <Application.Resources>
-        <Color x:Key="HighlightColor">#65B17F</Color>
-        <Color x:Key="BackgroundColor">#FFFFFF</Color>
-        <Color x:Key="AlternativeColor">#F0F0F0</Color>
-        <Color x:Key="DarkAlternativeColor">#888888</Color>
-        <Color x:Key="TextColor">#000000</Color>
+        <Color x:Key="LightHighlightColor">#65B17F</Color>
+        <Color x:Key="LightBackgroundColor">#FFFFFF</Color>
+        <Color x:Key="LightAlternativeColor">#F0F0F0</Color>
+        <Color x:Key="LightDarkerAlternativeColor">#888888</Color>
+        <Color x:Key="LightTextColor">#000000</Color>
 
-        <Color x:Key="HighlightColorLight">#65B17F</Color>
-        <Color x:Key="BackgroundColorLight">#FFFFFF</Color>
-        <Color x:Key="AlternativeColorLight">#F0F0F0</Color>
-        <Color x:Key="DarkAlternativeColorLight">#888888</Color>
-        <Color x:Key="TextColorLight">#000000</Color>
-
-        <Color x:Key="HighlightColorDark">#65B17F</Color>
-        <Color x:Key="BackgroundColorDark">#2E2E2E</Color>
-        <Color x:Key="AlternativeColorDark">#4D4D4D</Color>
-        <Color x:Key="DarkAlternativeColorDark">#888888</Color>
-        <Color x:Key="TextColorDark">#F8F8F8</Color>
-
-        <x:Boolean x:Key="bla">True</x:Boolean>
+        <Color x:Key="DarkHighlightColor">#65B17F</Color>
+        <Color x:Key="DarkBackgroundColor">#2E2E2E</Color>
+        <Color x:Key="DarkAlternativeColor">#4D4D4D</Color>
+        <Color x:Key="DarkDarkerAlternativeColor">#888888</Color>
+        <Color x:Key="DarkTextColor">#F8F8F8</Color>
 
         <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
             <On Platform="Android" Value="Montserrat-Medium.ttf#Montserrat" />
@@ -50,34 +42,34 @@
             </StackLayout>
         </DataTemplate>
         <DataTemplate x:Key="ListItemAlternative">
-            <StackLayout BackgroundColor="{DynamicResource AlternativeColor}">
+            <StackLayout BackgroundColor="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}">
                 <Label HeightRequest="33" Text="{Binding Name}"/>
             </StackLayout>
         </DataTemplate>
         <DataTemplate x:Key="ListItemSecondary">
-            <Grid Padding="10" HeightRequest="40" BackgroundColor="{DynamicResource AlternativeColor}">
+            <Grid Padding="10" HeightRequest="40" BackgroundColor="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
-                <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Grid.Column="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}"/>
-                <Label Grid.Column="1" TextColor="{DynamicResource TextColor}" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
+                <Label FontFamily="{StaticResource NormalFont}" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" Grid.Column="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}"/>
+                <Label Grid.Column="1" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="ListItemSecondary2">
             <ViewCell>
-                <Grid Padding="10" Margin="0,3,0,0" HeightRequest="40" BackgroundColor="{DynamicResource AlternativeColor}">
+                <Grid Padding="10" Margin="0,3,0,0" HeightRequest="40" BackgroundColor="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="20"/>
                     </Grid.ColumnDefinitions>
-                    <Label FontFamily="{StaticResource NormalFont}" TextColor="{DynamicResource TextColor}" Grid.Column="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}"/>
-                    <Label Grid.Column="1" TextColor="{DynamicResource TextColor}" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
+                    <Label FontFamily="{StaticResource NormalFont}" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" Grid.Column="0" FontSize="15" VerticalTextAlignment="Center" Text="{Binding Name}"/>
+                    <Label Grid.Column="1" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontSize="15" VerticalTextAlignment="Center" Text=">"/>
                 </Grid>
             </ViewCell>
         </DataTemplate>
         <DataTemplate x:Key="NoResultsTemplate">
-            <Label FontSize="15" FontFamily="{StaticResource NormalFont}" HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource DarkAlternativeColor}" HorizontalTextAlignment="Center" Text="{Binding}"/>
+            <Label FontSize="15" FontFamily="{StaticResource NormalFont}" HorizontalOptions="CenterAndExpand" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" HorizontalTextAlignment="Center" Text="{Binding}"/>
         </DataTemplate>
         <DataTemplate x:Key="BlankFooter">
             <Label HeightRequest="0"/>
@@ -90,10 +82,10 @@
             <Setter Property="BarTextColor" Value="Orange"/>
         </Style>
         <Style x:Key="TabStyle" TargetType="tabs:UnderlinedTabItem">
-            <Setter Property="SelectedTabColor" Value="{DynamicResource HighlightColor}" />
+            <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}" />
             <Setter Property="LabelSize" Value="17" />
-            <Setter Property="BackgroundColor" Value="{DynamicResource AlternativeColor}" />
-            <Setter Property="UnselectedLabelColor" Value="{DynamicResource TextColor}" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}" />
+            <Setter Property="UnselectedLabelColor" Value="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" />
             <Setter Property="HeightRequest" Value="33" />
         </Style>
         <Style x:Key="FavouriteToggle" TargetType="ImageButton">
@@ -130,7 +122,7 @@
         <Style x:Key="LoadingStyle" TargetType="ActivityIndicator">
             <Setter Property="AbsoluteLayout.LayoutFlags" Value="PositionProportional" />
             <Setter Property="AbsoluteLayout.LayoutBounds" Value=".5,.5,-1,-1" />
-            <Setter Property="Color" Value="{DynamicResource TextColorDark}" />
+            <Setter Property="Color" Value="{StaticResource DarkTextColor}" />
             <Setter Property="IsRunning" Value="{Binding IsBusy}" />
             <Setter Property="IsVisible" Value="{Binding IsBusy}" />
         </Style>
@@ -147,7 +139,7 @@
             <Setter Property="IsEnabled" Value="{Binding IsLoaded}" />
             <Setter Property="Spacing" Value="0" />
             <Setter Property="Padding" Value="20,10,20,0" />
-            <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" />
         </Style>
         <Style x:Key="TabsContent" TargetType="tabs:ViewSwitcher">
             <Setter Property="Margin" Value="0,10,0,0" />
