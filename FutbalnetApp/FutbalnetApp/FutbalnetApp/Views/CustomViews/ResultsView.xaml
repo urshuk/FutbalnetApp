@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Converters="clr-namespace:FutbalnetApp.Converters"
              mc:Ignorable="d"
              xmlns:controls="clr-namespace:FutbalnetApp.Controls"
              x:Name="Results"
              x:Class="FutbalnetApp.Views.ResultsView">
     <ContentView.Resources>
+        <Converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
         <DataTemplate x:Key="ResultItem">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -121,6 +123,7 @@
             </StackLayout>
             <CollectionView x:Name="MatchList"
                             Margin="0,10,0,0"
+                            IsVisible="{Binding NotStartedYet, Converter={StaticResource InverseBoolConverter}}"
                             ItemsSource="{Binding ItemsSource, Source={Reference Results}}"
                             ItemTemplate="{StaticResource TemplateSelector}"
                             Style="{StaticResource BaseCollectionView}"
@@ -129,6 +132,7 @@
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
                 </CollectionView.ItemsLayout>
             </CollectionView>
+            <Label FontSize="15" FontFamily="{StaticResource NormalFont}" Margin="0,20" IsVisible="{Binding NotStartedYet}" HorizontalOptions="CenterAndExpand" TextColor="{AppThemeBinding Light={StaticResource LightDarkerAlternativeColor}, Dark={StaticResource DarkDarkerAlternativeColor}}" HorizontalTextAlignment="Center" Text="Zápasy nie sú naplánované"/>
         </StackLayout>
     </ContentView.Content>
 </ContentView>

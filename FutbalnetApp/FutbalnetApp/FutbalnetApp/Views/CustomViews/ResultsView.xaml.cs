@@ -43,6 +43,12 @@ namespace FutbalnetApp.Views
 			get => (ICommand)GetValue(CommandProperty);
 			set => SetValue(CommandProperty, value);
 		}
+		public static readonly BindableProperty NotStartedYetProperty = BindableProperty.Create("NotStartedYet", typeof(bool), typeof(ResultsView));
+		public bool NotStartedYet
+		{
+			get => (bool)GetValue(NotStartedYetProperty);
+			set => SetValue(NotStartedYetProperty, value);
+		}
 
 		async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{

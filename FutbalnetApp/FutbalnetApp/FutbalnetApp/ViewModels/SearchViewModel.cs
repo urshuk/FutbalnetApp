@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -50,27 +51,30 @@ namespace FutbalnetApp.ViewModels
 				Persons.Clear();
 				Competitions.Clear();
 				Unions.Clear();
-				
-				foreach (var item in results)
+
+				if (results != null && results.Count() > 0)
 				{
-					switch (item.Type)
+					foreach (var item in results)
 					{
-						case "person":
-							Persons.Add(item);
-							break;
-						case "club":
-							Clubs.Add(item);
-							break;
-						case "competition":
-							Competitions.Add(item);
-							break;
-						case "union":
-							Unions.Add(item);
-							break;
-						default:
-							break;
+						switch (item.Type)
+						{
+							case "person":
+								Persons.Add(item);
+								break;
+							case "club":
+								Clubs.Add(item);
+								break;
+							case "competition":
+								Competitions.Add(item);
+								break;
+							case "union":
+								Unions.Add(item);
+								break;
+							default:
+								break;
+						}
 					}
-				}
+				}		
 
 				IsLoaded = true;
 			}
@@ -82,7 +86,7 @@ namespace FutbalnetApp.ViewModels
 					ExceptionType = ex.GetType().ToString(),
 					Status = ErrorLog.LogStatus.Unread,
 					Message = ex.Message,
-					ObjectId = term,
+					ObjectId = term == "" ? "(blank)" : term,
 					Action = "Searching",
 					Datetime = DateTime.Now,
 				};

@@ -70,6 +70,12 @@ namespace FutbalnetApp.ViewModels
 			get => isFavourite;
 			set => SetProperty(ref isFavourite, value);
 		}
+		public bool notStartedYet;
+		public bool NotStartedYet
+		{
+			get => notStartedYet;
+			set => SetProperty(ref notStartedYet, value);
+		}
 
 		public CompetitionDetailViewModel(int id)
 		{
@@ -189,9 +195,16 @@ namespace FutbalnetApp.ViewModels
 				if (Part == null)
 					Part = Competition.Parts.FirstOrDefault();
 
-				SetClosestRound();
+				if (Part.Rounds.Count() > 0)
+				{
+					SetClosestRound();
+					await LoadRoundAsync();
+				}
+				else
+				{
+					NotStartedYet = true;
+				}
 
-				await LoadRoundAsync();
 				await LoadStatsAsync();
 				await LoadTableAsync();
 				await LoadPastSeasonsAsync();

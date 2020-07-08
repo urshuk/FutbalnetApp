@@ -17,7 +17,7 @@ namespace FutbalnetApp.Services
 		{
 			client = new HttpClient
 			{
-				BaseAddress = new Uri($"{App.SportnetApiUrl}/")
+				BaseAddress = new Uri($"{App.SportnetApiUrl}/"),
 			};
 		}
 

@@ -17,7 +17,6 @@
                     <ImageButton HeightRequest="20" WidthRequest="20" Style="{StaticResource FavouriteToggle}"/>
                 </StackLayout>
                 <Picker x:Name="PartPicker" Margin="0,0,0,10" HeightRequest="20" FontSize="14" BackgroundColor="{AppThemeBinding Light={StaticResource LightAlternativeColor}, Dark={StaticResource DarkAlternativeColor}}" ItemsSource="{Binding Competition.Parts}" SelectedItem="{Binding Part, Mode=TwoWay}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" Focused="PartPicker_Focused" Unfocused="OnPartChanged">
-
                 </Picker>
                 <StackLayout Spacing="5" Margin="0,0,0,5" Orientation="Horizontal">
                     <Label Text="Sezóna" TextColor="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" FontFamily="{StaticResource NormalFont}" FontSize="18" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
@@ -36,7 +35,7 @@
                                    Style="{StaticResource TabsContent}" 
                                    Animate="True" 
                                    SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
-                    <views:ResultsView ItemsSource="{Binding Matches}" Round="{Binding Round, Mode=TwoWay}" Command="{Binding LoadRoundCommand}" Part="{Binding Part}"/>
+                    <views:ResultsView ItemsSource="{Binding Matches}" Round="{Binding Round, Mode=TwoWay}" NotStartedYet="{Binding NotStartedYet}" Command="{Binding LoadRoundCommand}" Part="{Binding Part}"/>
                     <views:CompetitionTableView BindingContext="{Binding Table}" ItemsSource="{Binding OrderedTableClubs}" OrderIndex="{Binding TableOrderIndex}" Command="{Binding OrderTableCommand}"/>
                     <views:CompetitionStatsView ItemsSource="{Binding OrderedStatsPlayers}" OrderIndex="{Binding StatsOrderIndex}" Command="{Binding OrderStatsCommand}"/>
                 </tabs:ViewSwitcher>

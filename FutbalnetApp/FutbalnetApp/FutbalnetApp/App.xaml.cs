@@ -21,7 +21,7 @@ namespace FutbalnetApp
 		public static IEnumerable<Season> Seasons { get; set; }
 
 		public static string SportnetApiUrl = "https://futbalnet.sportnet.online/api";
-		public static string FutbalVilleApiUrl = "https://futbalvilleblazor.azurewebsites.net/api";
+		public static string FutbalVilleApiUrl = "https://api.futbalville.sk/";
 		bool IsConnected => Connectivity.NetworkAccess == NetworkAccess.Internet;
 
 		//roadmap

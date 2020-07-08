@@ -28,7 +28,7 @@ namespace FutbalnetApp.Services
 			if (log != null && IsConnected)
 			{
 				var json = JsonConvert.SerializeObject(log);
-				await client.PostAsync("ErrorLogs", new StringContent(json, Encoding.UTF8, "application/json"));
+				await client.PostAsync("bugs", new StringContent(json, Encoding.UTF8, "application/json"));
 			}
 		}
 	}
